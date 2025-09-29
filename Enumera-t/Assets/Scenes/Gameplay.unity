@@ -1297,7 +1297,7 @@ MonoBehaviour:
   operationNumberImage: {fileID: 1827431112}
   operationNumber: 1
   OperationSymbolImage: {fileID: 1724243979}
-  sums: 1
+  sums: 0
   slots:
   - {fileID: 813662765}
   - {fileID: 692866979}

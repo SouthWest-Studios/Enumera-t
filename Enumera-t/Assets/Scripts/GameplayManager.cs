@@ -217,13 +217,14 @@ public class GameplayManager : MonoBehaviour
                 }
                 else
                 {
-                    print("nnnnnnnnnnnnnnnnnnnnn");
+
                     if (candidate - listNumber == enemyNumber)
                     {
                         existeSolucion = true;
                         break;
                     }
                 }
+
             }
             if (existeSolucion) break;
         }
@@ -266,7 +267,7 @@ public class GameplayManager : MonoBehaviour
                 }
                 else
                 {
-                    if (listNumber - numberTocheck == enemyNumber)
+                    if (numberTocheck - listNumber == enemyNumber)
                     {
                         posibleSolution = true;
                         break;
