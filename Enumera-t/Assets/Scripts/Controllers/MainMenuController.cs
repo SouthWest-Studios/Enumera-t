@@ -26,7 +26,7 @@ public class TitleUIAnimation : MonoBehaviour
         if (title == null) return;
 
         // Rotación suave en Y
-        //title.rectTransform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+        title.rectTransform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
 
         // Pulso de escala (respiración)
         float scaleFactor = 1 + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;

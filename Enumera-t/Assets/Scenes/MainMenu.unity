@@ -1006,11 +1006,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 1211554400}
-  rotationSpeed: 50
+  rotationSpeed: 214.8
   pulseSpeed: 2
-  pulseAmount: 0.1
-  baseColor: {r: 1, g: 1, b: 1, a: 1}
-  pulseColor: {r: 0, g: 1, b: 1, a: 1}
+  pulseAmount: 6.98
+  baseColor: {r: 1, g: 0, b: 0.6396222, a: 1}
+  pulseColor: {r: 1, g: 0.8461648, b: 0, a: 1}
 --- !u!1 &1900313024
 GameObject:
   m_ObjectHideFlags: 0
