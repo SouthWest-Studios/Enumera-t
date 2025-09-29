@@ -1573,6 +1573,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92f79a40f51c654995ad77ef4f99cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 878617647}
+  background: {fileID: 2088419731}
+  character: {fileID: 1503719664}
+  dialogueBox: {fileID: 2011679262}
+  options:
+  - {fileID: 1842815778}
+  - {fileID: 169655079}
+  enterDuration: 0.6
+  exitDuration: 0.4
+  stagger: 0.06
+  hoverScale: 1.05
+  hoverTime: 0.15
+  bgEnterOffset: {x: 0, y: -60}
+  characterEnterOffset: {x: -80, y: 0}
+  boxEnterOffset: {x: 0, y: -40}
+  enterEase: 9
+  exitEase: 8
 --- !u!1 &913958449
 GameObject:
   m_ObjectHideFlags: 0

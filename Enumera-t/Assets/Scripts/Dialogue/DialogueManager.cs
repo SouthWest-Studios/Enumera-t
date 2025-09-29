@@ -55,4 +55,28 @@ public class DialogueManager : MonoBehaviour
         //anim.SetBool("IsOpen", false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            FindAnyObjectByType<DialogueCanvasAnimations>().PlayEnter();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            FindAnyObjectByType<DialogueCanvasAnimations>().PlayExit();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            FindAnyObjectByType<DialogueCanvasAnimations>().NudgeCharacter();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            FindAnyObjectByType<DialogueCanvasAnimations>().NudgeDialogueBox();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            FindAnyObjectByType<DialogueCanvasAnimations>().PlayExit();
+        }
+    }
+
 }
