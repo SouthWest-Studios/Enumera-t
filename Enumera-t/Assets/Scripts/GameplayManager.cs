@@ -149,12 +149,10 @@ public class GameplayManager : MonoBehaviour
                 if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 10 - enemyNumber)
                 {
                     operationNumber = PosibleSolution(operationNumber, false, enemyNumber, 10);
-                    print("aaaaaaaaaaa");
                 }
                 else
                 {
                     operationNumber = PosibleSolution(operationNumber, true, enemyNumber, 10);
-                    print("bbbbbbbbbbbb");
                 }
             }
 
@@ -197,12 +195,10 @@ public class GameplayManager : MonoBehaviour
     {
         if (unlockedNumbersInList == 0 || numbersList.Count == 0)
             return 0;
-        print("cccccccccccccccc");
         // Comprobar si existe alguna solución posible
         bool existeSolucion = false;
         for (int candidate = initialRange; candidate < finalRange; candidate++)
         {
-            print(candidate);
             for (int i = 0; i < unlockedNumbersInList; i++)
             {
                 if (i >= numbersList.Count) break;
