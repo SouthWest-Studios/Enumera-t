@@ -81,27 +81,11 @@ public class GameplayManager : MonoBehaviour
         bool victory = false;
         if(sums)
         {
-            if (operationNumber + number == enemyNumber)
-            {
-                victory = true;
-            }
-            else
-            {
-                victory= false;
-            }
+            victory = (operationNumber + number == enemyNumber);
         }
         else
         {
-            if (operationNumber - number == enemyNumber)
-            {
-                victory = true;
-                
-            }
-            else
-            {
-                victory = false;
-                
-            }
+            victory = (operationNumber - number == enemyNumber);
         }
 
         if (victory)
@@ -111,9 +95,22 @@ public class GameplayManager : MonoBehaviour
         }
         else
         {
+            if (solutionSlot != null)
+            {
+                for (int i = 0; i < unlockedNumbersInList; i++)
+                {
+                    if (slots[i] != null && slots[i].transform.childCount == 0 && solutionSlot.transform.childCount > 0)
+                    {
+                        solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().locked = false;
+                        solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().image.color = Color.red;
+                        solutionSlot.transform.GetChild(0).SetParent(slots[i].transform);
+                        
+                        
+                    }
+                }
+            }
             print("INCORRECTE");
         }
-        
     }
 
     public void RoundCompleted()
@@ -177,16 +174,26 @@ public class GameplayManager : MonoBehaviour
         // Asignar sprite de operación
         AssignNumberImage(operationNumber, operationNumberImage);
 
-        // Mover primer hijo de solutionSlot a un slot vacío
+        // Mover primer hijo de solutionSlot a un slot vacío y desbloquear numeros
         if (solutionSlot != null)
         {
             for (int i = 0; i < unlockedNumbersInList; i++)
             {
+                if(slots[i] != null && slots[i].transform.childCount > 0)
+                {
+                    slots[i].transform.GetChild(0).GetComponent<NumberUi>().locked = true;
+                    slots[i].transform.GetChild(0).GetComponent<NumberUi>().image.color = Color.white;
+                }
+                
                 if (slots[i] != null && slots[i].transform.childCount == 0 && solutionSlot.transform.childCount > 0)
                 {
+                    
+                    
                     solutionSlot.transform.GetChild(0).SetParent(slots[i].transform);
+                    
                 }
             }
+
         }
     }
 

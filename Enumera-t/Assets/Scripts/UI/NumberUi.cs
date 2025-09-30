@@ -13,6 +13,8 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler ,IEndDrag
     public Image image;
 
     [HideInInspector] public Transform parentAfterDrag;
+
+    public bool locked = false;
     public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
