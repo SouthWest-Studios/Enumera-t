@@ -56,6 +56,12 @@ public class GameplayManager : MonoBehaviour
             }
             
         }
+
+        if(LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+        {
+            DialogueManager.instance.StartDialogue(LevelData.dialogueInGameOne);
+        }
+
     }
 
     private void AssignNumberImage(int number, Image image)

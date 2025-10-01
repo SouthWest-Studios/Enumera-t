@@ -75,6 +75,7 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(letterDelay);
         }
+        dialogueAnimations.NudgeDialogueBox();
     }
 
     void EndDialogue()
@@ -90,13 +91,10 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+
+        if (Input.GetMouseButtonDown(0))
         {
-            dialogueAnimations.NudgeCharacter();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            dialogueAnimations.NudgeDialogueBox();
+            DisplayNextSentences();
         }
     }
 

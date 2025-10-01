@@ -26,6 +26,9 @@ public class Level : MonoBehaviour
     public void PlayDialogueLevel()
     {
         DialogueManager.instance.StartDialogue(dialogueBeforeEnter, onFinishDialogueBeforeEnter);
+        LevelData.dialogueInGameOne = dialogueInGameOne;
+        LevelData.dialogueInGameTwo = dialogueInGameTwo;
+        LevelData.dialogueInGameThree = dialogueInGameThree;
     }
 
     //public Level(int id, LevelState state, Color color)
