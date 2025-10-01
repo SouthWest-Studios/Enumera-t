@@ -17,6 +17,15 @@ public class LevelManager : MonoBehaviour
     [Header("Lista de Niveles en la escena")]
     public List<Level> levels = new List<Level>();
 
+
+
+    public static LevelManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         DataLevels.Instance.InitializeLevels(levels.Count);

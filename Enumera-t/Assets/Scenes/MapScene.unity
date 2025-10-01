@@ -754,7 +754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &169655079
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1125,6 +1125,17 @@ MonoBehaviour:
   id: 3
   state: 0
   image: {fileID: 0}
+  dialogueBeforeEnter:
+    sentences: []
+  dialogueInGameOne:
+    sentences: []
+  dialogueInGameTwo:
+    sentences: []
+  dialogueInGameThree:
+    sentences: []
+  onFinishDialogueBeforeEnter:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &306738551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1284,10 +1295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogo:
-    sentences:
-    - A la wuan
-    - A la chu
-    - A la wuan chu tri
+    sentences: []
 --- !u!1 &366446369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,6 +1978,17 @@ MonoBehaviour:
   id: 2
   state: 0
   image: {fileID: 0}
+  dialogueBeforeEnter:
+    sentences: []
+  dialogueInGameOne:
+    sentences: []
+  dialogueInGameTwo:
+    sentences: []
+  dialogueInGameThree:
+    sentences: []
+  onFinishDialogueBeforeEnter:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &624003205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,6 +2888,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 956744683}
+  characterImage: {fileID: 1503719665}
+  dialogueAnimations: {fileID: 900065258}
+  letterDelay: 0.02
 --- !u!114 &900065258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3639,6 +3661,17 @@ MonoBehaviour:
   id: 1
   state: 0
   image: {fileID: 0}
+  dialogueBeforeEnter:
+    sentences: []
+  dialogueInGameOne:
+    sentences: []
+  dialogueInGameTwo:
+    sentences: []
+  dialogueInGameThree:
+    sentences: []
+  onFinishDialogueBeforeEnter:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1179984260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,7 +4670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1842815778
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4858,10 +4891,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 35042486}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadLevelScene
-        m_Mode: 3
+      - m_Target: {fileID: 1970270476}
+        m_TargetAssemblyTypeName: Level, Assembly-CSharp
+        m_MethodName: PlayDialogueLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4923,6 +4956,37 @@ MonoBehaviour:
   id: 0
   state: 0
   image: {fileID: 0}
+  dialogueBeforeEnter:
+    sentences:
+    - sentence: gua gua soy el 0 soy maaloo
+      character: {fileID: 21300000, guid: 149381f43d591b542aeab38d5414dbb7, type: 3}
+    - sentence: Para nada soy la isla de dragon city
+      character: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
+    - sentence: Que empiece el nivel
+      character: {fileID: 21300000, guid: 149381f43d591b542aeab38d5414dbb7, type: 3}
+    - sentence: Perra
+      character: {fileID: 21300000, guid: 149381f43d591b542aeab38d5414dbb7, type: 3}
+  dialogueInGameOne:
+    sentences: []
+  dialogueInGameTwo:
+    sentences: []
+  dialogueInGameThree:
+    sentences: []
+  onFinishDialogueBeforeEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 35042486}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: LoadLevelScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2011679261
 GameObject:
   m_ObjectHideFlags: 0
