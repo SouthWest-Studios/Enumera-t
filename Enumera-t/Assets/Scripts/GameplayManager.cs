@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -28,8 +29,14 @@ public class GameplayManager : MonoBehaviour
 
     private List<int> alreadyUsedNumbers = new List<int>();
 
+    public bool isBoss = false;
+
+    public int health = 10;
+    public Image healthBar;
+
     void Start()
     {
+        healthBar.fillAmount = health / 10f;
         RoundCompleted();
         AssignNumberImage(enemyNumber, enemyImage);
         AssignNumberImage(operationNumber, operationNumberImage);
@@ -97,6 +104,12 @@ public class GameplayManager : MonoBehaviour
         if (victory)
         {
             print("BONA RESPOSTA!");
+            if (isBoss)
+            {
+
+                health -= 2;
+                healthBar.fillAmount = health / 10f;
+            }
             RoundCompleted();
         }
         else
@@ -121,6 +134,10 @@ public class GameplayManager : MonoBehaviour
 
     public void RoundCompleted()
     {
+        if( isBoss && health == 0)
+        {
+            SceneManager.LoadScene("MapScene");
+        }
         // Límite de intentos global para evitar bucle infinito
         int intentosGlobales = 0;
         int maxIntentosGlobales = 50;
