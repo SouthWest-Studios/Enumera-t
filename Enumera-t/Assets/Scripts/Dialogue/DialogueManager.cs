@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogo dialogo, UnityEvent onDialogueFinish = null)
     {
         //anim.SetBool("IsOpen", true);
-
+        characterImage.sprite = dialogo.sentences[0].character;
         dialogueAnimations.PlayEnter();
         this.onDialogueFinish = onDialogueFinish;
 
@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+
 
         DisplayNextSentences();
     }
@@ -56,22 +57,29 @@ public class DialogueManager : MonoBehaviour
         }
         DialogueSentence sentence = sentences.Dequeue();
         StopAllCoroutines();
-        characterImage.sprite = sentence.character;
+
+        if(characterImage.sprite != sentence.character)
+        {
+            dialogueAnimations.ChangeCharacter(sentence.character);
+        }
         StartCoroutine(TypeSentence(sentence.sentence));
     }
 
     IEnumerator TypeSentence (String sentence)
     {
         dialogueText.text = "";
+        yield return new WaitForSeconds(0.4f);
         foreach (char letter in sentence.ToCharArray())
         {
-            if(letterCount > 5)
+            if(letter == ' ')
             {
-                dialogueAnimations.NudgeCharacter();
-                letterCount = 0;
+                letterCount++;
+                if (letterCount >= 2)
+                {
+                    dialogueAnimations.NudgeCharacter();
+                    letterCount = 0;
+                }
             }
-            
-            letterCount++;
             dialogueText.text += letter;
             yield return new WaitForSeconds(letterDelay);
         }

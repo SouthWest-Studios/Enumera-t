@@ -219,6 +219,53 @@ public class DialogueCanvasAnimations : MonoBehaviour
         dialogueBox.DOPunchScale(Vector3.one * 0.03f, time, 6, 0.6f);
     }
 
+    public void ChangeCharacter(Sprite sprite, float time = 0.3f, float offsetX = 340f, bool fade = true)
+    {
+        if (!character) return;
+
+
+        var img = character.GetComponent<Image>();
+        if (!img) return;
+
+
+        var startPos = character.anchoredPosition;
+
+
+        CanvasGroup cg = character.GetComponent<CanvasGroup>();
+        bool useCg = fade && cg != null;
+        Color startColor = img.color;
+
+
+        character.DOKill(true);
+        if (useCg) DOTween.Kill(cg);
+        else DOTween.Kill(img);
+
+
+        var seq = DOTween.Sequence();
+
+
+        seq.Append(character.DOAnchorPos(startPos + new Vector2(-offsetX, 0f), time * 0.5f).SetEase(Ease.InCubic));
+        if (fade)
+        {
+            if (useCg) seq.Join(cg.DOFade(0f, time * 0.5f).SetEase(Ease.InCubic));
+            else seq.Join(img.DOFade(0f, time * 0.5f).SetEase(Ease.InCubic));
+        }
+
+
+        seq.AppendCallback(() =>
+        {
+            img.sprite = sprite;
+        });
+
+
+        seq.Append(character.DOAnchorPos(startPos, time * 0.5f).SetEase(Ease.OutCubic));
+        if (fade)
+        {
+            if (useCg) seq.Join(cg.DOFade(1f, time * 0.5f).SetEase(Ease.OutCubic));
+            else seq.Join(img.DOFade(1f, time * 0.5f).SetEase(Ease.OutCubic));
+        }
+    }
+
     // ---------- Helpers ----------
 
     void PrepareForEnter()
