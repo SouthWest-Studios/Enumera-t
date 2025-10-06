@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static GameplayManager;
+
+public enum BossType { None, DoubleOperation, Timer, Normal }
 
 public class GameplayManager : MonoBehaviour
 {
@@ -29,14 +32,38 @@ public class GameplayManager : MonoBehaviour
 
     private List<int> alreadyUsedNumbers = new List<int>();
 
-    public bool isBoss = false;
+    public int maxRoundsBeforeBoss;
+    private int roundsBeforeBoss = 0;
 
+    public bool isBoss = false;
     public int health = 10;
     public Image healthBar;
+    public BossType bossType = BossType.None;
+    private IBossBehavior bossBehavior;
+
+    [Header("Boss doble operación")]
+    public Image enemyImage2;
+    public Image operationNumberImage2;
+    public Image operationSymbolImage2;
+
+    [HideInInspector] public int enemyNumber2;
+    [HideInInspector] public int operationNumber2;
+
+    public interface IBossBehavior
+    {
+        void Init(GameplayManager manager);
+        void OnCorrectAnswer();
+        void OnWrongAnswer();  
+        void Update();    
+    }
 
     void Start()
     {
         healthBar.fillAmount = health / 10f;
+
+        
+
+
         RoundCompleted();
         AssignNumberImage(enemyNumber, enemyImage);
         AssignNumberImage(operationNumber, operationNumberImage);
@@ -69,6 +96,11 @@ public class GameplayManager : MonoBehaviour
             DialogueManager.instance.StartDialogue(LevelData.dialogueInGameOne);
         }
 
+    }
+
+    void Update()
+    {
+        bossBehavior?.Update();
     }
 
     private void AssignNumberImage(int number, Image image)
@@ -110,7 +142,34 @@ public class GameplayManager : MonoBehaviour
                 health -= 2;
                 healthBar.fillAmount = health / 10f;
             }
-            RoundCompleted();
+            else
+            {
+                roundsBeforeBoss++;
+                if (roundsBeforeBoss > maxRoundsBeforeBoss)
+                {
+                    isBoss = true;
+
+                    switch (bossType)
+                    {
+                        case BossType.DoubleOperation:
+                            bossBehavior = new BossDoubleOperation();
+                            break;
+                        case BossType.Timer:
+                            //bossBehavior = new BossTimer();
+                            break;
+                        case BossType.Normal:
+                            //bossBehavior = new BossNormal();
+                            break;
+                    }
+
+                    bossBehavior?.Init(this);
+                    
+                }
+            }
+            if (isBoss && bossBehavior != null)
+                bossBehavior.OnCorrectAnswer();
+            else
+                RoundCompleted();
         }
         else
         {
@@ -128,6 +187,8 @@ public class GameplayManager : MonoBehaviour
                     }
                 }
             }
+            if (isBoss && bossBehavior != null)
+                bossBehavior?.OnWrongAnswer();
             print("INCORRECTE");
         }
     }
