@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class NumbersSlot : MonoBehaviour, IDropHandler
 {
     public bool isIncognite = false;
+    public int rowIndex = 1;
     public void OnDrop(PointerEventData eventData)
     {
         NumberUi draggedItem = eventData.pointerDrag.GetComponent<NumberUi>();

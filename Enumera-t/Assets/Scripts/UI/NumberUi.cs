@@ -10,6 +10,8 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler ,IEndDrag
 
     public int number;
 
+    
+
     public Image image;
 
     [HideInInspector] public Transform parentAfterDrag;
@@ -36,7 +38,7 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler ,IEndDrag
         {
             if(parentAfterDrag.gameObject.GetComponent<NumbersSlot>().isIncognite)
             {
-                FindAnyObjectByType<GameplayManager>().AnswerGuess(number);
+                FindAnyObjectByType<GameplayManager>().AnswerGuess(number, parentAfterDrag.gameObject.GetComponent<NumbersSlot>().rowIndex);
             }
         }
     }
