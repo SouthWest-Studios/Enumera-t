@@ -1650,6 +1650,7 @@ MonoBehaviour:
   bossType: 1
   victory1: 0
   victory2: 0
+  firstOperationCanvas: {fileID: 663944675}
   secondOperationCanvas: {fileID: 965717509}
   enemyImage2: {fileID: 1690261378}
   slots2: []

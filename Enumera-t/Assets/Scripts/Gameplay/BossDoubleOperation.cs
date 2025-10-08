@@ -27,12 +27,14 @@ public class BossDoubleOperation : IBossBehavior
             firstSolved = true;
             manager.victory1 = true;
             Debug.Log("Primera operación correcta!");
+            manager.firstOperationCanvas.SetActive(false);
         }
         else if (operationIndex == 2 && !secondSolved)
         {
             secondSolved = true;
             manager.victory2 = true;
             Debug.Log("Segunda operación correcta!");
+            manager.secondOperationCanvas.SetActive(false);
         }
 
         // Cuando ambas estén resueltas:
@@ -47,6 +49,8 @@ public class BossDoubleOperation : IBossBehavior
             manager.victory2 = false;
 
             // Regenerar ambas operaciones
+            manager.firstOperationCanvas.SetActive(true);
+            manager.secondOperationCanvas.SetActive(true);
             manager.RoundCompleted(1);
             manager.RoundCompleted(2);
             GenerateSecondOperation();

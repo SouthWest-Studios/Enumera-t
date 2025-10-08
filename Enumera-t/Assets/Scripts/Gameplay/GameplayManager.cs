@@ -44,6 +44,7 @@ public class GameplayManager : MonoBehaviour
     [HideInInspector]  public bool victory2;
 
     [Header("Boss doble operación")]
+    public GameObject firstOperationCanvas;
     public GameObject secondOperationCanvas;
     public Image enemyImage2;
     public List<GameObject> slots2;
@@ -166,6 +167,7 @@ public class GameplayManager : MonoBehaviour
                 bossBehavior?.OnWrongAnswer();
                 WrongNumberToSlot(operationIndex);
             }
+            RestoreNumberToSlot(operationIndex);
 
             return;
         }
