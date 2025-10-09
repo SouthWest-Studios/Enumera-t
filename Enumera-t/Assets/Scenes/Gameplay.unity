@@ -122,81 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &11890701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 11890702}
-  - component: {fileID: 11890704}
-  - component: {fileID: 11890703}
-  m_Layer: 5
-  m_Name: OperationNumberImage (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &11890702
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11890701}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0062382, y: 0.89947087, z: 0.89947087}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 663944676}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -273.37708, y: 86.991104}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &11890703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11890701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 970542841d7829c4392d0970f1bef291, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &11890704
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11890701}
-  m_CullTransparentMesh: 1
 --- !u!1001 &24958895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1699,6 +1624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyNumber: 6
+  bossNumber: 6
   enemyImage: {fileID: 1320703465}
   solutionSlot: {fileID: 2117648498}
   operationNumberImage: {fileID: 1827431112}
@@ -1718,7 +1644,7 @@ MonoBehaviour:
   numbersList: 020000000500000003000000060000000800000009000000010000000400000007000000
   unlockedNumbersInList: 4
   alreadyUsedNumbers: 
-  maxRoundsBeforeBoss: 1
+  maxRoundsBeforeBoss: 3
   isBoss: 0
   health: 10
   healthBar: {fileID: 126209806}
@@ -1734,6 +1660,16 @@ MonoBehaviour:
   operationSymbolImage2: {fileID: 311040156}
   enemyNumber2: 7
   operationNumber2: 0
+  numbersListPrefab:
+  - {fileID: 5477703949873802704, guid: d47b05bb9c372a74d87a0a35f0f58f1b, type: 3}
+  - {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+  - {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+  - {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+  - {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+  - {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+  - {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
+  - {fileID: 5477703949873802704, guid: d67659d1893f0804f95b807514d3c116, type: 3}
+  - {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
 --- !u!1001 &661562041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1881,7 +1817,6 @@ RectTransform:
   m_Children:
   - {fileID: 2117648499}
   - {fileID: 1827431111}
-  - {fileID: 11890702}
   - {fileID: 1320703463}
   - {fileID: 1332459705}
   - {fileID: 1724243978}
@@ -2227,7 +2162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &965717510
 RectTransform:
   m_ObjectHideFlags: 0

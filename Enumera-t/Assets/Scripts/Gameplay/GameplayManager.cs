@@ -12,6 +12,8 @@ public class GameplayManager : MonoBehaviour
 
     public int enemyNumber;
 
+    public int bossNumber;
+
     public Image enemyImage;
 
     public GameObject solutionSlot;
@@ -54,6 +56,8 @@ public class GameplayManager : MonoBehaviour
 
     public int enemyNumber2;
     [HideInInspector] public int operationNumber2;
+
+    public List <GameObject> numbersListPrefab;
 
     public interface IBossBehavior
     {
@@ -246,6 +250,7 @@ public class GameplayManager : MonoBehaviour
     {
         if( isBoss && health == 0)
         {
+           
             SceneManager.LoadScene("MapScene");
         }
         // Límite de intentos global para evitar bucle infinito
@@ -265,6 +270,15 @@ public class GameplayManager : MonoBehaviour
 
             if (sums)
             {
+                if (isBoss)
+                {
+                    enemyNumber = bossNumber;
+                }
+                else
+                {
+                    enemyNumber = Random.Range(5, 10);
+                }
+                
                 if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 5)
                 {
                     operationNumber = PosibleSolution(operationNumber, false, 1, 6, enemyNumber);
@@ -276,6 +290,15 @@ public class GameplayManager : MonoBehaviour
             }
             else
             {
+                if (isBoss)
+                {
+                    enemyNumber = bossNumber;
+                }
+                else
+                {
+                    enemyNumber = Random.Range(1, 6);
+                }
+                
                 if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 10 - enemyNumber)
                 {
                     operationNumber = PosibleSolution(operationNumber, false, enemyNumber, 10, enemyNumber);
@@ -306,6 +329,7 @@ public class GameplayManager : MonoBehaviour
 
         // Asignar sprite de operación
         AssignNumberImage(operationNumber, operationNumberImage);
+        AssignNumberImage(enemyNumber, enemyImage);
 
         // Mover primer hijo de solutionSlot a un slot vacío y desbloquear numeros
         RestoreNumberToSlot(operationIndex);

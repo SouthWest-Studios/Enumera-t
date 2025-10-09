@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static GameplayManager;
 
@@ -6,6 +7,8 @@ public class BossDoubleOperation : IBossBehavior
     private GameplayManager manager;
     public bool firstSolved = false;
     public bool secondSolved = false;
+    private GameObject temporalNumber1;
+    private GameObject temporalNumber2;
 
     public void Init(GameplayManager manager)
     {
@@ -27,14 +30,21 @@ public class BossDoubleOperation : IBossBehavior
             firstSolved = true;
             manager.victory1 = true;
             Debug.Log("Primera operación correcta!");
-            manager.firstOperationCanvas.SetActive(false);
+            manager.solutionSlot.SetActive(false);
+            manager.enemyNumber = manager.bossNumber;
+            temporalNumber1 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
+            temporalNumber1.transform.SetParent(manager.firstOperationCanvas.transform, false);
+            temporalNumber1.transform.position = manager.solutionSlot.transform.position;
         }
         else if (operationIndex == 2 && !secondSolved)
         {
             secondSolved = true;
             manager.victory2 = true;
             Debug.Log("Segunda operación correcta!");
-            manager.secondOperationCanvas.SetActive(false);
+            manager.solutionSlot2.SetActive(false);
+            temporalNumber2 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot2.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
+            temporalNumber2.transform.SetParent(manager.secondOperationCanvas.transform, false);
+            temporalNumber2.transform.position = manager.solutionSlot2.transform.position;
         }
 
         // Cuando ambas estén resueltas:
@@ -49,8 +59,10 @@ public class BossDoubleOperation : IBossBehavior
             manager.victory2 = false;
 
             // Regenerar ambas operaciones
-            manager.firstOperationCanvas.SetActive(true);
-            manager.secondOperationCanvas.SetActive(true);
+            manager.solutionSlot.SetActive(true);
+            manager.solutionSlot2.SetActive(true);
+            UnityEngine.Object.Destroy(temporalNumber1);
+            UnityEngine.Object.Destroy(temporalNumber2);
             manager.RoundCompleted(1);
             manager.RoundCompleted(2);
             GenerateSecondOperation();
