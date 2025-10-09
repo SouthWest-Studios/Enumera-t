@@ -850,7 +850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8544404372767874740}
   m_Layer: 0
-  m_Name: Bruixa
+  m_Name: BruixaOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
