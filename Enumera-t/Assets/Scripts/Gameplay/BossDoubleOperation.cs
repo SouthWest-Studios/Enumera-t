@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static GameplayManager;
 
-public class BossDoubleOperation : IBossBehavior
+public class BossDrac : IBossBehavior
 {
     private GameplayManager manager;
     public bool firstSolved = false;
@@ -15,7 +15,7 @@ public class BossDoubleOperation : IBossBehavior
         this.manager = manager;
         manager.secondOperationCanvas.SetActive(true);
 
-        manager.AssignNumberImage(manager.enemyNumber2, manager.enemyImage2);
+        manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
         manager.operationSymbolImage2.sprite = manager.sums
             ? Resources.Load<Sprite>("Sprites/plus")
             : Resources.Load<Sprite>("Sprites/minus");
@@ -63,6 +63,15 @@ public class BossDoubleOperation : IBossBehavior
             manager.solutionSlot2.SetActive(true);
             UnityEngine.Object.Destroy(temporalNumber1);
             UnityEngine.Object.Destroy(temporalNumber2);
+            if (manager.temporalPrefab.Count > 0)
+            {
+                foreach (GameObject go in manager.temporalPrefab)
+                {
+                    if (go != null)
+                        UnityEngine.Object.Destroy(go);
+                }
+                manager.temporalPrefab.Clear();
+            }
             manager.RoundCompleted(1);
             manager.RoundCompleted(2);
             GenerateSecondOperation();
@@ -113,6 +122,7 @@ public class BossDoubleOperation : IBossBehavior
             return;
         }
 
-        manager.AssignNumberImage(manager.operationNumber2, manager.operationNumberImage2);
+        manager.AssignNumberPrefab(manager.operationNumber2, manager.operationNumberTransf2, true, manager.secondOperationCanvas.transform);
+        manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
     }
 }

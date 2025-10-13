@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static GameplayManager;
 
-public enum BossType { None, DoubleOperation, Timer, Normal }
+public enum BossType { None, Drac, Timer, Normal }
 
 public class GameplayManager : MonoBehaviour
 {
@@ -14,11 +14,12 @@ public class GameplayManager : MonoBehaviour
 
     public int bossNumber;
 
-    public Image enemyImage;
+    public Transform enemyTransf;
 
     public GameObject solutionSlot;
 
-    public Image operationNumberImage;
+    public Transform operationNumberTransf;
+    public Transform operationNumberParentTransf;
 
     public int operationNumber;
 
@@ -45,13 +46,15 @@ public class GameplayManager : MonoBehaviour
     [HideInInspector]  public bool victory1;
     [HideInInspector]  public bool victory2;
 
+    [HideInInspector] public List<GameObject> temporalPrefab = new List<GameObject>();
+
     [Header("Boss doble operación")]
     public GameObject firstOperationCanvas;
     public GameObject secondOperationCanvas;
-    public Image enemyImage2;
+    public Transform enemyTransf2;
     public List<GameObject> slots2;
     public GameObject solutionSlot2;
-    public Image operationNumberImage2;
+    public Transform operationNumberTransf2;
     public Image operationSymbolImage2;
 
     public int enemyNumber2;
@@ -75,8 +78,8 @@ public class GameplayManager : MonoBehaviour
 
 
         RoundCompleted(1);
-        AssignNumberImage(enemyNumber, enemyImage);
-        AssignNumberImage(operationNumber, operationNumberImage);
+        //AssignNumberPrefab(enemyNumber,enemyTransf, false, operationNumberParentTransf);
+        //AssignNumberPrefab(operationNumber, operationNumberParentTransf, true, operationNumberParentTransf);
 
         if(sums)
         {
@@ -92,7 +95,7 @@ public class GameplayManager : MonoBehaviour
             if(i < unlockedNumbersInList)
             {
                 slots[i].transform.GetChild(0).GetComponent<NumberUi>().number = numbersList[i];
-                AssignNumberImage(numbersList[i], slots[i].transform.GetChild(0).GetComponent<Image>());
+                //AssignNumberPrefab(numbersList[i], slots[i].transform.GetChild(0).GetComponent<Image>());
             }
             else
             {
@@ -113,22 +116,27 @@ public class GameplayManager : MonoBehaviour
         bossBehavior?.Update();
     }
 
-    public void AssignNumberImage(int number, Image image)
+    public void AssignNumberPrefab(int number,Transform transf, bool good, Transform parentTransform)
     {
-        // Construimos el path en base al número
-        string path = "Sprites/numbers/number" + number;
+        
 
-        // Cargamos el sprite desde Resources
-        Sprite sprite = Resources.Load<Sprite>(path);
-
-        if (sprite != null)
+        string path;
+        if (good)
         {
-            image.sprite = sprite;
+            path = "Prefabs/Numbers/Bons/Number" + number;
         }
         else
         {
-            Debug.LogWarning("No se encontró sprite en: " + path);
+            path = "Prefabs/Numbers/Dolents/Number" + number + "Bad";
         }
+
+        GameObject prefab = Resources.Load<GameObject>(path);
+
+        GameObject numberPrefab = Instantiate(prefab, transf.position, transf.rotation);
+
+        numberPrefab.transform.SetParent(parentTransform);
+
+        temporalPrefab.Add(numberPrefab);
     }
 
     public void AnswerGuess(int number, int operationIndex)
@@ -143,7 +151,7 @@ public class GameplayManager : MonoBehaviour
                 ? (operationNumber + number == enemyNumber)
                 : (operationNumber - number == enemyNumber);
         }
-        else if (operationIndex == 2 && isBoss && bossType == BossType.DoubleOperation)
+        else if (operationIndex == 2 && isBoss && bossType == BossType.Drac)
         {
             correctOp2 = (sums)
                 ? (operationNumber2 + number == enemyNumber2)
@@ -151,9 +159,9 @@ public class GameplayManager : MonoBehaviour
         }
 
         // ──────────── MODO BOSS ─────────────
-        if (isBoss && bossType == BossType.DoubleOperation)
+        if (isBoss && bossType == BossType.Drac)
         {
-            var boss = bossBehavior as BossDoubleOperation;
+            var boss = bossBehavior as BossDrac;
 
             if ((boss.firstSolved && operationIndex == 1) ||
                 (boss.secondSolved && operationIndex == 2))
@@ -161,6 +169,7 @@ public class GameplayManager : MonoBehaviour
                 Debug.Log("Esta operación ya fue resuelta.");
                 return;
             }
+          
 
             if (correctOp1 || correctOp2)
             {
@@ -182,6 +191,16 @@ public class GameplayManager : MonoBehaviour
             print("BONA RESPOSTA!");
 
             roundsBeforeBoss++;
+            if(temporalPrefab.Count > 0)
+            {
+                foreach (GameObject go in temporalPrefab)
+                {
+                    if (go != null)
+                        Destroy(go);
+                }
+                temporalPrefab.Clear();
+            }
+                
             RoundCompleted(operationIndex);
 
             if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
@@ -211,7 +230,7 @@ public class GameplayManager : MonoBehaviour
             {
                 var ui = targetSlot.transform.GetChild(0).GetComponent<NumberUi>();
                 ui.locked = false;
-                ui.image.color = Color.red;
+                //ui.image.color = Color.red;
                 targetSlot.transform.GetChild(0).SetParent(slots[i].transform);
                 break;
             }
@@ -229,7 +248,7 @@ public class GameplayManager : MonoBehaviour
             if (slots[i] != null && slots[i].transform.childCount > 0)
             {
                 slots[i].transform.GetChild(0).GetComponent<NumberUi>().locked = true;
-                slots[i].transform.GetChild(0).GetComponent<NumberUi>().image.color = Color.white;
+                //slots[i].transform.GetChild(0).GetComponent<NumberUi>().image.color = Color.white;
             }
 
             if (slots[i] != null && slots[i].transform.childCount == 0 && targetSlot.transform.childCount > 0)
@@ -248,6 +267,11 @@ public class GameplayManager : MonoBehaviour
 
     public void RoundCompleted(int operationIndex)
     {
+        if(operationIndex == 2)
+        {
+            RestoreNumberToSlot(operationIndex);
+            return;
+        }
         if( isBoss && health == 0)
         {
            
@@ -328,11 +352,15 @@ public class GameplayManager : MonoBehaviour
         alreadyUsedNumbers.Add(operationNumber);
 
         // Asignar sprite de operación
-        AssignNumberImage(operationNumber, operationNumberImage);
-        AssignNumberImage(enemyNumber, enemyImage);
+        if(operationIndex == 1)
+        {
+            AssignNumberPrefab(enemyNumber, enemyTransf, false, operationNumberParentTransf);
+            AssignNumberPrefab(operationNumber, operationNumberTransf, true, operationNumberParentTransf);
+        }
+        RestoreNumberToSlot(operationIndex);
 
         // Mover primer hijo de solutionSlot a un slot vacío y desbloquear numeros
-        RestoreNumberToSlot(operationIndex);
+
         //if (solutionSlot != null)
         //{
         //    for (int i = 0; i < unlockedNumbersInList; i++)
@@ -452,8 +480,8 @@ public class GameplayManager : MonoBehaviour
 
         switch (bossType)
         {
-            case BossType.DoubleOperation:
-                bossBehavior = new BossDoubleOperation();
+            case BossType.Drac:
+                bossBehavior = new BossDrac();
                 break;
             case BossType.Timer:
                 // bossBehavior = new BossTimer();

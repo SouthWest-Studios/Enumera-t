@@ -466,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309023521868923750, guid: 8302f33a8ca32ec43a6b36f98ab821b6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5494148617554382272, guid: 8302f33a8ca32ec43a6b36f98ab821b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -605,6 +605,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bruixa
       objectReference: {fileID: 0}
+    - target: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -656,6 +660,18 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1271712283801113253, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271712283801113253, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271712283801113253, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 9.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271712283801113253, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -703,13 +719,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1271712283801113253, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
       propertyPath: m_Name
       value: Bou
       objectReference: {fileID: 0}
     - target: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

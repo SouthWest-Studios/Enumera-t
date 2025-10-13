@@ -10,7 +10,7 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler ,IEndDrag
 
     public int number;
 
-    
+    public GameObject graphics;
 
     public Image image;
 
@@ -19,6 +19,16 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler ,IEndDrag
     public bool locked = false;
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (graphics)
+        {
+            Image[] images = graphics.GetComponentsInChildren<Image>(true);
+
+            foreach (Image img in images)
+            {
+                img.raycastTarget = false;
+            }
+        }
+        
         image.raycastTarget = false;
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
@@ -31,6 +41,15 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler ,IEndDrag
 
     public void OnEndDrag(PointerEventData data)
     {
+        if (graphics)
+        {
+            Image[] images = graphics.GetComponentsInChildren<Image>(true);
+
+            foreach (Image img in images)
+            {
+                img.raycastTarget = true;
+            }
+        }
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
 
