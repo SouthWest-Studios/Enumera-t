@@ -9,6 +9,11 @@ public enum BossType { None, Bessones, Drac, Barrufet }
 
 public class GameplayManager : MonoBehaviour
 {
+    public int level;
+
+    public GameObject level1;
+    public GameObject level2;
+    public GameObject level3;
 
     public int enemyNumber;
 
@@ -48,6 +53,8 @@ public class GameplayManager : MonoBehaviour
 
     [HideInInspector] public List<GameObject> temporalPrefab = new List<GameObject>();
 
+    private IOperationMode operationMode;
+
     [Header("Boss doble operación")]
     public GameObject firstOperationCanvas;
     public GameObject secondOperationCanvas;
@@ -62,40 +69,127 @@ public class GameplayManager : MonoBehaviour
 
     public List <GameObject> numbersListPrefab;
 
+    [Header("Operacion triple")]
+    [HideInInspector] public int secondOperationNumber;
+    public Transform secondOperationNumberTransf;
+    public Image secondSymbol;
+
+
     public interface IBossBehavior
     {
         void Init(GameplayManager manager);
         void OnCorrectAnswer(int index);
         void OnWrongAnswer();  
-        void Update();    
+        void Update();
+
+        void OnAnswer(int number, int operationIndex);
     }
 
     void Start()
     {
+
+        switch (level)
+        {
+            case 1:
+                level1.SetActive(true);
+
+                Transform firstOperation = FindChildRecursive(level1.transform, "1rstOperation");
+                Transform secondOperation = FindChildRecursive(level1.transform, "2ndOperation");
+
+                if (firstOperation != null)
+                {
+                    operationNumberTransf = FindChildRecursive(firstOperation, "OperationNumberImage");
+                    enemyTransf = FindChildRecursive(firstOperation, "EnemyImage");
+                    var opSymbol = FindChildRecursive(firstOperation, "OperationSymbol");
+                    if (opSymbol != null) OperationSymbolImage = opSymbol.GetComponent<Image>();
+                    var solSlot = FindChildRecursive(firstOperation, "SolutionSlot");
+                    if (solSlot != null) solutionSlot = solSlot.gameObject;
+                }
+
+                if (secondOperation != null)
+                {
+                    operationNumberTransf2 = FindChildRecursive(secondOperation, "OperationNumberImage2");
+                    enemyTransf2 = FindChildRecursive(secondOperation, "EnemyImage2");
+                    var opSymbol2 = FindChildRecursive(secondOperation, "OperationSymbol2");
+                    if (opSymbol2 != null) operationSymbolImage2 = opSymbol2.GetComponent<Image>();
+                    var solSlot2 = FindChildRecursive(secondOperation, "SolutionSlot2");
+                    if (solSlot2 != null) solutionSlot2 = solSlot2.gameObject;
+                }
+
+                operationMode = new OperationModeLevel1();
+                operationMode.Init(this);
+                break;
+
+            case 2:
+                level2.SetActive(true);
+
+                Transform firstOperationLevel2 = FindChildRecursive(level2.transform, "1rstOperation");
+
+                if (firstOperationLevel2 != null)
+                {
+                    operationNumberTransf = FindChildRecursive(firstOperationLevel2, "OperationNumberImage").transform;
+                    enemyTransf = FindChildRecursive(firstOperationLevel2, "EnemyImage").transform;
+
+                    var opSymbol = FindChildRecursive(firstOperationLevel2, "OperationSymbol");
+                    if (opSymbol != null) OperationSymbolImage = opSymbol.GetComponent<Image>();
+
+                    var solSlot = FindChildRecursive(firstOperationLevel2, "SolutionSlot");
+                    if (solSlot != null) solutionSlot = solSlot.gameObject;
+                }
+
+                operationMode = new OperationModeLevel2();
+                operationMode.Init(this);
+                break;
+
+            //───────────────────────────────
+            case 3:
+                level3.SetActive(true);
+
+                Transform firstOperationLevel3 = FindChildRecursive(level3.transform, "1rstOperation");
+
+                if (firstOperationLevel3 != null)
+                {
+                    // En nivel 3 hay 3 números, dos operationNumber y un enemy
+                    operationNumberTransf = FindChildRecursive(firstOperationLevel3, "OperationNumberImage").transform;
+                    secondOperationNumberTransf = FindChildRecursive(firstOperationLevel3, "OperationNumberImage2").transform;
+
+                    enemyTransf = FindChildRecursive(firstOperationLevel3, "EnemyImage").transform;
+
+                    // Dos símbolos de operación
+                    var opSymbol1 = FindChildRecursive(firstOperationLevel3, "OperationSymbol");
+                    var opSymbol2 = FindChildRecursive(firstOperationLevel3, "OperationSymbol2");
+                    if (opSymbol1 != null) OperationSymbolImage = opSymbol1.GetComponent<Image>();
+                    if (opSymbol2 != null) operationSymbolImage2 = opSymbol2.GetComponent<Image>();
+
+                    // Slot de la solución (donde el jugador pondrá el número faltante)
+                    var solSlot = FindChildRecursive(firstOperationLevel3, "SolutionSlot");
+                    if (solSlot != null) solutionSlot = solSlot.gameObject;
+                }
+
+                operationMode = new OperationModeLevel3();
+                operationMode.Init(this);
+                break;
+            default:
+                break;
+        }
         healthBar.fillAmount = health / 10f;
 
-        
-
-
         RoundCompleted(1);
-        //AssignNumberPrefab(enemyNumber,enemyTransf, false, operationNumberParentTransf);
-        //AssignNumberPrefab(operationNumber, operationNumberParentTransf, true, operationNumberParentTransf);
 
-        if(sums)
-        {
-            OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/plus");
-        }
-        else
-        {
-            OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/minus");
-        }
+        //if(sums)
+        //{
+        //    OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/plus");
+        //}
+        //else
+        //{
+        //    OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/minus");
+        //}
 
         for (int i = 0; i < slots.Count; i++)
         {
             if(i < unlockedNumbersInList)
             {
                 slots[i].transform.GetChild(0).GetComponent<NumberUi>().number = numbersList[i];
-                //AssignNumberPrefab(numbersList[i], slots[i].transform.GetChild(0).GetComponent<Image>());
             }
             else
             {
@@ -141,84 +235,45 @@ public class GameplayManager : MonoBehaviour
 
     public void AnswerGuess(int number, int operationIndex)
     {
-        bool correctOp1 = false;
-        bool correctOp2 = false;
-
-        // Verificamos según el slot que llamó
-        if (operationIndex == 1)
+        // Si hay boss activo, delega la comprobación al boss
+        if (isBoss && bossBehavior != null)
         {
-            correctOp1 = (sums)
-                ? (operationNumber + number == enemyNumber)
-                : (operationNumber - number == enemyNumber);
-        }
-        else if (operationIndex == 2 && isBoss && bossType == BossType.Bessones)
-        {
-            correctOp2 = (sums)
-                ? (operationNumber2 + number == enemyNumber2)
-                : (operationNumber2 - number == enemyNumber2);
-        }
-
-        // ──────────── MODO BOSS ─────────────
-        if (isBoss && bossType == BossType.Bessones)
-        {
-            var boss = bossBehavior as BossBessones;
-
-            if ((boss.firstSolved && operationIndex == 1) ||
-                (boss.secondSolved && operationIndex == 2))
-            {
-                Debug.Log("Esta operación ya fue resuelta.");
-                return;
-            }
-          
-
-            if (correctOp1 || correctOp2)
-            {
-                bossBehavior?.OnCorrectAnswer(operationIndex);
-            }
-            else
-            {
-                bossBehavior?.OnWrongAnswer();
-                WrongNumberToSlot(operationIndex);
-            }
-            RestoreNumberToSlot(operationIndex);
-
+            bossBehavior.OnAnswer(number, operationIndex);
             return;
         }
+        bool correct = operationMode.CheckAnswer(number, operationIndex);
+        // Modo normal (sin boss)
 
-        // ──────────── MODO NORMAL ─────────────
-        if (correctOp1)
+        if (correct)
         {
-            print("BONA RESPOSTA!");
-
-            roundsBeforeBoss++;
-            if(temporalPrefab.Count > 0)
-            {
-                foreach (GameObject go in temporalPrefab)
-                {
-                    if (go != null)
-                        Destroy(go);
-                }
-                temporalPrefab.Clear();
-            }
-                
-            RoundCompleted(operationIndex);
-
-            if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
-            {
-                ActivateBoss();
-            }
+            CorrectAnswerNormal();
         }
         else
         {
-            print("INCORRECTE");
-            WrongNumberToSlot(1);
+            WrongNumberToSlot(operationIndex);
         }
+    }
+
+    private void CorrectAnswerNormal()
+    {
+        print("BONA RESPOSTA!");
+
+        roundsBeforeBoss++;
+        foreach (var go in temporalPrefab)
+            if (go != null) Destroy(go);
+        temporalPrefab.Clear();
+
+        RoundCompleted(1);
+
+        if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
+            ActivateBoss();
     }
 
 
 
+
     // Función auxiliar para devolver número al slot
-    private void WrongNumberToSlot(int operationIndex)
+    public void WrongNumberToSlot(int operationIndex)
     {
         GameObject targetSlot = (operationIndex == 2) ? solutionSlot2 : solutionSlot;
 
@@ -237,7 +292,7 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    private void RestoreNumberToSlot(int operationIndex)
+    public void RestoreNumberToSlot(int operationIndex)
     {
         GameObject targetSlot = (operationIndex == 2) ? solutionSlot2 : solutionSlot;
 
@@ -265,212 +320,170 @@ public class GameplayManager : MonoBehaviour
 
 
 
+    //public void RoundCompleted(int operationIndex)
+    //{
+    //    if(operationIndex == 2)
+    //    {
+    //        RestoreNumberToSlot(operationIndex);
+    //        return;
+    //    }
+    //    if( isBoss && health == 0)
+    //    {
+
+    //        SceneManager.LoadScene("MapScene");
+    //    }
+    //    // Límite de intentos global para evitar bucle infinito
+    //    int intentosGlobales = 0;
+    //    int maxIntentosGlobales = 50;
+    //    bool numeroValido = false;
+
+    //    if (unlockedNumbersInList == 0 || numbersList.Count == 0)
+    //    {
+    //        Debug.LogError("No hay números disponibles en numbersList o unlockedNumbersInList es 0.");
+    //        return;
+    //    }
+
+    //    while (!numeroValido && intentosGlobales < maxIntentosGlobales)
+    //    {
+    //        intentosGlobales++;
+
+    //        if (sums)
+    //        {
+    //            if (isBoss)
+    //            {
+    //                enemyNumber = bossNumber;
+    //            }
+    //            else
+    //            {
+    //                enemyNumber = Random.Range(5, 10);
+    //            }
+
+    //            if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 5)
+    //            {
+
+    //                operationNumber = OperationGenerator.PosibleSolution(
+    //                sums,
+    //                operationNumber,
+    //                false,
+    //                1,
+    //                6,
+    //                enemyNumber,
+    //                numbersList,
+    //                alreadyUsedNumbers,
+    //                unlockedNumbersInList);
+    //            }
+    //            else
+    //            {
+
+    //                operationNumber = OperationGenerator.PosibleSolution(
+    //                sums,
+    //                operationNumber,
+    //                true,
+    //                1,
+    //                6,
+    //                enemyNumber,
+    //                numbersList,
+    //                alreadyUsedNumbers,
+    //                unlockedNumbersInList);
+
+
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if (isBoss)
+    //            {
+    //                enemyNumber = bossNumber;
+    //            }
+    //            else
+    //            {
+    //                enemyNumber = Random.Range(1, 6);
+    //            }
+
+    //            if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 10 - enemyNumber)
+    //            {
+
+    //                operationNumber = OperationGenerator.PosibleSolution(
+    //                sums,
+    //                operationNumber,
+    //                false,
+    //                enemyNumber,
+    //                10,
+    //                enemyNumber,
+    //                numbersList,
+    //                alreadyUsedNumbers,
+    //                unlockedNumbersInList);
+    //            }
+    //            else
+    //            {
+    //                operationNumber = OperationGenerator.PosibleSolution(
+    //                 sums,
+    //                 operationNumber,
+    //                 true,
+    //                 enemyNumber,
+    //                 10,
+    //                 enemyNumber,
+    //                 numbersList,
+    //                 alreadyUsedNumbers,
+    //                 unlockedNumbersInList);
+    //            }
+    //        }
+
+    //        if (operationNumber != 0)
+    //        {
+    //            numeroValido = true;
+    //        }
+    //        else
+    //        {
+    //            alreadyUsedNumbers.Clear(); // reset si no hay solución
+    //        }
+    //    }
+
+    //    if (!numeroValido)
+    //    {
+    //        Debug.LogError("No se pudo encontrar un número válido para esta ronda.");
+    //        return;
+    //    }
+
+    //    alreadyUsedNumbers.Add(operationNumber);
+
+    //    // Asignar sprite de operación
+    //    if(operationIndex == 1)
+    //    {
+    //        AssignNumberPrefab(enemyNumber, enemyTransf, false, operationNumberParentTransf);
+    //        AssignNumberPrefab(operationNumber, operationNumberTransf, true, operationNumberParentTransf);
+    //    }
+    //    RestoreNumberToSlot(operationIndex);
+    //}
+
     public void RoundCompleted(int operationIndex)
     {
-        if(operationIndex == 2)
+        // Caso de operación secundaria del boss
+        if (operationIndex == 2)
         {
+            print("a");
             RestoreNumberToSlot(operationIndex);
             return;
         }
-        if( isBoss && health == 0)
+
+        // Verificar si el boss fue derrotado
+        if (isBoss && health <= 0)
         {
-           
             SceneManager.LoadScene("MapScene");
-        }
-        // Límite de intentos global para evitar bucle infinito
-        int intentosGlobales = 0;
-        int maxIntentosGlobales = 50;
-        bool numeroValido = false;
-
-        if (unlockedNumbersInList == 0 || numbersList.Count == 0)
-        {
-            Debug.LogError("No hay números disponibles en numbersList o unlockedNumbersInList es 0.");
             return;
         }
 
-        while (!numeroValido && intentosGlobales < maxIntentosGlobales)
+        // Delegar generación de operaciones al modo de nivel
+        if (operationMode != null)
         {
-            intentosGlobales++;
-
-            if (sums)
-            {
-                if (isBoss)
-                {
-                    enemyNumber = bossNumber;
-                }
-                else
-                {
-                    enemyNumber = Random.Range(5, 10);
-                }
-                
-                if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 5)
-                {
-                    operationNumber = PosibleSolution(operationNumber, false, 1, 6, enemyNumber);
-                }
-                else
-                {
-                    operationNumber = PosibleSolution(operationNumber, true, 1, 6, enemyNumber);
-                }
-            }
-            else
-            {
-                if (isBoss)
-                {
-                    enemyNumber = bossNumber;
-                }
-                else
-                {
-                    enemyNumber = Random.Range(1, 6);
-                }
-                
-                if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 10 - enemyNumber)
-                {
-                    operationNumber = PosibleSolution(operationNumber, false, enemyNumber, 10, enemyNumber);
-                }
-                else
-                {
-                    operationNumber = PosibleSolution(operationNumber, true, enemyNumber, 10, enemyNumber);
-                }
-            }
-
-            if (operationNumber != 0)
-            {
-                numeroValido = true;
-            }
-            else
-            {
-                alreadyUsedNumbers.Clear(); // reset si no hay solución
-            }
+            print("b");
+            operationMode.GenerateOperation();
         }
 
-        if (!numeroValido)
-        {
-            Debug.LogError("No se pudo encontrar un número válido para esta ronda.");
-            return;
-        }
-
-        alreadyUsedNumbers.Add(operationNumber);
-
-        // Asignar sprite de operación
-        if(operationIndex == 1)
-        {
-            AssignNumberPrefab(enemyNumber, enemyTransf, false, operationNumberParentTransf);
-            AssignNumberPrefab(operationNumber, operationNumberTransf, true, operationNumberParentTransf);
-        }
+        // Restaurar números a los slots
         RestoreNumberToSlot(operationIndex);
-
-        // Mover primer hijo de solutionSlot a un slot vacío y desbloquear numeros
-
-        //if (solutionSlot != null)
-        //{
-        //    for (int i = 0; i < unlockedNumbersInList; i++)
-        //    {
-        //        if(slots[i] != null && slots[i].transform.childCount > 0)
-        //        {
-        //            slots[i].transform.GetChild(0).GetComponent<NumberUi>().locked = true;
-        //            slots[i].transform.GetChild(0).GetComponent<NumberUi>().image.color = Color.white;
-        //        }
-
-        //        if (slots[i] != null && slots[i].transform.childCount == 0 && solutionSlot.transform.childCount > 0)
-        //        {
-
-
-        //            solutionSlot.transform.GetChild(0).SetParent(slots[i].transform);
-
-        //        }
-        //    }
-
-        //}
     }
 
-
-    public int PosibleSolution(int numberTocheck, bool alreadyUsed, int initialRange, int finalRange, int enemyNumberUsed)
-    {
-        if (unlockedNumbersInList == 0 || numbersList.Count == 0)
-            return 0;
-        // Comprobar si existe alguna solución posible
-        bool existeSolucion = false;
-        for (int candidate = initialRange; candidate < finalRange; candidate++)
-        {
-            for (int i = 0; i < unlockedNumbersInList; i++)
-            {
-                if (i >= numbersList.Count) break;
-                int listNumber = numbersList[i];
-                if (sums)
-                {
-                    if (candidate + listNumber == enemyNumberUsed)
-                    {
-                        existeSolucion = true;
-                        break;
-                    }
-                }
-                else
-                {
-
-                    if (candidate - listNumber == enemyNumberUsed)
-                    {
-                        existeSolucion = true;
-                        break;
-                    }
-                }
-
-            }
-            if (existeSolucion) break;
-        }
-
-        if (!existeSolucion) return 0;
-
-        // Buscar número válido
-        int intentos = 0;
-        int maxIntentos = 100;
-
-        do
-        {
-            intentos++;
-
-            if (alreadyUsed)
-            {
-                numberTocheck = Random.Range(initialRange, finalRange);
-            }
-            else
-            {
-                do
-                {
-                    numberTocheck = Random.Range(initialRange, finalRange);
-                } while (alreadyUsedNumbers.Contains(numberTocheck));
-            }
-
-            // Comprobar si este número genera solución
-            bool posibleSolution = false;
-            for (int i = 0; i < unlockedNumbersInList; i++)
-            {
-                if (i >= numbersList.Count) break;
-                int listNumber = numbersList[i];
-                if (sums)
-                {
-                    if (numberTocheck + listNumber == enemyNumberUsed)
-                    {
-                        posibleSolution = true;
-                        break;
-                    }
-                }
-                else
-                {
-                    if (numberTocheck - listNumber == enemyNumberUsed)
-                    {
-                        posibleSolution = true;
-                        break;
-                    }
-                }
-            }
-
-            if (posibleSolution)
-                return numberTocheck;
-
-        } while (intentos < maxIntentos);
-
-        return 0;
-    }
 
     private void ActivateBoss()
     {
@@ -484,7 +497,7 @@ public class GameplayManager : MonoBehaviour
                 bossBehavior = new BossBessones();
                 break;
             case BossType.Drac:
-                // bossBehavior = new BossTimer();
+                //bossBehavior = new BossTimer();
                 break;
             case BossType.Barrufet:
                 // bossBehavior = new BossNormal();
@@ -492,6 +505,20 @@ public class GameplayManager : MonoBehaviour
         }
 
         bossBehavior?.Init(this);
+    }
+
+    public Transform FindChildRecursive(Transform parent, string name)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == name)
+                return child;
+
+            Transform found = FindChildRecursive(child, name);
+            if (found != null)
+                return found;
+        }
+        return null;
     }
 
 

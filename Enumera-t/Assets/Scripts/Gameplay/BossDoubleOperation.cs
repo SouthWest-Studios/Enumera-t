@@ -108,9 +108,37 @@ public class BossBessones : IBossBehavior
         {
             intentosGlobales++;
             if (manager.sums)
-                manager.operationNumber2 = manager.PosibleSolution(manager.operationNumber2, true, 1, 6, manager.enemyNumber2);
+            {
+                manager.operationNumber2 = OperationGenerator.PosibleSolution(
+                        manager.sums,
+                        manager.operationNumber2,
+                        true,
+                        1,
+                        6,
+                        manager.enemyNumber2,
+                        manager.numbersList,
+                        manager.alreadyUsedNumbers,
+                        manager.unlockedNumbersInList);
+            }
+
+
+            
             else
-                manager.operationNumber2 = manager.PosibleSolution(manager.operationNumber2, true, manager.enemyNumber2, 10, manager.enemyNumber2);
+            {
+                manager.operationNumber2 = OperationGenerator.PosibleSolution(
+                        manager.sums,
+                        manager.operationNumber2,
+                        true,
+                        manager.enemyNumber2,
+                        10,
+                        manager.enemyNumber2,
+                        manager.numbersList,
+                        manager.alreadyUsedNumbers,
+                        manager.unlockedNumbersInList);
+            }
+
+
+            
 
             if (manager.operationNumber2 != 0)
                 numeroValido = true;
@@ -125,4 +153,36 @@ public class BossBessones : IBossBehavior
         manager.AssignNumberPrefab(manager.operationNumber2, manager.operationNumberTransf2, true, manager.secondOperationCanvas.transform);
         manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
     }
+
+    public void OnAnswer(int number, int operationIndex)
+    {
+        bool correctOp1 = false;
+        bool correctOp2 = false;
+
+        if (operationIndex == 1)
+            correctOp1 = (manager.sums) ? (manager.operationNumber + number == manager.enemyNumber)
+                                        : (manager.operationNumber - number == manager.enemyNumber);
+        else if (operationIndex == 2)
+            correctOp2 = (manager.sums) ? (manager.operationNumber2 + number == manager.enemyNumber2)
+                                        : (manager.operationNumber2 - number == manager.enemyNumber2);
+
+        // Comprobamos si ya se resolvió la operación
+        if ((correctOp1 && firstSolved && operationIndex == 1) ||
+            (correctOp2 && secondSolved && operationIndex == 2))
+        {
+            Debug.Log("Esta operación ya fue resuelta.");
+            return;
+        }
+
+        if (correctOp1 || correctOp2)
+            OnCorrectAnswer(operationIndex);
+        else
+        {
+            OnWrongAnswer();
+            manager.WrongNumberToSlot(operationIndex);
+        }
+
+        manager.RestoreNumberToSlot(operationIndex);
+    }
+
 }
