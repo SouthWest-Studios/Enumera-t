@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static GameplayManager;
 
-public class BossDrac : IBossBehavior
+public class BossBessones : IBossBehavior
 {
     private GameplayManager manager;
     public bool firstSolved = false;

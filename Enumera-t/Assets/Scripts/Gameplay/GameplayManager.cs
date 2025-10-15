@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static GameplayManager;
 
-public enum BossType { None, Drac, Timer, Normal }
+public enum BossType { None, Bessones, Drac, Barrufet }
 
 public class GameplayManager : MonoBehaviour
 {
@@ -151,7 +151,7 @@ public class GameplayManager : MonoBehaviour
                 ? (operationNumber + number == enemyNumber)
                 : (operationNumber - number == enemyNumber);
         }
-        else if (operationIndex == 2 && isBoss && bossType == BossType.Drac)
+        else if (operationIndex == 2 && isBoss && bossType == BossType.Bessones)
         {
             correctOp2 = (sums)
                 ? (operationNumber2 + number == enemyNumber2)
@@ -159,9 +159,9 @@ public class GameplayManager : MonoBehaviour
         }
 
         // ──────────── MODO BOSS ─────────────
-        if (isBoss && bossType == BossType.Drac)
+        if (isBoss && bossType == BossType.Bessones)
         {
-            var boss = bossBehavior as BossDrac;
+            var boss = bossBehavior as BossBessones;
 
             if ((boss.firstSolved && operationIndex == 1) ||
                 (boss.secondSolved && operationIndex == 2))
@@ -469,7 +469,7 @@ public class GameplayManager : MonoBehaviour
 
         } while (intentos < maxIntentos);
 
-        return 0; // fallback seguro
+        return 0;
     }
 
     private void ActivateBoss()
@@ -480,13 +480,13 @@ public class GameplayManager : MonoBehaviour
 
         switch (bossType)
         {
-            case BossType.Drac:
-                bossBehavior = new BossDrac();
+            case BossType.Bessones:
+                bossBehavior = new BossBessones();
                 break;
-            case BossType.Timer:
+            case BossType.Drac:
                 // bossBehavior = new BossTimer();
                 break;
-            case BossType.Normal:
+            case BossType.Barrufet:
                 // bossBehavior = new BossNormal();
                 break;
         }
