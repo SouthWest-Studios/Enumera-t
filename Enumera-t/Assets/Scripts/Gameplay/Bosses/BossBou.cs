@@ -1,198 +1,248 @@
-using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static GameplayManager;
 
 public class BossBou : IBossBehavior
 {
     private GameplayManager manager;
-    public bool firstSolved = false;
-    public bool secondSolved = false;
-    private GameObject temporalNumber1;
-    private GameObject temporalNumber2;
+
+    private int lastSolution = 0; // Guarda el número correcto de la operación anterior
+    private int lastZPosition = -1; // 0 = X, 1 = Y, 2 = Z (posición anterior de la incógnita)
+    private GameObject temporalNumber;
 
     public void Init(GameplayManager manager)
     {
         this.manager = manager;
-        manager.secondOperationCanvas.SetActive(true);
-
-        manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
-        manager.operationSymbolImage2.sprite = manager.sums
-            ? Resources.Load<Sprite>("Sprites/plus")
-            : Resources.Load<Sprite>("Sprites/minus");
-
+        manager.FindChildRecursive(
+            manager.FindChildRecursive(manager.level2.transform, "1rstOperation"),
+            "BossExtra"
+        ).gameObject.SetActive(true);
+        manager.solutionSlot.SetActive(false);
     }
 
     public void GenerateOperation()
     {
+        bool isSumOperation = Random.value > 0.5f;
+        manager.sums = isSumOperation;
 
-    }
+        // Actualizar símbolos
+        manager.OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/plus");
+        manager.operationSymbolImage2.sprite = Resources.Load<Sprite>(
+            isSumOperation ? "Sprites/plus" : "Sprites/minus"
+        );
 
-        public void OnCorrectAnswer(int operationIndex)
-    {
-        if (operationIndex == 1 && !firstSolved)
+        const int minVal = 1;
+        const int maxVal = 9;
+        const int maxIntentos = 300;
+
+        bool found = false;
+
+        int x = 0, y = 0, z = 0;
+        int enemy = 0;
+        int zPosition = 0; // 0 = X, 1 = Y, 2 = Z
+
+        // Elegimos una nueva posición para la incógnita, diferente a la anterior
+        do
         {
-            firstSolved = true;
-            manager.victory1 = true;
-            Debug.Log("Primera operación correcta!");
-            manager.solutionSlot.SetActive(false);
-            manager.enemyNumber = manager.bossNumber;
-            temporalNumber1 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
-            temporalNumber1.transform.SetParent(manager.firstOperationCanvas.transform, false);
-            temporalNumber1.transform.position = manager.solutionSlot.transform.position;
+            zPosition = Random.Range(0, 3);
         }
-        else if (operationIndex == 2 && !secondSolved)
+        while (zPosition == lastZPosition);
+
+        for (int intento = 0; intento < maxIntentos && !found; intento++)
         {
-            secondSolved = true;
-            manager.victory2 = true;
-            Debug.Log("Segunda operación correcta!");
-            manager.solutionSlot2.SetActive(false);
-            temporalNumber2 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot2.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
-            temporalNumber2.transform.SetParent(manager.secondOperationCanvas.transform, false);
-            temporalNumber2.transform.position = manager.solutionSlot2.transform.position;
-        }
+            // Generar aleatoriamente tres números base
+            int a = Random.Range(minVal, maxVal + 1);
+            int b = Random.Range(minVal, maxVal + 1);
+            int c = Random.Range(minVal, maxVal + 1);
 
-        // Cuando ambas estén resueltas:
-        if (firstSolved && secondSolved)
-        {
-            manager.health -= 2;
-            manager.healthBar.fillAmount = manager.health / 10f;
-
-            firstSolved = false;
-            secondSolved = false;
-            manager.victory1 = false;
-            manager.victory2 = false;
-
-            // Regenerar ambas operaciones
-            manager.solutionSlot.SetActive(true);
-            manager.solutionSlot2.SetActive(true);
-            UnityEngine.Object.Destroy(temporalNumber1);
-            UnityEngine.Object.Destroy(temporalNumber2);
-            if (manager.temporalPrefab.Count > 0)
+            // Asignar los valores según si hay una solución previa
+            if (lastSolution != 0)
             {
-                foreach (GameObject go in manager.temporalPrefab)
-                {
-                    if (go != null)
-                        UnityEngine.Object.Destroy(go);
-                }
-                manager.temporalPrefab.Clear();
-            }
-            manager.RoundCompleted(1);
-            manager.RoundCompleted(2);
-            GenerateSecondOperation();
+                // El número previo reemplaza una posición diferente a la actual incógnita
+                int fixedPos;
+                do { fixedPos = Random.Range(0, 3); }
+                while (fixedPos == zPosition);
 
-            Debug.Log("¡Ambas operaciones resueltas! Daño al boss.");
+                if (fixedPos == 0) a = lastSolution;
+                else if (fixedPos == 1) b = lastSolution;
+                else c = lastSolution;
+            }
+
+            // Probar con todos los Z posibles de la lista
+            for (int i = 0; i < manager.unlockedNumbersInList; i++)
+            {
+                int zCandidate = manager.numbersList[i];
+
+                // Colocar la incógnita en la posición correspondiente
+                if (zPosition == 0)
+                {
+                    x = zCandidate;
+                    y = b;
+                    z = c;
+                }
+                else if (zPosition == 1)
+                {
+                    x = a;
+                    y = zCandidate;
+                    z = c;
+                }
+                else
+                {
+                    x = a;
+                    y = b;
+                    z = zCandidate;
+                }
+
+                // Calcular el resultado
+                enemy = isSumOperation ? (x + y + z) : (x + y - z);
+
+                if (enemy >= 1 && enemy <= 9)
+                {
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (!found)
+        {
+            Debug.LogError("No se pudo generar una operación válida para BossBou.");
+            return;
+        }
+
+        // Guardar la nueva operación
+        manager.operationNumber = x;
+        manager.secondOperationNumber = y;
+        manager.enemyNumber = enemy;
+
+        lastZPosition = zPosition;
+        // Mostrar visualmente
+        Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
+        string opSymbol = isSumOperation ? "+" : "-";
+
+        if (zPosition == 0)
+        {
+            manager.solutionBossSlot.SetActive(true);
+            manager.solutionBossSlot2.SetActive(false);
+            manager.solutionBossSlot3.SetActive(false);
+            manager.solutionBossSlot4.SetActive(false);
+
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, false, parentTransf);
+            manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot2.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot3.transform, true, parentTransf);
+
+            Debug.Log($"[BossBou] Operación generada: Z + {x} {opSymbol} {y} = {enemy} | Z posición: {zPosition} | Z correcto: {z}");
+        }
+        else if (zPosition == 1)
+        {
+            manager.solutionBossSlot.SetActive(false);
+            manager.solutionBossSlot2.SetActive(true);
+            manager.solutionBossSlot3.SetActive(false);
+            manager.solutionBossSlot4.SetActive(false);
+
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, false, parentTransf);
+            manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot3.transform, true, parentTransf);
+
+            Debug.Log($"[BossBou] Operación generada: {x} + z {opSymbol} {y} = {enemy} | Z posición: {zPosition} | Z correcto: {z}");
         }
         else
         {
-            Debug.Log("Una operación lista, falta la otra.");
-        }
-    }
+            manager.solutionBossSlot.SetActive(false);
+            manager.solutionBossSlot2.SetActive(false);
+            manager.solutionBossSlot3.SetActive(true);
+            manager.solutionBossSlot4.SetActive(false);
 
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, false, parentTransf);
+            manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot2.transform, true, parentTransf);
+            Debug.Log($"[BossBou] Operación generada: {x} + {y} {opSymbol} Z = {enemy} | Z posición: {zPosition} | Z correcto: {z}");
 
-    public void OnWrongAnswer()
-    {
-        Debug.Log("Respuesta incorrecta en Boss Doble Operación.");
-    }
-
-    public void Update() { }
-
-    private void GenerateSecondOperation()
-    {
-        int intentosGlobales = 0;
-        int maxIntentosGlobales = 50;
-        bool numeroValido = false;
-
-        if (manager.unlockedNumbersInList == 0 || manager.numbersList.Count == 0)
-        {
-            Debug.LogError("No hay números disponibles.");
-            return;
         }
 
-        while (!numeroValido && intentosGlobales < maxIntentosGlobales)
-        {
-            intentosGlobales++;
-            if (manager.sums)
-            {
-                manager.operationNumber2 = OperationGenerator.PosibleSolution(
-                        manager.sums,
-                        manager.operationNumber2,
-                        true,
-                        1,
-                        6,
-                        manager.enemyNumber2,
-                        manager.numbersList,
-                        manager.alreadyUsedNumbers,
-                        manager.unlockedNumbersInList);
-            }
+        
 
+        
 
-            
-            else
-            {
-                manager.operationNumber2 = OperationGenerator.PosibleSolution(
-                        manager.sums,
-                        manager.operationNumber2,
-                        true,
-                        manager.enemyNumber2,
-                        10,
-                        manager.enemyNumber2,
-                        manager.numbersList,
-                        manager.alreadyUsedNumbers,
-                        manager.unlockedNumbersInList);
-            }
+        
 
-
-            
-
-            if (manager.operationNumber2 != 0)
-                numeroValido = true;
-        }
-
-        if (!numeroValido)
-        {
-            Debug.LogError("No se pudo generar segunda operación.");
-            return;
-        }
-
-        manager.AssignNumberPrefab(manager.operationNumber2, manager.operationNumberTransf2, true, manager.secondOperationCanvas.transform);
-        manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
+        
+        
     }
 
     public bool CheckAnswer(int number, int operationIndex)
     {
+        bool correct = false;
 
-        return true;
-    }
-
-    public void OnAnswer(int number, int operationIndex)
-    {
-        bool correctOp1 = false;
-        bool correctOp2 = false;
-
-        if (operationIndex == 1)
-            correctOp1 = (manager.sums) ? (manager.operationNumber + number == manager.enemyNumber)
-                                        : (manager.operationNumber - number == manager.enemyNumber);
-        else if (operationIndex == 2)
-            correctOp2 = (manager.sums) ? (manager.operationNumber2 + number == manager.enemyNumber2)
-                                        : (manager.operationNumber2 - number == manager.enemyNumber2);
-
-        // Comprobamos si ya se resolvió la operación
-        if ((correctOp1 && firstSolved && operationIndex == 1) ||
-            (correctOp2 && secondSolved && operationIndex == 2))
+        if (lastZPosition == 0)
         {
-            Debug.Log("Esta operación ya fue resuelta.");
-            return;
+            if (manager.sums)
+            {
+                if (number + manager.operationNumber + manager.secondOperationNumber == manager.enemyNumber)
+                {
+                    correct = true;
+                    temporalNumber = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionBossSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
+                    Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
+                    temporalNumber.transform.SetParent(parentTransf, false);
+                    temporalNumber.transform.position = manager.solutionBossSlot.transform.position;
+                    manager.RestoreNumberToSlot(1);
+                }
+                    
+            }
+            else
+            {
+                if (number + manager.operationNumber - manager.secondOperationNumber == manager.enemyNumber)
+                {
+                    correct = true;
+                    temporalNumber = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionBossSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
+                    Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
+                    temporalNumber.transform.SetParent(parentTransf, false);
+                    temporalNumber.transform.position = manager.solutionBossSlot.transform.position;
+                    manager.RestoreNumberToSlot(1);
+                }
+            }
         }
-
-        if (correctOp1 || correctOp2)
-            OnCorrectAnswer(operationIndex);
+        else if (lastZPosition == 1)
+        {
+            if (manager.sums)
+            {
+                if (manager.operationNumber + number +  manager.secondOperationNumber == manager.enemyNumber)
+                    correct = true;
+            }
+            else
+            {
+                if (manager.operationNumber + number - manager.secondOperationNumber == manager.enemyNumber)
+                    correct = true;
+            }
+        }
         else
         {
-            OnWrongAnswer();
-            manager.WrongNumberToSlot(operationIndex);
+            if (manager.sums)
+            {
+                if (manager.operationNumber + manager.secondOperationNumber + number == manager.enemyNumber)
+                    correct = true;
+            }
+            else
+            {
+                if (manager.operationNumber + manager.secondOperationNumber - number == manager.enemyNumber)
+                    correct = true;
+            }
         }
 
-        manager.RestoreNumberToSlot(operationIndex);
+        
+
+        if (correct)
+        {
+            lastSolution = number; // Guardamos el número correcto para la siguiente operación
+            Debug.Log($"[BossBou] Respuesta correcta. Nueva lastSolution = {lastSolution}");
+        }
+
+        return correct;
     }
 
+    public void OnCorrectAnswer(int operationIndex) { }
+    public void OnWrongAnswer() { Debug.Log("Respuesta incorrecta en BossBou."); }
+    public void OnAnswer(int number, int operationIndex) { }
+    public void Update() { }
 }

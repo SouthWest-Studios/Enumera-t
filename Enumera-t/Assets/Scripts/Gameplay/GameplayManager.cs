@@ -23,6 +23,8 @@ public class GameplayManager : MonoBehaviour
 
     public GameObject solutionSlot;
 
+    
+
     public Transform operationNumberTransf;
     public Transform operationNumberParentTransf;
 
@@ -73,6 +75,10 @@ public class GameplayManager : MonoBehaviour
     [HideInInspector] public int secondOperationNumber;
     public Transform secondOperationNumberTransf;
     public Image secondSymbol;
+    public GameObject solutionBossSlot;
+    public GameObject solutionBossSlot2;
+    public GameObject solutionBossSlot3;
+    public GameObject solutionBossSlot4;
 
 
     public interface IBossBehavior
