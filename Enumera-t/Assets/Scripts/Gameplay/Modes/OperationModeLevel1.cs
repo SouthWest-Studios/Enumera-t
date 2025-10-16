@@ -26,7 +26,6 @@ public class OperationModeLevel1 : IOperationMode
             manager.unlockedNumbersInList);
 
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, manager.operationNumberParentTransf);
-        Debug.Log(manager.operationNumberTransf.position);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, manager.operationNumberParentTransf);
     }
 

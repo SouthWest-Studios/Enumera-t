@@ -19,8 +19,26 @@ public class BossBessones : IBossBehavior
         manager.operationSymbolImage2.sprite = manager.sums
             ? Resources.Load<Sprite>("Sprites/plus")
             : Resources.Load<Sprite>("Sprites/minus");
-
         GenerateSecondOperation();
+    }
+
+    public void GenerateOperation()
+    {
+        manager.enemyNumber = Random.Range(5, 10);
+
+        manager.operationNumber = OperationGenerator.PosibleSolution(
+            manager.sums,
+            manager.operationNumber,
+            true,
+            1,
+            6,
+            manager.enemyNumber,
+            manager.numbersList,
+            manager.alreadyUsedNumbers,
+            manager.unlockedNumbersInList);
+
+        manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, manager.operationNumberParentTransf);
+        manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, manager.operationNumberParentTransf);
     }
 
     public void OnCorrectAnswer(int operationIndex)
@@ -152,6 +170,12 @@ public class BossBessones : IBossBehavior
 
         manager.AssignNumberPrefab(manager.operationNumber2, manager.operationNumberTransf2, true, manager.secondOperationCanvas.transform);
         manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
+    }
+
+    public bool CheckAnswer(int number, int operationIndex)
+    {
+
+        return false;
     }
 
     public void OnAnswer(int number, int operationIndex)

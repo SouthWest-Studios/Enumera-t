@@ -78,9 +78,13 @@ public class GameplayManager : MonoBehaviour
     public interface IBossBehavior
     {
         void Init(GameplayManager manager);
+
+        void GenerateOperation();
         void OnCorrectAnswer(int index);
         void OnWrongAnswer();  
         void Update();
+
+        bool CheckAnswer(int number, int operationIndex);
 
         void OnAnswer(int number, int operationIndex);
     }
@@ -118,6 +122,7 @@ public class GameplayManager : MonoBehaviour
 
                 operationMode = new OperationModeLevel1();
                 operationMode.Init(this);
+                bossType = BossType.Bessones;
                 break;
 
             case 2:
@@ -137,8 +142,21 @@ public class GameplayManager : MonoBehaviour
                     if (solSlot != null) solutionSlot = solSlot.gameObject;
                 }
 
+                Transform secondOperationLevel2 = FindChildRecursive(FindChildRecursive(level2.transform, "1rstOperation"), "BossExtra");
+
+                if (secondOperationLevel2 != null)
+                {
+                    secondOperationNumberTransf = FindChildRecursive(secondOperationLevel2, "OperationNumberImage2").transform;
+                    // Dos símbolos de operación
+                    var opSymbol2 = FindChildRecursive(secondOperationLevel2, "OperationSymbol2");
+
+                    if (opSymbol2 != null) secondSymbol = opSymbol2.GetComponent<Image>();
+
+                }
+
                 operationMode = new OperationModeLevel2();
                 operationMode.Init(this);
+                bossType = BossType.Drac;
                 break;
 
             //───────────────────────────────
@@ -168,6 +186,7 @@ public class GameplayManager : MonoBehaviour
 
                 operationMode = new OperationModeLevel3();
                 operationMode.Init(this);
+                bossType = BossType.Barrufet;
                 break;
             default:
                 break;
@@ -212,7 +231,6 @@ public class GameplayManager : MonoBehaviour
 
     public void AssignNumberPrefab(int number,Transform transf, bool good, Transform parentTransform)
     {
-        
 
         string path;
         if (good)
@@ -235,13 +253,23 @@ public class GameplayManager : MonoBehaviour
 
     public void AnswerGuess(int number, int operationIndex)
     {
+        bool correct = false;
         // Si hay boss activo, delega la comprobación al boss
         if (isBoss && bossBehavior != null)
         {
-            bossBehavior.OnAnswer(number, operationIndex);
-            return;
+            correct = bossBehavior.CheckAnswer(number, operationIndex);
+            if(!correct)
+            {
+                bossBehavior.OnAnswer(number, operationIndex);
+                return;
+            }
+            
         }
-        bool correct = operationMode.CheckAnswer(number, operationIndex);
+        else
+        {
+            correct = operationMode.CheckAnswer(number, operationIndex);
+        }
+        
         // Modo normal (sin boss)
 
         if (correct)
@@ -263,10 +291,12 @@ public class GameplayManager : MonoBehaviour
             if (go != null) Destroy(go);
         temporalPrefab.Clear();
 
-        RoundCompleted(1);
-
         if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
             ActivateBoss();
+
+        RoundCompleted(1);
+
+        
     }
 
 
@@ -461,24 +491,35 @@ public class GameplayManager : MonoBehaviour
         // Caso de operación secundaria del boss
         if (operationIndex == 2)
         {
-            print("a");
             RestoreNumberToSlot(operationIndex);
             return;
         }
 
         // Verificar si el boss fue derrotado
-        if (isBoss && health <= 0)
+        if (isBoss)
         {
-            SceneManager.LoadScene("MapScene");
-            return;
+            if(health > 0)
+            {
+                print("aaaa");
+                bossBehavior.GenerateOperation();
+            }
+            else
+            {
+                SceneManager.LoadScene("MapScene");
+                return;
+            }
+            
+        }
+        else
+        {
+            // Delegar generación de operaciones al modo de nivel
+            if (operationMode != null)
+            {
+                operationMode.GenerateOperation();
+            }
         }
 
-        // Delegar generación de operaciones al modo de nivel
-        if (operationMode != null)
-        {
-            print("b");
-            operationMode.GenerateOperation();
-        }
+        
 
         // Restaurar números a los slots
         RestoreNumberToSlot(operationIndex);
@@ -488,19 +529,20 @@ public class GameplayManager : MonoBehaviour
     private void ActivateBoss()
     {
         isBoss = true;
-        secondOperationCanvas.SetActive(true);
         roundsBeforeBoss = 0;
 
         switch (bossType)
         {
             case BossType.Bessones:
+                secondOperationCanvas.SetActive(true);
                 bossBehavior = new BossBessones();
+                
                 break;
             case BossType.Drac:
-                //bossBehavior = new BossTimer();
+                bossBehavior = new BossDrac();
                 break;
             case BossType.Barrufet:
-                // bossBehavior = new BossNormal();
+                bossBehavior = new BossBou();
                 break;
         }
 
