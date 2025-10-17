@@ -391,7 +391,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2967562564312113409}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -1070,9 +1070,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5183757209765885762}
-  - component: {fileID: 2769026335514728652}
-  - component: {fileID: 4181475040904280128}
   - component: {fileID: 690424048424029542}
+  - component: {fileID: 4715698177950666345}
   m_Layer: 0
   m_Name: LevelInfoManager
   m_TagString: Untagged
@@ -1095,51 +1094,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1333817972616956270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2769026335514728652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6402406292399636991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8471b865e2fd04bb82c00dab388e4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: {fileID: 2037847974283558552}
-  characterImage: {fileID: 6415377094049398711}
-  dialogueAnimations: {fileID: 4181475040904280128}
-  letterDelay: 0.02
---- !u!114 &4181475040904280128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6402406292399636991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a92f79a40f51c654995ad77ef4f99cbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 5034905954294741410}
-  background: {fileID: 8393412132747482602}
-  character: {fileID: 3584633016364246611}
-  dialogueBox: {fileID: 3146997331560203919}
-  options:
-  - {fileID: 7774683868042544467}
-  - {fileID: 5559698768417915105}
-  enterDuration: 0.6
-  exitDuration: 0.4
-  stagger: 0.06
-  hoverScale: 1.05
-  hoverTime: 0.15
-  bgEnterOffset: {x: 0, y: -60}
-  characterEnterOffset: {x: -80, y: 0}
-  boxEnterOffset: {x: 0, y: -40}
-  enterEase: 9
-  exitEase: 8
 --- !u!114 &690424048424029542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1108,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 2037847974283558552}
   characterImage: {fileID: 6415377094049398711}
+  levelInfoAnimations: {fileID: 4715698177950666345}
+  goLevelButton: {fileID: 3583980629478162409}
+  levelDescriptionText: {fileID: 2363275120565300487}
+  levelTitleText: {fileID: 115241459898404788}
+  levelImage: {fileID: 8180985346704830387}
   letterDelay: 0.02
+--- !u!114 &4715698177950666345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402406292399636991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9c0583802b59143ad0f95cf3952bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 5034905954294741410}
+  background: {fileID: 8393412132747482602}
+  character: {fileID: 3584633016364246611}
+  dialogueBox: {fileID: 3146997331560203919}
+  options: []
+  enterDuration: 0.6
+  exitDuration: 0.4
+  stagger: 0.06
+  hoverScale: 1.05
+  hoverTime: 0.15
+  bgEnterOffset: {x: 0, y: -60}
+  characterEnterOffset: {x: -80, y: 0}
+  boxEnterOffset: {x: 0, y: -40}
+  enterEase: 9
+  exitEase: 8
 --- !u!1 &6814452201549960749
 GameObject:
   m_ObjectHideFlags: 0

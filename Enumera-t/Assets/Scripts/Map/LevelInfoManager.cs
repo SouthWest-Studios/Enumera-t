@@ -12,28 +12,49 @@ public class LevelInfoManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image characterImage;
     private Queue<DialogueSentence> sentences;
+    public LevelInfoCanvasAnimations levelInfoAnimations;
+    public Button goLevelButton;
+
+    public TextMeshProUGUI levelDescriptionText;
+    public TextMeshProUGUI levelTitleText;
+    public Image levelImage;
 
     private int letterCount = 0;
     public float letterDelay = 0.02f;
 
+    public static LevelInfoManager instance;
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sentences = new Queue<DialogueSentence>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            DisplayNextSentences();
+        }
     }
 
-    public void StartText(Dialogo dialogo)
+    public void StartInfo(Dialogo dialogo, string levelTitle, string levelDescription, Sprite levelImageSprite, UnityEvent onPlayButton = null)
     {
         //anim.SetBool("IsOpen", true);
         characterImage.sprite = dialogo.sentences[0].character;
-
-
+        levelTitleText.text = levelTitle;
+        levelDescriptionText.text = levelDescription;
+        levelImage.sprite = levelImageSprite;
+        goLevelButton.onClick.RemoveAllListeners();
+        goLevelButton.onClick.AddListener(onPlayButton.Invoke);
+        levelInfoAnimations.PlayEnter();
         dialogueText.text = "";
         sentences.Clear();
 
@@ -41,6 +62,7 @@ public class LevelInfoManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+        DisplayNextSentences();
     }
 
     public void DisplayNextSentences()
@@ -55,7 +77,7 @@ public class LevelInfoManager : MonoBehaviour
 
         if (characterImage.sprite != sentence.character)
         {
-            //dialogueAnimations.ChangeCharacter(sentence.character);
+            levelInfoAnimations.ChangeCharacter(sentence.character);
         }
         StartCoroutine(TypeSentence(sentence.sentence));
     }
@@ -71,14 +93,14 @@ public class LevelInfoManager : MonoBehaviour
                 letterCount++;
                 if (letterCount >= 2)
                 {
-                    //dialogueAnimations.NudgeCharacter();
+                    levelInfoAnimations.NudgeCharacter();
                     letterCount = 0;
                 }
             }
             dialogueText.text += letter;
             yield return new WaitForSeconds(letterDelay);
         }
-        //dialogueAnimations.NudgeDialogueBox();
+        levelInfoAnimations.NudgeDialogueBox();
     }
 
     void EndDialogue()

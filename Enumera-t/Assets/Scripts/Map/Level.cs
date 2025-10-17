@@ -11,6 +11,12 @@ public class Level : MonoBehaviour
     public LevelState state;
     public Image image;
 
+    
+    public string levelTitle;
+    [TextArea(3, 10)]
+    public string levelDescription;
+    public Sprite levelImage;
+
     public Dialogo dialogueBeforeEnter;
     public Dialogo dialogueInGameOne;
     public Dialogo dialogueInGameTwo;
@@ -25,7 +31,8 @@ public class Level : MonoBehaviour
 
     public void PlayDialogueLevel()
     {
-        DialogueManager.instance.StartDialogue(dialogueBeforeEnter, onFinishDialogueBeforeEnter);
+        //DialogueManager.instance.StartDialogue(dialogueBeforeEnter, onFinishDialogueBeforeEnter);
+        LevelInfoManager.instance.StartInfo(dialogueBeforeEnter, levelTitle, levelDescription, levelImage, onFinishDialogueBeforeEnter);
         LevelData.dialogueInGameOne = dialogueInGameOne;
         LevelData.dialogueInGameTwo = dialogueInGameTwo;
         LevelData.dialogueInGameThree = dialogueInGameThree;
