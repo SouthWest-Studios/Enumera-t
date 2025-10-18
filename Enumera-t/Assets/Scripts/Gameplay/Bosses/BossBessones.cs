@@ -5,6 +5,7 @@ using static GameplayManager;
 public class BossBessones : IBossBehavior
 {
     private GameplayManager manager;
+    public int damageTaken = 2;
     public bool firstSolved = false;
     public bool secondSolved = false;
     private GameObject temporalNumber1;
@@ -24,6 +25,9 @@ public class BossBessones : IBossBehavior
 
     public void GenerateOperation()
     {
+        manager.damage = damageTaken;
+
+
         manager.enemyNumber = Random.Range(5, 10);
 
         manager.operationNumber = OperationGenerator.PosibleSolution(

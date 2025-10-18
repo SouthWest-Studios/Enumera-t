@@ -50,7 +50,8 @@ public class GameplayManager : MonoBehaviour
     private int roundsBeforeBoss = 0;
 
     public bool isBoss = false;
-    public int health = 10;
+    public int health = 2;
+    [HideInInspector] public int damage = 0;
     public Image healthBar;
     public BossType bossType = BossType.None;
     private IBossBehavior bossBehavior;
@@ -90,6 +91,7 @@ public class GameplayManager : MonoBehaviour
 
     public interface IBossBehavior
     {
+
         void Init(GameplayManager manager);
 
         void GenerateOperation();
@@ -107,8 +109,12 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         //level data
-        unlockedNumbersInList = LevelData.instance.numbersUnlocked;
-        level = LevelData.instance.levelId + 1;
+        if(LevelData.instance != null)
+        {
+            unlockedNumbersInList = LevelData.instance.numbersUnlocked;
+            level = LevelData.instance.levelId + 1;
+        }
+        
 
 
         string path = "";
@@ -121,9 +127,7 @@ public class GameplayManager : MonoBehaviour
 
 
                 path = "Prefabs/Enemies/Bruixa";
-
-                
-                
+ 
 
                 Transform firstOperation = FindChildRecursive(level1.transform, "1rstOperation");
                 Transform secondOperation = FindChildRecursive(level1.transform, "2ndOperation");
@@ -596,14 +600,19 @@ public class GameplayManager : MonoBehaviour
         // Verificar si el boss fue derrotado
         if (isBoss)
         {
-            if(health > 0)
+            health -= damage;
+            if (health > 0)
             {
-                print("aaaa");
+                
+                healthBar.fillAmount = health / 10f;
                 bossBehavior.GenerateOperation();
             }
             else
             {
-                LevelData.instance.levelComplete = true;
+                if (LevelData.instance != null)
+                {
+                    LevelData.instance.levelComplete = true;
+                }
                 SceneManager.LoadScene("MapScene");
                 return;
             }

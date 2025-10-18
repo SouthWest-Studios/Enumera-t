@@ -10,6 +10,7 @@ public class BossBou : IBossBehavior
     private int lastSolution = 0; // Guarda el número correcto de la operación anterior
     private int lastZPosition = -1; // 0 = X, 1 = Y, 2 = Z (posición anterior de la incógnita)
     private GameObject temporalNumber;
+    public int damageTaken = 2;
 
     public int requiredZ;
 
@@ -26,6 +27,8 @@ public class BossBou : IBossBehavior
 
     public void GenerateOperation()
     {
+        manager.damage = damageTaken;
+
         bool isSumOperation = Random.value > 0.5f;
         manager.sums = isSumOperation;
 

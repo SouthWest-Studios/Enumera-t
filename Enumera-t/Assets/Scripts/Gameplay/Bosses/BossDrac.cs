@@ -4,6 +4,7 @@ using static GameplayManager;
 
 public class BossDrac : IBossBehavior
 {
+    public int damageTaken = 2;
     private GameplayManager manager;
 
     private int MYx;
@@ -19,6 +20,7 @@ public class BossDrac : IBossBehavior
 
     public void GenerateOperation()
     {
+        manager.damage = damageTaken;
         // Elegimos si la operación será de tipo suma o resta
         bool isSumOperation = Random.value > 0.5f;
         manager.sums = isSumOperation;
