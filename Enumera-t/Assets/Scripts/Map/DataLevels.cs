@@ -10,6 +10,7 @@ public class DataLevels : MonoBehaviour
     public class DataLevel
     {
         public int id;
+        public int numbersUnlocked;
         public LevelManager.LevelState state;
 
         public DataLevel(int id, LevelManager.LevelState state)

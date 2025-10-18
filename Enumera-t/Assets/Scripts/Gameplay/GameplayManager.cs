@@ -102,8 +102,15 @@ public class GameplayManager : MonoBehaviour
         void OnAnswer(int number, int operationIndex);
     }
 
+
+
     void Start()
     {
+        //level data
+        unlockedNumbersInList = LevelData.instance.numbersUnlocked;
+        level = LevelData.instance.levelId + 1;
+
+
         string path = "";
         GameObject prefab;
         Vector3 temporalPosition;
@@ -596,6 +603,7 @@ public class GameplayManager : MonoBehaviour
             }
             else
             {
+                LevelData.instance.levelComplete = true;
                 SceneManager.LoadScene("MapScene");
                 return;
             }

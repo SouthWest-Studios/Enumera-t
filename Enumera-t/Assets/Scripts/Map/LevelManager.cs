@@ -61,6 +61,7 @@ public class LevelManager : MonoBehaviour
     {
         if (levels[levelId].state != LevelState.Locked)
         {
+            DataLevels.Instance.dataLevels[levelId].numbersUnlocked = levels[levelId].unlockedNumbersToBe;
             SceneManager.LoadScene("Gameplay");
             DataLevels.Instance.currentLevel = levelId;
         }

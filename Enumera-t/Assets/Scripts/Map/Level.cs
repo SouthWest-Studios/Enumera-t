@@ -10,6 +10,7 @@ public class Level : MonoBehaviour
     public int id;
     public LevelState state;
     public Image image;
+    public int unlockedNumbersToBe;
 
     
     public string levelTitle;
@@ -36,6 +37,9 @@ public class Level : MonoBehaviour
         LevelData.dialogueInGameOne = dialogueInGameOne;
         LevelData.dialogueInGameTwo = dialogueInGameTwo;
         LevelData.dialogueInGameThree = dialogueInGameThree;
+        LevelData.instance.levelId = id;
+        LevelData.instance.numbersUnlocked = unlockedNumbersToBe;
+        LevelData.instance.levelComplete = false;
     }
 
     //public Level(int id, LevelState state, Color color)

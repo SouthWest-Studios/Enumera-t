@@ -11,6 +11,12 @@ public class LevelData : MonoBehaviour
     public static Dialogo dialogueInGameTwo;
     public static Dialogo dialogueInGameThree;
 
+    public bool levelComplete;
+    public int levelUnlocked;
+    public int numbersUnlocked;
+    public int levelId;
+    
+
 
 
 

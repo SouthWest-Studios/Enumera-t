@@ -1049,6 +1049,7 @@ MonoBehaviour:
   id: 3
   state: 0
   image: {fileID: 0}
+  unlockedNumbersToBe: 0
   levelTitle: 
   levelDescription: 
   levelImage: {fileID: 0}
@@ -1725,6 +1726,7 @@ MonoBehaviour:
   id: 2
   state: 0
   image: {fileID: 0}
+  unlockedNumbersToBe: 9
   levelTitle: 
   levelDescription: 
   levelImage: {fileID: 0}
@@ -3010,6 +3012,7 @@ MonoBehaviour:
   id: 1
   state: 0
   image: {fileID: 0}
+  unlockedNumbersToBe: 6
   levelTitle: 
   levelDescription: 
   levelImage: {fileID: 0}
@@ -4157,6 +4160,7 @@ MonoBehaviour:
   id: 0
   state: 0
   image: {fileID: 0}
+  unlockedNumbersToBe: 5
   levelTitle: primer nivel
   levelDescription: Bliblablabla
   levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
@@ -4228,6 +4232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0f0e99f8b9c14459de2fba5a466e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelUnlocked: 0
+  numbersUnlocked: 0
 --- !u!4 &2121892061
 Transform:
   m_ObjectHideFlags: 0
