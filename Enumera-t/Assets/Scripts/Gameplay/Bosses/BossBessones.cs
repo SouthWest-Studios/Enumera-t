@@ -206,7 +206,15 @@ public class BossBessones : IBossBehavior
             manager.WrongNumberToSlot(operationIndex);
         }
 
-        manager.RestoreNumberToSlot(operationIndex);
+        if(operationIndex == 1)
+        {
+            manager.RestoreNumberToSlot(manager.solutionSlot);
+        }
+        else
+        {
+            manager.RestoreNumberToSlot(manager.solutionSlot2);
+        }
+        
     }
 
 }

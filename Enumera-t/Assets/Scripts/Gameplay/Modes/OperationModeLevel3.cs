@@ -44,9 +44,14 @@ public class OperationModeLevel3 : IOperationMode
             int x = Random.Range(minXY, maxXY + 1);
             int y = Random.Range(minXY, maxXY + 1);
 
+
             // Probar con cada z disponible en la lista del jugador
-            for (int i = 0; i < manager.unlockedNumbersInList; i++)
+            int startIndex = Random.Range(0, manager.unlockedNumbersInList);
+
+            // Probar con cada candidato de la lista (este candidato será la incógnita)
+            for (int offset = 0; offset < manager.unlockedNumbersInList; offset++)
             {
+                int i = (startIndex + offset) % manager.unlockedNumbersInList;
                 int z = manager.numbersList[i];
 
                 // Calcular el resultado (enemyNumber) según el tipo de operación
@@ -88,7 +93,7 @@ public class OperationModeLevel3 : IOperationMode
 
         // DEBUG
         string opSymbol = isSumOperation ? "+" : "-";
-        Debug.Log($"Operación generada: {foundX} + {foundY} {opSymbol} Z = {foundEnemy}  |  Z válido: {foundZ}");
+        Debug.Log($"Operación generada: {foundX} + {foundY} {opSymbol} Z = {foundEnemy}  |  Z válido: {foundZ}"); 
     }
 
 

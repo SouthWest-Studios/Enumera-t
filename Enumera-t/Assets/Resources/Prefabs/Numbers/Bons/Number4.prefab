@@ -328,8 +328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 4
-  graphics: {fileID: 0}
-  image: {fileID: 0}
+  graphics: {fileID: 1337069980980275747}
+  image: {fileID: 265668327857291437}
   parentAfterDrag: {fileID: 0}
   locked: 0
 --- !u!95 &4295890120660163706

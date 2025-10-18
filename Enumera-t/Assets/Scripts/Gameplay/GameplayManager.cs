@@ -259,6 +259,7 @@ public class GameplayManager : MonoBehaviour
 
     public void AnswerGuess(int number, int operationIndex)
     {
+        print("answer");
         bool correct = false;
         // Si hay boss activo, delega la comprobación al boss
         if (isBoss && bossBehavior != null)
@@ -290,17 +291,31 @@ public class GameplayManager : MonoBehaviour
 
     private void CorrectAnswerNormal()
     {
-        print("BONA RESPOSTA!");
+        //print("BONA RESPOSTA!");
 
         roundsBeforeBoss++;
-        foreach (var go in temporalPrefab)
-            if (go != null) Destroy(go);
+        for (int i = 0; i < temporalPrefab.Count; i++)
+        {
+            if (temporalPrefab[i] != null)
+                UnityEngine.Object.Destroy(temporalPrefab[i]);
+        }
         temporalPrefab.Clear();
 
-        if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
+
+            if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
+        {
             ActivateBoss();
+        }
+            
+
+        print("siguiente");
 
         RoundCompleted(1);
+
+        
+        
+
+        
 
         
     }
@@ -328,11 +343,10 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    public void RestoreNumberToSlot(int operationIndex)
+    public void RestoreNumberToSlot(GameObject targetSlot)
     {
-        GameObject targetSlot = (operationIndex == 2) ? solutionSlot2 : solutionSlot;
 
-        if (targetSlot == null) return;
+        if (targetSlot == null || !targetSlot.activeInHierarchy) return;
 
         for (int i = 0; i < unlockedNumbersInList; i++)
         {
@@ -497,7 +511,7 @@ public class GameplayManager : MonoBehaviour
         // Caso de operación secundaria del boss
         if (operationIndex == 2)
         {
-            RestoreNumberToSlot(operationIndex);
+            RestoreNumberToSlot(solutionSlot2);
             return;
         }
 
@@ -528,7 +542,7 @@ public class GameplayManager : MonoBehaviour
         
 
         // Restaurar números a los slots
-        RestoreNumberToSlot(operationIndex);
+        RestoreNumberToSlot(solutionSlot);
     }
 
 

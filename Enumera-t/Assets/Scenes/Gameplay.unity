@@ -2057,7 +2057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c081354e00a4547ba2f3273a72e09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
+  level: 1
   level1: {fileID: 1919232361}
   level2: {fileID: 1490463955}
   level3: {fileID: 1344313797}
@@ -2083,7 +2083,7 @@ MonoBehaviour:
   numbersList: 020000000500000003000000060000000800000009000000010000000400000007000000
   unlockedNumbersInList: 6
   alreadyUsedNumbers: 
-  maxRoundsBeforeBoss: 2
+  maxRoundsBeforeBoss: 1
   isBoss: 0
   health: 10
   healthBar: {fileID: 126209806}
@@ -4010,7 +4010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1344313798
 RectTransform:
   m_ObjectHideFlags: 0
