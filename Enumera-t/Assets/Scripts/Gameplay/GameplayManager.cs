@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static GameplayManager;
+using Unity.VisualScripting;
+using System.Linq;
 
 public enum BossType { None, Bessones, Drac, Barrufet }
 
@@ -14,6 +16,8 @@ public class GameplayManager : MonoBehaviour
     public GameObject level1;
     public GameObject level2;
     public GameObject level3;
+
+    public Canvas gameplayCanvas;
 
     public int enemyNumber;
 
@@ -57,6 +61,9 @@ public class GameplayManager : MonoBehaviour
 
     private IOperationMode operationMode;
 
+    [HideInInspector] public GameObject bossPrefab;
+    public Transform bossTransf;
+
     [Header("Boss doble operación")]
     public GameObject firstOperationCanvas;
     public GameObject secondOperationCanvas;
@@ -97,11 +104,19 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-
+        string path = "";
+        GameObject prefab;
+        Vector3 temporalPosition;
         switch (level)
         {
             case 1:
                 level1.SetActive(true);
+
+
+                path = "Prefabs/Enemies/Bruixa";
+
+                
+                
 
                 Transform firstOperation = FindChildRecursive(level1.transform, "1rstOperation");
                 Transform secondOperation = FindChildRecursive(level1.transform, "2ndOperation");
@@ -133,6 +148,15 @@ public class GameplayManager : MonoBehaviour
 
             case 2:
                 level2.SetActive(true);
+
+
+                path = "Prefabs/Enemies/Drac";
+
+                GameObject prefab2 = Resources.Load<GameObject>(path);
+
+                Vector3 temporalPosition2 = bossTransf.position;
+                bossPrefab = Instantiate(prefab2, gameplayCanvas.transform, true);
+                bossPrefab.transform.position = temporalPosition2;
 
                 Transform firstOperationLevel2 = FindChildRecursive(level2.transform, "1rstOperation");
 
@@ -169,6 +193,8 @@ public class GameplayManager : MonoBehaviour
             case 3:
                 level3.SetActive(true);
 
+                path = "Prefabs/Enemies/Bou";
+
                 Transform firstOperationLevel3 = FindChildRecursive(level3.transform, "1rstOperation");
 
                 if (firstOperationLevel3 != null)
@@ -197,6 +223,13 @@ public class GameplayManager : MonoBehaviour
             default:
                 break;
         }
+
+        prefab = Resources.Load<GameObject>(path);
+
+        temporalPosition = bossTransf.position;
+        bossPrefab = Instantiate(prefab, gameplayCanvas.transform, true);
+        bossPrefab.transform.position = temporalPosition;
+
         healthBar.fillAmount = health / 10f;
 
         RoundCompleted(1);
@@ -285,7 +318,7 @@ public class GameplayManager : MonoBehaviour
         }
         else
         {
-            WrongNumberToSlot(operationIndex);
+            WrongNumberToSlot(operationIndex, true);
         }
     }
 
@@ -324,7 +357,7 @@ public class GameplayManager : MonoBehaviour
 
 
     // Función auxiliar para devolver número al slot
-    public void WrongNumberToSlot(int operationIndex)
+    public void WrongNumberToSlot(int operationIndex, bool toLock)
     {
         GameObject targetSlot = (operationIndex == 2) ? solutionSlot2 : solutionSlot;
 
@@ -335,7 +368,18 @@ public class GameplayManager : MonoBehaviour
             if (slots[i] != null && slots[i].transform.childCount == 0 && targetSlot.transform.childCount > 0)
             {
                 var ui = targetSlot.transform.GetChild(0).GetComponent<NumberUi>();
-                ui.locked = false;
+                if(toLock)
+                {
+                    ui.locked = true;
+                    Transform prohibit = ui.GetComponentsInChildren<Transform>(true)
+                      .FirstOrDefault(t => t.name == "prohibit");
+
+                    if (prohibit != null)
+                        prohibit.gameObject.SetActive(true);
+                    else
+                        Debug.LogWarning("No se encontró 'prohibit'");
+                }
+                    
                 //ui.image.color = Color.red;
                 targetSlot.transform.GetChild(0).SetParent(slots[i].transform);
                 break;
@@ -343,7 +387,7 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    public void RestoreNumberToSlot(GameObject targetSlot)
+    public void RestoreNumberToSlot(GameObject targetSlot, bool toLock = false)
     {
 
         if (targetSlot == null || !targetSlot.activeInHierarchy) return;
@@ -352,13 +396,40 @@ public class GameplayManager : MonoBehaviour
         {
             if (slots[i] != null && slots[i].transform.childCount > 0)
             {
-                slots[i].transform.GetChild(0).GetComponent<NumberUi>().locked = true;
-                //slots[i].transform.GetChild(0).GetComponent<NumberUi>().image.color = Color.white;
+                var ui = slots[i].transform.GetChild(0).GetComponent<NumberUi>();
+                Transform prohibit = ui.GetComponentsInChildren<Transform>(true)
+                      .FirstOrDefault(t => t.name == "prohibit");
+
+                if(targetSlot.transform.childCount > 0)
+                {
+                    var ui2 = targetSlot.transform.GetChild(0).GetComponent<NumberUi>();
+                    Transform prohibit2 = ui2.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.name == "prohibit");
+
+                    if (toLock)
+                    {
+                        ui2.locked = true;
+                        if (prohibit2 != null)
+                            prohibit2.gameObject.SetActive(true);
+                        else
+                            Debug.LogWarning("No se encontró 'prohibit'");
+                    }
+                }
+                
+                
+                if(!toLock)
+                {
+                    ui.locked = false;
+                    if (prohibit != null)
+                        prohibit.gameObject.SetActive(false);
+                    else
+                        Debug.LogWarning("No se encontró 'prohibit'");
+                }
+                
+                
             }
 
             if (slots[i] != null && slots[i].transform.childCount == 0 && targetSlot.transform.childCount > 0)
             {
-
 
                 targetSlot.transform.GetChild(0).SetParent(slots[i].transform);
 
@@ -582,6 +653,7 @@ public class GameplayManager : MonoBehaviour
         }
         return null;
     }
+
 
 
 

@@ -48,21 +48,25 @@ public class BossBessones : IBossBehavior
             firstSolved = true;
             manager.victory1 = true;
             Debug.Log("Primera operación correcta!");
-            manager.solutionSlot.SetActive(false);
+            
             manager.enemyNumber = manager.bossNumber;
             temporalNumber1 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
             temporalNumber1.transform.SetParent(manager.firstOperationCanvas.transform, false);
             temporalNumber1.transform.position = manager.solutionSlot.transform.position;
+            manager.RestoreNumberToSlot(manager.solutionSlot);
+            manager.solutionSlot.SetActive(false);
         }
         else if (operationIndex == 2 && !secondSolved)
         {
             secondSolved = true;
             manager.victory2 = true;
             Debug.Log("Segunda operación correcta!");
-            manager.solutionSlot2.SetActive(false);
+            manager.enemyNumber = manager.bossNumber;
             temporalNumber2 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot2.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
-            temporalNumber2.transform.SetParent(manager.secondOperationCanvas.transform, false);
+            temporalNumber2.transform.SetParent(manager.firstOperationCanvas.transform, false);
             temporalNumber2.transform.position = manager.solutionSlot2.transform.position;
+            manager.RestoreNumberToSlot(manager.solutionSlot2);
+            manager.solutionSlot2.SetActive(false);
         }
 
         // Cuando ambas estén resueltas:
@@ -81,6 +85,8 @@ public class BossBessones : IBossBehavior
             manager.solutionSlot2.SetActive(true);
             UnityEngine.Object.Destroy(temporalNumber1);
             UnityEngine.Object.Destroy(temporalNumber2);
+            //manager.RestoreNumberToSlot(manager.solutionSlot);
+            //manager.RestoreNumberToSlot(manager.solutionSlot2);
             if (manager.temporalPrefab.Count > 0)
             {
                 foreach (GameObject go in manager.temporalPrefab)
@@ -203,7 +209,7 @@ public class BossBessones : IBossBehavior
         else
         {
             OnWrongAnswer();
-            manager.WrongNumberToSlot(operationIndex);
+            manager.WrongNumberToSlot(operationIndex, false);
         }
 
         if(operationIndex == 1)

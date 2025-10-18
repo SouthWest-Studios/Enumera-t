@@ -22,17 +22,12 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         // Verifica si el objeto tiene un padre con NumbersSlot
         NumbersSlot slot = GetComponentInParent<NumbersSlot>();
 
-        if (slot == null)
+        if (slot == null || locked)
         {
 
             return;
         }
 
-        // Si el slot es incógnita, tampoco se puede draggear
-        if (slot.isIncognite)
-        {
-            return;
-        }
 
         // Si llega aquí, sí se puede arrastrar
         canDrag = true;

@@ -45,9 +45,13 @@ public class BossDrac : IBossBehavior
             int x = Random.Range(minXY, maxXY + 1);
             int y = 4;
 
-            // Probar con cada z disponible en la lista del jugador
-            for (int i = 0; i < manager.unlockedNumbersInList; i++)
+
+            int startIndex = Random.Range(0, manager.unlockedNumbersInList);
+
+            // Probar con cada candidato de la lista (este candidato será la incógnita)
+            for (int offset = 0; offset < manager.unlockedNumbersInList; offset++)
             {
+                int i = (startIndex + offset) % manager.unlockedNumbersInList;
                 int z = manager.numbersList[i];
 
                 // Calcular el resultado (enemyNumber) según el tipo de operación
@@ -108,14 +112,33 @@ public class BossDrac : IBossBehavior
 
     public bool CheckAnswer(int number, int operationIndex)
     {
+        GameObject solutionSlot = manager.level2.transform.Find("1rstOperation").Find("SolutionSlot").gameObject;
         if (manager.sums)
         {
-            return manager.operationNumber + manager.secondOperationNumber + number == manager.enemyNumber;
+            if(manager.operationNumber + manager.secondOperationNumber + number == manager.enemyNumber)
+            {
+
+                return true;
+            }
+            else
+            {
+                manager.RestoreNumberToSlot(solutionSlot, true);
+            }
+            
         }
         else
         {
-            return manager.operationNumber + manager.secondOperationNumber - number == manager.enemyNumber;
+            if (manager.operationNumber + manager.secondOperationNumber - number == manager.enemyNumber)
+            {
+                
+                return true;
+            }
+            else
+            {
+                manager.RestoreNumberToSlot(solutionSlot, true);
+            }
         }
+        return false;
     }
 
     public void OnAnswer(int number, int operationIndex)
