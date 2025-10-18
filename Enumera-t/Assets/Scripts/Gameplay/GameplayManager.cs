@@ -88,6 +88,8 @@ public class GameplayManager : MonoBehaviour
     public GameObject solutionBossSlot3;
     public GameObject solutionBossSlot4;
 
+    public Transform backGroundTransf;
+
 
     public interface IBossBehavior
     {
@@ -114,9 +116,9 @@ public class GameplayManager : MonoBehaviour
             unlockedNumbersInList = LevelData.instance.numbersUnlocked;
             level = LevelData.instance.levelId + 1;
         }
-        
 
 
+        string backGroundPath = "";
         string path = "";
         GameObject prefab;
         Vector3 temporalPosition;
@@ -124,8 +126,7 @@ public class GameplayManager : MonoBehaviour
         {
             case 1:
                 level1.SetActive(true);
-
-
+                backGroundPath = "Prefabs/BackGrounds/Jail-Background";
                 path = "Prefabs/Enemies/Bruixa";
  
 
@@ -160,7 +161,7 @@ public class GameplayManager : MonoBehaviour
             case 2:
                 level2.SetActive(true);
 
-
+                backGroundPath = "Prefabs/BackGrounds/Cave-Background";
                 path = "Prefabs/Enemies/Drac";
 
                 GameObject prefab2 = Resources.Load<GameObject>(path);
@@ -204,6 +205,7 @@ public class GameplayManager : MonoBehaviour
             case 3:
                 level3.SetActive(true);
 
+                backGroundPath = "Prefabs/BackGrounds/BullIntestine-Background";
                 path = "Prefabs/Enemies/Bou";
 
                 Transform firstOperationLevel3 = FindChildRecursive(level3.transform, "1rstOperation");
@@ -234,6 +236,12 @@ public class GameplayManager : MonoBehaviour
             default:
                 break;
         }
+
+        GameObject backgroundPrefab = Resources.Load<GameObject>(backGroundPath);
+
+        GameObject newBackground = Instantiate(backgroundPrefab, gameplayCanvas.transform, false);
+        newBackground.transform.position = backGroundTransf.position;
+        newBackground.transform.SetSiblingIndex(0);
 
         prefab = Resources.Load<GameObject>(path);
 
