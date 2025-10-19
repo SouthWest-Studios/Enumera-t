@@ -708,10 +708,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bruixa
       objectReference: {fileID: 0}
-    - target: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -870,7 +866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4096798551036878527, guid: f2a39dcfac1f03b4e821f141b0f22560, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4177199437644984194, guid: f2a39dcfac1f03b4e821f141b0f22560, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1032,6 +1028,10 @@ PrefabInstance:
     - target: {fileID: 4448153607522134813, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875105259796257726, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.8125124
       objectReference: {fileID: 0}
     - target: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
       propertyPath: m_Name
