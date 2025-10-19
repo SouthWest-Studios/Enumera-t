@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 233729286279409366}
   - component: {fileID: 8401287024457713152}
   m_Layer: 5
-  m_Name: boca
+  m_Name: bocas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 7809893123555337691}
   - component: {fileID: 7415610992427339027}
   - component: {fileID: 6623022544745814552}
+  - component: {fileID: 1936591128010625932}
   m_Layer: 5
   m_Name: Number7
   m_TagString: Untagged
@@ -688,6 +689,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1936591128010625932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5477703949873802704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5d76068835bfd489a24811ca23950b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5764465770257906051
 GameObject:
   m_ObjectHideFlags: 0
