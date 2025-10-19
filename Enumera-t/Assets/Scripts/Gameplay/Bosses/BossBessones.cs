@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static GameplayManager;
 
 public class BossBessones : IBossBehavior
@@ -25,9 +26,6 @@ public class BossBessones : IBossBehavior
 
     public void GenerateOperation()
     {
-        manager.damage = damageTaken;
-
-
         manager.enemyNumber = Random.Range(5, 10);
 
         manager.operationNumber = OperationGenerator.PosibleSolution(
@@ -41,6 +39,8 @@ public class BossBessones : IBossBehavior
             manager.alreadyUsedNumbers,
             manager.unlockedNumbersInList);
 
+        Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + ? = {manager.enemyNumber}");
+
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, manager.operationNumberParentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, manager.operationNumberParentTransf);
     }
@@ -53,7 +53,7 @@ public class BossBessones : IBossBehavior
             manager.victory1 = true;
             Debug.Log("Primera operación correcta!");
             
-            manager.enemyNumber = manager.bossNumber;
+            
             temporalNumber1 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
             temporalNumber1.transform.SetParent(manager.firstOperationCanvas.transform, false);
             temporalNumber1.transform.position = manager.solutionSlot.transform.position;
@@ -65,7 +65,7 @@ public class BossBessones : IBossBehavior
             secondSolved = true;
             manager.victory2 = true;
             Debug.Log("Segunda operación correcta!");
-            manager.enemyNumber = manager.bossNumber;
+            manager.enemyNumber2 = manager.bossNumber2;
             temporalNumber2 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot2.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
             temporalNumber2.transform.SetParent(manager.firstOperationCanvas.transform, false);
             temporalNumber2.transform.position = manager.solutionSlot2.transform.position;
@@ -177,6 +177,8 @@ public class BossBessones : IBossBehavior
             Debug.LogError("No se pudo generar segunda operación.");
             return;
         }
+
+        
 
         manager.AssignNumberPrefab(manager.operationNumber2, manager.operationNumberTransf2, true, manager.secondOperationCanvas.transform);
         manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);

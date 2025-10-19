@@ -22,6 +22,7 @@ public class GameplayManager : MonoBehaviour
     public int enemyNumber;
 
     public int bossNumber;
+    public int bossNumber2;
 
     public Transform enemyTransf;
 

@@ -631,7 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number: 2
   graphics: {fileID: 4988521265905617422}
-  image: {fileID: 0}
+  image: {fileID: 6919896446343494045}
   parentAfterDrag: {fileID: 0}
   locked: 0
 --- !u!95 &462376203720748126
