@@ -51,7 +51,9 @@ public class GameplayManager : MonoBehaviour
     private int roundsBeforeBoss = 0;
 
     public bool isBoss = false;
-    public int health = 2;
+    public float health = 2;
+    public float maxHealth;
+    private bool firstHealth = false;
     [HideInInspector] public int damage = 0;
     public Image healthBar;
     public BossType bossType = BossType.None;
@@ -250,6 +252,7 @@ public class GameplayManager : MonoBehaviour
         bossPrefab = Instantiate(prefab, gameplayCanvas.transform, true);
         bossPrefab.transform.position = temporalPosition;
 
+        health = maxHealth;
         healthBar.fillAmount = health / 10f;
 
         RoundCompleted(1);
@@ -355,7 +358,7 @@ public class GameplayManager : MonoBehaviour
         temporalPrefab.Clear();
 
 
-            if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
+        if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
         {
             ActivateBoss();
         }
@@ -612,8 +615,23 @@ public class GameplayManager : MonoBehaviour
             health -= damage;
             if (health > 0)
             {
+                if(firstHealth)
+                {
+                    StartCoroutine(AnimarBarra(health / maxHealth));
+                }
+                else
+                {
+                    if(!firstHealth)
+                    {
+                        health = maxHealth;
+                    }
+                    if(health == 10)
+                    {
+                        firstHealth = true;
+                    }
+                    
+                }
                 
-                healthBar.fillAmount = health / 10f;
                 bossBehavior.GenerateOperation();
             }
             else
@@ -679,6 +697,26 @@ public class GameplayManager : MonoBehaviour
                 return found;
         }
         return null;
+    }
+
+    private IEnumerator AnimarBarra(float valorObjetivo)
+    {
+        float valorInicial = healthBar.fillAmount;
+        float duracion = 0.5f; 
+        float tiempo = 0f;
+
+        while (tiempo < duracion)
+        {
+            float t = tiempo / duracion;
+            healthBar.fillAmount = Mathf.Lerp(valorInicial, valorObjetivo, t);
+            float oscilacion = Mathf.Sin(tiempo * 2f * Mathf.PI * 2);
+            float intensidad = Mathf.Abs(oscilacion);
+            healthBar.color = Color.Lerp(Color.white, Color.red, intensidad);
+            tiempo += Time.deltaTime;
+            yield return null;
+        }
+
+        healthBar.fillAmount = valorObjetivo;
     }
 
 

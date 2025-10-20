@@ -23,11 +23,12 @@ public class BossBou : IBossBehavior
         ).gameObject.SetActive(true);
         manager.RestoreNumberToSlot(manager.solutionSlot);
         manager.solutionSlot.SetActive(false);
+        manager.damage = damageTaken;
     }
 
     public void GenerateOperation()
     {
-        manager.damage = damageTaken;
+        
 
         bool isSumOperation = Random.value > 0.5f;
         manager.sums = isSumOperation;

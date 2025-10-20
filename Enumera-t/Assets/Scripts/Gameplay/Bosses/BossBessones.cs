@@ -22,6 +22,7 @@ public class BossBessones : IBossBehavior
             ? Resources.Load<Sprite>("Sprites/plus")
             : Resources.Load<Sprite>("Sprites/minus");
         GenerateSecondOperation();
+        manager.damage = damageTaken;
     }
 
     public void GenerateOperation()
