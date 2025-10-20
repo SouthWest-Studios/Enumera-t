@@ -620,6 +620,7 @@ public class GameplayManager : MonoBehaviour
             {
                 if (LevelData.instance != null)
                 {
+                    DataLevels.Instance.CompleteLevel(LevelData.instance.levelId);
                     LevelData.instance.levelComplete = true;
                 }
                 SceneManager.LoadScene("MapScene");

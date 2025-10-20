@@ -2824,7 +2824,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045884880}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -3045,10 +3045,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 35042486}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadLevelScene
-        m_Mode: 3
+      - m_Target: {fileID: 1174514281}
+        m_TargetAssemblyTypeName: Level, Assembly-CSharp
+        m_MethodName: PlayDialogueLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3111,20 +3111,40 @@ MonoBehaviour:
   state: 0
   image: {fileID: 0}
   unlockedNumbersToBe: 6
-  levelTitle: 
-  levelDescription: 
-  levelImage: {fileID: 0}
+  levelTitle: nivel chu
+  levelDescription: dawdawawdawdaw
+  levelImage: {fileID: 21300000, guid: 404a2968ca4094b49a6f434a5778236a, type: 3}
   dialogueBeforeEnter:
-    sentences: []
+    sentences:
+    - sentence: 
+      character: {fileID: 0}
   dialogueInGameOne:
-    sentences: []
+    sentences:
+    - sentence: 
+      character: {fileID: 0}
   dialogueInGameTwo:
-    sentences: []
+    sentences:
+    - sentence: 
+      character: {fileID: 0}
   dialogueInGameThree:
-    sentences: []
+    sentences:
+    - sentence: 
+      character: {fileID: 0}
   onFinishDialogueBeforeEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 35042486}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: LoadLevelScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1179984260
 GameObject:
   m_ObjectHideFlags: 0

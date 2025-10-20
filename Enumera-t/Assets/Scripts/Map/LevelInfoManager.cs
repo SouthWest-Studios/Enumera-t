@@ -48,7 +48,17 @@ public class LevelInfoManager : MonoBehaviour
     public void StartInfo(Dialogo dialogo, string levelTitle, string levelDescription, Sprite levelImageSprite, UnityEvent onPlayButton = null)
     {
         //anim.SetBool("IsOpen", true);
-        characterImage.sprite = dialogo.sentences[0].character;
+        if(dialogo.sentences[0].character == null)
+        {
+            characterImage.color = new Color(1, 1, 1, 0);
+        }
+        else
+        {
+            characterImage.sprite = dialogo.sentences[0].character;
+            characterImage.color = new Color(1, 1, 1, 1);
+        }
+
+            
         levelTitleText.text = levelTitle;
         levelDescriptionText.text = levelDescription;
         levelImage.sprite = levelImageSprite;
