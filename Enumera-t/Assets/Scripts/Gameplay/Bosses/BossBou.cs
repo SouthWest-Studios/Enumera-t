@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,8 +13,11 @@ public class BossBou : IBossBehavior
     private int lastZPosition = -1; // 0 = X, 1 = Y, 2 = Z (posición anterior de la incógnita)
     private GameObject temporalNumber;
     public int damageTaken = 2;
+    public Transform bouPosition;
 
     public int requiredZ;
+
+    bool firstTime = true;
 
     public void Init(GameplayManager manager)
     {
@@ -24,11 +29,42 @@ public class BossBou : IBossBehavior
         manager.RestoreNumberToSlot(manager.solutionSlot);
         manager.solutionSlot.SetActive(false);
         manager.damage = damageTaken;
+        bouPosition = manager.bossList[2].GetComponent<Transform>();
+        
     }
 
     public void GenerateOperation()
     {
-        
+        Debug.Log("generate");
+        Debug.Log(firstTime);
+
+        if (!firstTime)
+        {
+            Animator bossAnimator = bouPosition.GetComponent<Animator>();
+            if (bossAnimator != null)
+            {
+                // Inicia la animación del boss
+                bossAnimator.SetTrigger("Swall");
+
+                // Inicia una corrutina que esperará hasta que acabe la animación
+                manager.StartCoroutine(WaitForAnimationAndGenerate(bossAnimator));
+            }
+            else
+            {
+                Debug.LogWarning("No se encontró el Animator en bouPosition, generando operación inmediatamente.");
+                GenerateOperationInternal();
+            }
+        }
+        else
+        {
+            GenerateOperationInternal();
+            firstTime = false;
+        }
+    }
+
+
+    private void GenerateOperationInternal()
+    {
 
         bool isSumOperation = Random.value > 0.5f;
         manager.sums = isSumOperation;
@@ -193,12 +229,12 @@ public class BossBou : IBossBehavior
 
             Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + {manager.secondOperationNumber} {opSymbol} Z = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
         }
-
     }
 
 
     public bool CheckAnswer(int number, int operationIndex)
     {
+
         GameObject solutionSlot;
         // Construimos a,b,c según lastZPosition:
         int a, b, c;
@@ -243,6 +279,7 @@ public class BossBou : IBossBehavior
         }
         else
         {
+            manager.RestoreNumberToSlot(solutionSlot, true);
             Debug.Log($"[BossBou] Respuesta INCORRECTA. Intentaste: {number}. Esperado: {requiredZ} (pero depende de la posición)");
         }
 
@@ -324,4 +361,88 @@ public class BossBou : IBossBehavior
     public void OnWrongAnswer() { Debug.Log("Respuesta incorrecta en BossBou."); }
     public void OnAnswer(int number, int operationIndex) { }
     public void Update() { }
+
+    public IEnumerator AnimateNumbersToBoss(Transform bossTarget, System.Action onComplete = null)
+    {
+        Debug.Log("AnimateNumbersToBoss started");
+
+        // Inicia animación del boss
+        
+
+        List<GameObject> numbersToAnimate = new List<GameObject>(manager.bouOperationNumbers);
+        manager.bouOperationNumbers.Clear();
+
+        float duration = 1.2f;
+        float rotationSpeed = 360f;
+
+        List<Vector3> startLocalPositions = new List<Vector3>();
+        List<Vector3> startScales = new List<Vector3>();
+        Vector3 targetLocalPos = bossTarget.localPosition;
+
+        foreach (var num in numbersToAnimate)
+        {
+            if (num == null) continue;
+
+            RectTransform numRT = num.GetComponent<RectTransform>();
+            startLocalPositions.Add(numRT.localPosition);
+            startScales.Add(numRT.localScale);
+
+            Debug.Log($"{num.name} start localPos: {numRT.localPosition} target localPos: {targetLocalPos}");
+        }
+
+        float time = 0f;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, time / duration);
+
+            for (int i = 0; i < numbersToAnimate.Count; i++)
+            {
+                var num = numbersToAnimate[i];
+                if (num == null) continue;
+
+                RectTransform numRT = num.GetComponent<RectTransform>();
+
+                numRT.localPosition = Vector3.Lerp(startLocalPositions[i], targetLocalPos, t);
+                numRT.localScale = Vector3.Lerp(startScales[i], Vector3.zero, t);
+                numRT.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+            }
+
+            yield return null;
+        }
+
+        Debug.Log("Animation finished. Destroying numbers...");
+        foreach (var num in numbersToAnimate)
+        {
+            if (num != null) GameObject.Destroy(num);
+        }
+
+        Debug.Log("All numbers destroyed. Calling onComplete callback.");
+        onComplete?.Invoke();
+    }
+
+    public void OnSwallQuarter()
+    {
+        Debug.Log("BossBou => OnSwallQuarter triggered!");
+        manager.StartCoroutine(AnimateNumbersToBoss(bouPosition, () => GenerateOperationInternal()));
+    }
+
+    private IEnumerator WaitForAnimationAndGenerate(Animator bossAnimator)
+    {
+        // Espera hasta que la animación "Swall" comience realmente
+        yield return null;
+        yield return new WaitUntil(() => bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("Swall"));
+
+        // Obtiene la duración del clip activo
+        float duration = bossAnimator.GetCurrentAnimatorStateInfo(0).length;
+
+        // Espera a que acabe la animación
+        yield return new WaitForSeconds(duration);
+
+        // Ahora sí, genera la nueva operación
+        //GenerateOperationInternal();
+    }
+
 }
+
+

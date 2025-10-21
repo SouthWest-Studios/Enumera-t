@@ -90,8 +90,11 @@ public class GameplayManager : MonoBehaviour
     public GameObject solutionBossSlot2;
     public GameObject solutionBossSlot3;
     public GameObject solutionBossSlot4;
+    [HideInInspector] public List<GameObject> bouOperationNumbers  = new List<GameObject>();
 
     public Transform backGroundTransf;
+
+    public List<GameObject> bossList;
 
 
     public interface IBossBehavior
@@ -123,13 +126,14 @@ public class GameplayManager : MonoBehaviour
 
         string backGroundPath = "";
         string path = "";
-        GameObject prefab;
-        Vector3 temporalPosition;
+
+
         switch (level)
         {
             case 1:
                 level1.SetActive(true);
                 backGroundPath = "Prefabs/BackGrounds/Jail-Background";
+                
                 path = "Prefabs/Enemies/Bruixa";
  
 
@@ -246,11 +250,13 @@ public class GameplayManager : MonoBehaviour
         newBackground.transform.position = backGroundTransf.position;
         newBackground.transform.SetSiblingIndex(0);
 
-        prefab = Resources.Load<GameObject>(path);
+        bossList[level-1].SetActive(true);
 
-        temporalPosition = bossTransf.position;
-        bossPrefab = Instantiate(prefab, gameplayCanvas.transform, true);
-        bossPrefab.transform.position = temporalPosition;
+        //prefab = Resources.Load<GameObject>(path);
+
+        //temporalPosition = bossTransf.position;
+        //bossPrefab = Instantiate(prefab, gameplayCanvas.transform, true);
+        //bossPrefab.transform.position = temporalPosition;
 
         health = maxHealth;
         healthBar.fillAmount = health / 10f;
@@ -291,7 +297,7 @@ public class GameplayManager : MonoBehaviour
         bossBehavior?.Update();
     }
 
-    public void AssignNumberPrefab(int number,Transform transf, bool good, Transform parentTransform)
+    public void AssignNumberPrefab(int number,Transform transf, bool good, Transform parentTransform, bool isSolution = false)
     {
 
         string path;
@@ -310,12 +316,23 @@ public class GameplayManager : MonoBehaviour
 
         numberPrefab.transform.SetParent(parentTransform);
 
-        temporalPrefab.Add(numberPrefab);
+        if (level == 3 && isBoss && !isSolution)
+        {
+            bouOperationNumbers.Add(numberPrefab);
+        }
+        else
+        {
+            temporalPrefab.Add(numberPrefab);
+        }
+
+        
+
+        
     }
 
     public void AnswerGuess(int number, int operationIndex)
     {
-        print("answer");
+
         bool correct = false;
         // Si hay boss activo, delega la comprobación al boss
         if (isBoss && bossBehavior != null)
@@ -679,10 +696,23 @@ public class GameplayManager : MonoBehaviour
                 break;
             case BossType.Barrufet:
                 bossBehavior = new BossBou();
+                
                 break;
         }
 
         bossBehavior?.Init(this);
+        if (bossType == BossType.Barrufet)
+        {
+            BossBou bouLogic = bossBehavior as BossBou;
+            if (bouLogic != null)
+            {
+                bossList[2].GetComponent<BossBouAnimationEvents>().bossLogic = bouLogic;
+            }
+            else
+            {
+                Debug.LogError("No se pudo castear bossBehavior a BossBou");
+            }
+        }
     }
 
     public Transform FindChildRecursive(Transform parent, string name)
