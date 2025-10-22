@@ -90,8 +90,10 @@ public class BossDrac : IBossBehavior
         manager.AssignNumberPrefab(manager.operationNumber, manager.secondOperationNumberTransf, true, parentTransf2);
         manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf, true, parentTransf);
 
-        string opSymbol = isSumOperation ? "+" : "-";
-        Debug.Log($"Operación generada: {foundX} + {foundY} {opSymbol} Z = {foundEnemy}  |  Z válido: {foundZ}");
+        manager.PlayOperationEntryAnimation(parentTransf.gameObject);
+
+        //string opSymbol = isSumOperation ? "+" : "-";
+        //Debug.Log($"Operación generada: {foundX} + {foundY} {opSymbol} Z = {foundEnemy}  |  Z válido: {foundZ}");
     }
 
     public void OnCorrectAnswer(int operationIndex)

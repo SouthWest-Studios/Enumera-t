@@ -52,6 +52,8 @@ public class OperationModeLevel2 : IOperationMode
 
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, parentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, parentTransf);
+
+        manager.PlayOperationEntryAnimation(parentTransf.gameObject);
     }
 
     public bool CheckAnswer(int number, int operationIndex)

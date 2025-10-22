@@ -44,6 +44,8 @@ public class BossBessones : IBossBehavior
 
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, manager.operationNumberParentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, manager.operationNumberParentTransf);
+
+        manager.PlayOperationEntryAnimation(manager.firstOperationCanvas);
     }
 
     public void OnCorrectAnswer(int operationIndex)
@@ -183,6 +185,8 @@ public class BossBessones : IBossBehavior
 
         manager.AssignNumberPrefab(manager.operationNumber2, manager.operationNumberTransf2, true, manager.secondOperationCanvas.transform);
         manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
+
+        manager.PlayOperationEntryAnimation(manager.secondOperationCanvas);
     }
 
     public bool CheckAnswer(int number, int operationIndex)

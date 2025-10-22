@@ -749,6 +749,43 @@ public class GameplayManager : MonoBehaviour
         healthBar.fillAmount = valorObjetivo;
     }
 
+    public void PlayOperationEntryAnimation(GameObject operationContainer)
+    {
+        StartCoroutine(OperationEntryCoroutine(operationContainer));
+    }
+
+
+    private IEnumerator OperationEntryCoroutine(GameObject container)
+    {
+        CanvasGroup group = container.GetComponent<CanvasGroup>();
+        if (group == null)
+            group = container.AddComponent<CanvasGroup>();
+
+        RectTransform rect = container.GetComponent<RectTransform>();
+
+        float duration = 0.3f;
+        float time = 0f;
+        Vector3 startScale = Vector3.one * 0.6f;
+        Vector3 endScale = container.transform.localScale;
+
+        group.alpha = 0f;
+        rect.localScale = startScale;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = Mathf.SmoothStep(0, 1, time / duration);
+
+            rect.localScale = Vector3.Lerp(startScale, endScale, t);
+            group.alpha = t;
+
+            yield return null;
+        }
+
+        rect.localScale = endScale;
+        group.alpha = 1f;
+    }
+
 
 
 

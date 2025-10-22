@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static GameplayManager;
@@ -18,6 +19,8 @@ public class BossBou : IBossBehavior
     public int requiredZ;
 
     bool firstTime = true;
+
+
 
     public void Init(GameplayManager manager)
     {
@@ -100,14 +103,13 @@ public class BossBou : IBossBehavior
             c = Random.Range(minVal, maxVal + 1);
 
             // Si existe lastSolution, colocarlo en alguna posición distinta de la incógnita
-            if (lastSolution != -1 && lastSolution != 0) // ajusta el sentinel según tu inicialización
+            if (lastSolution > 0 && lastZPosition != zPosition)
             {
-                int fixedPos;
-                do { fixedPos = Random.Range(0, 3); } while (fixedPos == zPosition);
-
-                if (fixedPos == 0) a = lastSolution;
-                else if (fixedPos == 1) b = lastSolution;
+                if (lastZPosition == 0) a = lastSolution;
+                else if (lastZPosition == 1) b = lastSolution;
                 else c = lastSolution;
+
+                Debug.Log($"Manteniendo lastSolution {lastSolution} en la posición {lastZPosition}");
             }
             int startIndex = Random.Range(0, manager.unlockedNumbersInList);
 
@@ -157,6 +159,8 @@ public class BossBou : IBossBehavior
         if (!found)
         {
             Debug.LogError("No se pudo generar una operación válida para BossBou.");
+            lastSolution = 0;
+            GenerateOperationInternal();
             return;
         }
 
@@ -229,6 +233,12 @@ public class BossBou : IBossBehavior
 
             Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + {manager.secondOperationNumber} {opSymbol} Z = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
         }
+        if(temporalNumber)
+        {
+            UnityEngine.Object.Destroy(temporalNumber);
+        }
+
+        manager.PlayOperationEntryAnimation(parentTransf.gameObject);
     }
 
 
@@ -269,7 +279,11 @@ public class BossBou : IBossBehavior
         if (correct)
         {
             Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
+            temporalNumber = UnityEngine.Object.Instantiate(manager.numbersListPrefab[solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
+            temporalNumber.transform.SetParent(parentTransf, false);
+            temporalNumber.transform.position = solutionSlot.transform.position;
             manager.RestoreNumberToSlot(solutionSlot);
+            solutionSlot.SetActive(false);
 
 
 
@@ -366,18 +380,16 @@ public class BossBou : IBossBehavior
     {
         Debug.Log("AnimateNumbersToBoss started");
 
-        // Inicia animación del boss
-        
-
+        // Clonamos la lista de números actuales
         List<GameObject> numbersToAnimate = new List<GameObject>(manager.bouOperationNumbers);
         manager.bouOperationNumbers.Clear();
 
         float duration = 1.2f;
         float rotationSpeed = 360f;
 
+        // Guardamos posiciones iniciales y escalas
         List<Vector3> startLocalPositions = new List<Vector3>();
         List<Vector3> startScales = new List<Vector3>();
-        Vector3 targetLocalPos = bossTarget.localPosition;
 
         foreach (var num in numbersToAnimate)
         {
@@ -386,9 +398,17 @@ public class BossBou : IBossBehavior
             RectTransform numRT = num.GetComponent<RectTransform>();
             startLocalPositions.Add(numRT.localPosition);
             startScales.Add(numRT.localScale);
-
-            Debug.Log($"{num.name} start localPos: {numRT.localPosition} target localPos: {targetLocalPos}");
         }
+
+        // Buscamos el transform del Graphics (que se mueve)
+        Transform graphicsTransform = bossTarget.Find("Graphics");
+        if (graphicsTransform == null)
+        {
+            Debug.LogWarning("No se encontró 'Graphics' como hijo del bossTarget. Usando bossTarget directamente.");
+            graphicsTransform = bossTarget;
+        }
+
+        Transform commonParent = numbersToAnimate[0].transform.parent;
 
         float time = 0f;
         while (time < duration)
@@ -396,14 +416,17 @@ public class BossBou : IBossBehavior
             time += Time.deltaTime;
             float t = Mathf.SmoothStep(0f, 1f, time / duration);
 
-            for (int i = 0; i < numbersToAnimate.Count; i++)
-            {
-                var num = numbersToAnimate[i];
-                if (num == null) continue;
+            // Convertir posición del Graphics al espacio local del padre de los números
+            Vector3 graphicsWorldPos = graphicsTransform.position;
+            Vector3 graphicsLocalPos = commonParent.InverseTransformPoint(graphicsWorldPos);
 
+            foreach (var num in numbersToAnimate)
+            {
+                if (num == null) continue;
                 RectTransform numRT = num.GetComponent<RectTransform>();
 
-                numRT.localPosition = Vector3.Lerp(startLocalPositions[i], targetLocalPos, t);
+                int i = numbersToAnimate.IndexOf(num);
+                numRT.localPosition = Vector3.Lerp(startLocalPositions[i], graphicsLocalPos, t);
                 numRT.localScale = Vector3.Lerp(startScales[i], Vector3.zero, t);
                 numRT.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             }
@@ -412,6 +435,7 @@ public class BossBou : IBossBehavior
         }
 
         Debug.Log("Animation finished. Destroying numbers...");
+
         foreach (var num in numbersToAnimate)
         {
             if (num != null) GameObject.Destroy(num);
@@ -420,6 +444,7 @@ public class BossBou : IBossBehavior
         Debug.Log("All numbers destroyed. Calling onComplete callback.");
         onComplete?.Invoke();
     }
+
 
     public void OnSwallQuarter()
     {

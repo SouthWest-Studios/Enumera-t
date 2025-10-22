@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class OperationModeLevel1 : IOperationMode
@@ -12,6 +13,7 @@ public class OperationModeLevel1 : IOperationMode
 
     public void GenerateOperation()
     {
+
         manager.enemyNumber = Random.Range(5, 10);
 
         manager.operationNumber = OperationGenerator.PosibleSolution(
@@ -23,11 +25,23 @@ public class OperationModeLevel1 : IOperationMode
             manager.enemyNumber,
             manager.numbersList,
             manager.alreadyUsedNumbers,
-            manager.unlockedNumbersInList);
+            manager.unlockedNumbersInList
+        );
 
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, manager.operationNumberParentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, manager.operationNumberParentTransf);
+
+        manager.PlayOperationEntryAnimation(manager.firstOperationCanvas);
     }
+
+    private IEnumerator GenerateOperationDelayed()
+    {
+        yield return new WaitForSeconds(0.2f); // espera 1 segundo antes de generar
+
+        
+    }
+
+
 
     public bool CheckAnswer(int number, int operationIndex)
     {

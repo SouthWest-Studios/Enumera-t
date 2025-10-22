@@ -88,12 +88,14 @@ public class OperationModeLevel3 : IOperationMode
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, parentTransf);
         manager.AssignNumberPrefab(manager.secondOperationNumber, manager.secondOperationNumberTransf, true, parentTransf);
 
+        manager.PlayOperationEntryAnimation(parentTransf.gameObject);
+
         // Activar el slot donde el jugador pondrá el número Z
         manager.solutionSlot.SetActive(true);
 
         // DEBUG
-        string opSymbol = isSumOperation ? "+" : "-";
-        Debug.Log($"Operación generada: {foundX} + {foundY} {opSymbol} Z = {foundEnemy}  |  Z válido: {foundZ}"); 
+        //string opSymbol = isSumOperation ? "+" : "-";
+        //Debug.Log($"Operación generada: {foundX} + {foundY} {opSymbol} Z = {foundEnemy}  |  Z válido: {foundZ}"); 
     }
 
 
