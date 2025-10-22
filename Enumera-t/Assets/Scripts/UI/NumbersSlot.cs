@@ -10,8 +10,9 @@ public class NumbersSlot : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         NumberUi draggedItem = eventData.pointerDrag.GetComponent<NumberUi>();
-
         if (draggedItem == null) return;
+
+        if (draggedItem.locked) return;
 
         if (transform.childCount == 0)
         {
@@ -20,6 +21,12 @@ public class NumbersSlot : MonoBehaviour, IDropHandler
         else
         {
             Transform existingChild = transform.GetChild(0);
+            NumberUi existingItem = existingChild.GetComponent<NumberUi>();
+
+            if (existingItem != null && existingItem.locked)
+            {
+                return;
+            }
 
             existingChild.SetParent(draggedItem.parentAfterDrag);
             existingChild.localPosition = Vector3.zero;
@@ -27,5 +34,6 @@ public class NumbersSlot : MonoBehaviour, IDropHandler
             draggedItem.parentAfterDrag = transform;
         }
     }
+
 
 }

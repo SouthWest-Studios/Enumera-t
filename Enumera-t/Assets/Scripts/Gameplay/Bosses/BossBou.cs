@@ -287,10 +287,6 @@ public class BossBou : IBossBehavior
             manager.RestoreNumberToSlot(solutionSlot);
             solutionSlot.SetActive(false);
 
-
-
-
-
             lastSolution = number; // guardar la solución para la siguiente ronda
             Debug.Log($"[BossBou] Respuesta correcta. lastSolution = {lastSolution}");
             // opcional: desactivar slot, instanciar temporalNumber, etc.

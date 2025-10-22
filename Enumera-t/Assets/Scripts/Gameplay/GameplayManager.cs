@@ -284,11 +284,14 @@ public class GameplayManager : MonoBehaviour
             else
             {
                 slots[i].transform.GetChild(0).gameObject.SetActive(false);
+                slots[i].gameObject.SetActive(false);
+
             }
             
         }
 
-        if(LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+
+        if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
         {
             DialogueManager.instance.StartDialogue(LevelData.dialogueInGameOne);
         }
