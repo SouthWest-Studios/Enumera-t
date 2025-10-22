@@ -16,7 +16,7 @@ public class OperationModeLevel2 : IOperationMode
 
         manager.sums = Random.value > 0.5f;
         manager.OperationSymbolImage.sprite = Resources.Load<Sprite>(
-            manager.sums ? "Sprites/plus" : "Sprites/minus"
+            manager.sums ? "Sprites/Ui/Gameplay/Suma" : "Sprites/Ui/Gameplay/Resta"
         );
 
         if (manager.sums)

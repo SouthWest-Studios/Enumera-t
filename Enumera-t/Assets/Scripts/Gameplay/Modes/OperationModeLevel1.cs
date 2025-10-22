@@ -8,12 +8,11 @@ public class OperationModeLevel1 : IOperationMode
     public void Init(GameplayManager manager)
     {
         this.manager = manager;
-        manager.sums = true; // Solo sumas
+        manager.sums = true;
     }
 
     public void GenerateOperation()
     {
-
         manager.enemyNumber = Random.Range(5, 10);
 
         manager.operationNumber = OperationGenerator.PosibleSolution(

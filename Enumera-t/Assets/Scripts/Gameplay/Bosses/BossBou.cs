@@ -73,9 +73,9 @@ public class BossBou : IBossBehavior
         manager.sums = isSumOperation;
 
         // Actualizar símbolos
-        manager.OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/plus");
+        manager.OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/Ui/Gameplay/Suma");
         manager.operationSymbolImage2.sprite = Resources.Load<Sprite>(
-            isSumOperation ? "Sprites/plus" : "Sprites/minus"
+            isSumOperation ? "Sprites/Ui/Gameplay/Suma" : "Sprites/Ui/Gameplay/Resta"
         );
 
         const int minVal = 1;
@@ -201,7 +201,7 @@ public class BossBou : IBossBehavior
             manager.solutionBossSlot3.SetActive(false);
             manager.solutionBossSlot4.SetActive(false);
 
-            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, false, parentTransf);
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot2.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot3.transform, true, parentTransf);
 
@@ -214,7 +214,7 @@ public class BossBou : IBossBehavior
             manager.solutionBossSlot3.SetActive(false);
             manager.solutionBossSlot4.SetActive(false);
 
-            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, false, parentTransf);
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot3.transform, true, parentTransf);
 
@@ -227,7 +227,7 @@ public class BossBou : IBossBehavior
             manager.solutionBossSlot3.SetActive(true);
             manager.solutionBossSlot4.SetActive(false);
 
-            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, false, parentTransf);
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot2.transform, true, parentTransf);
 

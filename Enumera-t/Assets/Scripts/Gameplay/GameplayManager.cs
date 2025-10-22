@@ -265,11 +265,11 @@ public class GameplayManager : MonoBehaviour
 
         //if(sums)
         //{
-        //    OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/plus");
+        //    OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/Ui/Gameplay/Suma");
         //}
         //else
         //{
-        //    OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/minus");
+        //    OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/Ui/Gameplay/Resta");
         //}
 
         for (int i = 0; i < slots.Count; i++)

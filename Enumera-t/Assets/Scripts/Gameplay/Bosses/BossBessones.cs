@@ -19,8 +19,8 @@ public class BossBessones : IBossBehavior
 
         manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
         manager.operationSymbolImage2.sprite = manager.sums
-            ? Resources.Load<Sprite>("Sprites/plus")
-            : Resources.Load<Sprite>("Sprites/minus");
+            ? Resources.Load<Sprite>("Sprites/Ui/Gameplay/Suma")
+            : Resources.Load<Sprite>("Sprites/Ui/Gameplay/Resta");
         GenerateSecondOperation();
         manager.damage = damageTaken;
     }
@@ -59,6 +59,7 @@ public class BossBessones : IBossBehavior
             
             temporalNumber1 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
             temporalNumber1.transform.SetParent(manager.firstOperationCanvas.transform, false);
+            temporalNumber1.transform.localScale = Vector3.one;
             temporalNumber1.transform.position = manager.solutionSlot.transform.position;
             manager.RestoreNumberToSlot(manager.solutionSlot);
             manager.solutionSlot.SetActive(false);
@@ -70,7 +71,8 @@ public class BossBessones : IBossBehavior
             Debug.Log("Segunda operación correcta!");
             manager.enemyNumber2 = manager.bossNumber2;
             temporalNumber2 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot2.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
-            temporalNumber2.transform.SetParent(manager.firstOperationCanvas.transform, false);
+            temporalNumber2.transform.SetParent(manager.secondOperationCanvas.transform, false);
+            temporalNumber2.transform.localScale = Vector3.one;
             temporalNumber2.transform.position = manager.solutionSlot2.transform.position;
             manager.RestoreNumberToSlot(manager.solutionSlot2);
             manager.solutionSlot2.SetActive(false);
@@ -184,7 +186,7 @@ public class BossBessones : IBossBehavior
         
 
         manager.AssignNumberPrefab(manager.operationNumber2, manager.operationNumberTransf2, true, manager.secondOperationCanvas.transform);
-        manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
+        manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, false, manager.secondOperationCanvas.transform);
 
         manager.PlayOperationEntryAnimation(manager.secondOperationCanvas);
     }

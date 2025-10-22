@@ -26,9 +26,9 @@ public class BossDrac : IBossBehavior
         manager.sums = isSumOperation;
 
         // Actualizamos el sprite del símbolo
-        //manager.OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/plus");
+        //manager.OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/Ui/Gameplay/Suma");
         manager.OperationSymbolImage.sprite = Resources.Load<Sprite>(
-            isSumOperation ? "Sprites/plus" : "Sprites/minus"
+            isSumOperation ? "Sprites/Ui/Gameplay/Suma" : "Sprites/Ui/Gameplay/Resta"
         );
 
         const int minXY = 1;
@@ -86,7 +86,7 @@ public class BossDrac : IBossBehavior
         Transform parentTransf = manager.FindChildRecursive(manager.level2.transform, "1rstOperation").transform;
         Transform parentTransf2 = manager.FindChildRecursive(manager.FindChildRecursive(manager.level2.transform, "1rstOperation"), "BossExtra").transform;
 
-        manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, parentTransf);
+        manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, true, parentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.secondOperationNumberTransf, true, parentTransf2);
         manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf, true, parentTransf);
 

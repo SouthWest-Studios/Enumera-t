@@ -23,9 +23,9 @@ public class OperationModeLevel3 : IOperationMode
         manager.sums = isSumOperation;
 
         // Actualizamos el sprite del símbolo
-        manager.OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/plus");
+        manager.OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/Ui/Gameplay/Suma");
         manager.operationSymbolImage2.sprite = Resources.Load<Sprite>(
-            isSumOperation ? "Sprites/plus" : "Sprites/minus"
+            isSumOperation ? "Sprites/Ui/Gameplay/Suma" : "Sprites/Ui/Gameplay/Resta"
         );
 
         const int minXY = 1;
@@ -84,7 +84,7 @@ public class OperationModeLevel3 : IOperationMode
         // Asignar visualmente los prefabs en la interfaz
         Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
 
-        manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, parentTransf);
+        manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, true, parentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, parentTransf);
         manager.AssignNumberPrefab(manager.secondOperationNumber, manager.secondOperationNumberTransf, true, parentTransf);
 
