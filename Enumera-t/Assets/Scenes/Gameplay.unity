@@ -1966,6 +1966,10 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7396212892193425249, guid: 81130de21940ce348bdb9875d10f31ac, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 124
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4990287532426337975, guid: 81130de21940ce348bdb9875d10f31ac, type: 3}
@@ -2019,7 +2023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c081354e00a4547ba2f3273a72e09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
+  level: 1
   level1: {fileID: 1919232361}
   level2: {fileID: 1490463955}
   level3: {fileID: 1344313797}
@@ -2047,7 +2051,7 @@ MonoBehaviour:
   numbersList: 020000000500000003000000060000000900000004000000070000000100000008000000
   unlockedNumbersInList: 5
   alreadyUsedNumbers: 
-  maxRoundsBeforeBoss: 1
+  maxRoundsBeforeBoss: 5
   isBoss: 0
   health: 10
   maxHealth: 10
@@ -5084,6 +5088,10 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7396212892193425249, guid: 81130de21940ce348bdb9875d10f31ac, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4990287532426337975, guid: 81130de21940ce348bdb9875d10f31ac, type: 3}
@@ -5357,6 +5365,10 @@ PrefabInstance:
     - target: {fileID: 7065640298572364092, guid: 81130de21940ce348bdb9875d10f31ac, type: 3}
       propertyPath: m_PreserveAspect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396212892193425249, guid: 81130de21940ce348bdb9875d10f31ac, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 134
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

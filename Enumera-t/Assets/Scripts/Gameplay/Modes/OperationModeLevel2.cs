@@ -50,7 +50,7 @@ public class OperationModeLevel2 : IOperationMode
 
         Transform parentTransf = manager.FindChildRecursive(manager.level2.transform, "1rstOperation").transform;
 
-        manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, parentTransf);
+        manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, true, parentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, parentTransf);
 
         manager.PlayOperationEntryAnimation(parentTransf.gameObject);

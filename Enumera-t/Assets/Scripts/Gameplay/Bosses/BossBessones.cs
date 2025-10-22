@@ -11,6 +11,8 @@ public class BossBessones : IBossBehavior
     public bool secondSolved = false;
     private GameObject temporalNumber1;
     private GameObject temporalNumber2;
+    int lastOperationNumber;
+    int lastOperationNumber2;
 
     public void Init(GameplayManager manager)
     {
@@ -23,16 +25,17 @@ public class BossBessones : IBossBehavior
             : Resources.Load<Sprite>("Sprites/Ui/Gameplay/Resta");
         GenerateSecondOperation();
         manager.damage = damageTaken;
+        
     }
 
     public void GenerateOperation()
     {
-        manager.enemyNumber = Random.Range(5, 10);
+        manager.enemyNumber = 6;
 
         manager.operationNumber = OperationGenerator.PosibleSolution(
             manager.sums,
             manager.operationNumber,
-            true,
+            false,
             1,
             6,
             manager.enemyNumber,
@@ -81,6 +84,8 @@ public class BossBessones : IBossBehavior
         // Cuando ambas estén resueltas:
         if (firstSolved && secondSolved)
         {
+            lastOperationNumber = manager.operationNumber;
+            lastOperationNumber2 = manager.operationNumber2;
             manager.health -= 2;
             manager.healthBar.fillAmount = manager.health / 10f;
 
@@ -130,6 +135,7 @@ public class BossBessones : IBossBehavior
         int intentosGlobales = 0;
         int maxIntentosGlobales = 50;
         bool numeroValido = false;
+        manager.enemyNumber2 = 9;
 
         if (manager.unlockedNumbersInList == 0 || manager.numbersList.Count == 0)
         {
@@ -145,7 +151,7 @@ public class BossBessones : IBossBehavior
                 manager.operationNumber2 = OperationGenerator.PosibleSolution(
                         manager.sums,
                         manager.operationNumber2,
-                        true,
+                        false,
                         1,
                         6,
                         manager.enemyNumber2,
@@ -161,7 +167,7 @@ public class BossBessones : IBossBehavior
                 manager.operationNumber2 = OperationGenerator.PosibleSolution(
                         manager.sums,
                         manager.operationNumber2,
-                        true,
+                        false,
                         manager.enemyNumber2,
                         10,
                         manager.enemyNumber2,
@@ -180,6 +186,7 @@ public class BossBessones : IBossBehavior
         if (!numeroValido)
         {
             Debug.LogError("No se pudo generar segunda operación.");
+            manager.alreadyUsedNumbers.Clear();
             return;
         }
 
