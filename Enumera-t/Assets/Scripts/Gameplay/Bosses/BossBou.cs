@@ -201,9 +201,9 @@ public class BossBou : IBossBehavior
             manager.solutionBossSlot3.SetActive(false);
             manager.solutionBossSlot4.SetActive(false);
 
-            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, true, parentTransf);
-            manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot2.transform, true, parentTransf);
-            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot3.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf2.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf3.transform, true, parentTransf);
 
             Debug.Log($"[BossBou] Operación generada: Z + {manager.operationNumber} {opSymbol} {manager.secondOperationNumber} = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
         }
@@ -214,9 +214,9 @@ public class BossBou : IBossBehavior
             manager.solutionBossSlot3.SetActive(false);
             manager.solutionBossSlot4.SetActive(false);
 
-            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, true, parentTransf);
-            manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot.transform, true, parentTransf);
-            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot3.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf3.transform, true, parentTransf);
 
             Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + Z {opSymbol} {manager.secondOperationNumber} = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
         }
@@ -227,9 +227,9 @@ public class BossBou : IBossBehavior
             manager.solutionBossSlot3.SetActive(true);
             manager.solutionBossSlot4.SetActive(false);
 
-            manager.AssignNumberPrefab(manager.enemyNumber, manager.solutionBossSlot4.transform, true, parentTransf);
-            manager.AssignNumberPrefab(manager.operationNumber, manager.solutionBossSlot.transform, true, parentTransf);
-            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.solutionBossSlot2.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf.transform, true, parentTransf);
+            manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf2.transform, true, parentTransf);
 
             Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + {manager.secondOperationNumber} {opSymbol} Z = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
         }
@@ -281,9 +281,13 @@ public class BossBou : IBossBehavior
             Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
             temporalNumber = UnityEngine.Object.Instantiate(manager.numbersListPrefab[solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
             temporalNumber.transform.SetParent(parentTransf, false);
-            temporalNumber.transform.position = solutionSlot.transform.position;
+            
+            temporalNumber.transform.localScale = solutionSlot.transform.GetChild(0).localScale;
+            temporalNumber.transform.position = new Vector3(solutionSlot.transform.GetChild(0).position.x, solutionSlot.transform.GetChild(0).position.y + 90, solutionSlot.transform.GetChild(0).position.z);
             manager.RestoreNumberToSlot(solutionSlot);
             solutionSlot.SetActive(false);
+
+
 
 
 

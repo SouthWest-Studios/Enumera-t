@@ -63,6 +63,7 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
+        transform.localPosition = new Vector3(0f, -2f, 0f);
 
         // Si el padre tiene un NumbersSlot con isIncognite, avisamos al manager
         if (parentAfterDrag != null)

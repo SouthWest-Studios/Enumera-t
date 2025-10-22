@@ -83,6 +83,7 @@ public class GameplayManager : MonoBehaviour
     public List <GameObject> numbersListPrefab;
 
     [Header("Operacion triple")]
+    public Transform operationNumberTransf3;
     [HideInInspector] public int secondOperationNumber;
     public Transform secondOperationNumberTransf;
     public Image secondSymbol;
@@ -221,6 +222,8 @@ public class GameplayManager : MonoBehaviour
                 {
                     // En nivel 3 hay 3 números, dos operationNumber y un enemy
                     operationNumberTransf = FindChildRecursive(firstOperationLevel3, "OperationNumberImage").transform;
+                    operationNumberTransf2 = FindChildRecursive(firstOperationLevel3, "OperationNumberImage2").transform;
+                    operationNumberTransf3 = FindChildRecursive(firstOperationLevel3, "OperationNumberImage3").transform;
                     secondOperationNumberTransf = FindChildRecursive(firstOperationLevel3, "OperationNumberImage2").transform;
 
                     enemyTransf = FindChildRecursive(firstOperationLevel3, "EnemyImage").transform;
