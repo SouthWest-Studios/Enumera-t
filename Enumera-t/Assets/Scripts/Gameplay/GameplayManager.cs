@@ -430,7 +430,7 @@ public class GameplayManager : MonoBehaviour
         Vector3 worldScale = child.lossyScale;
 
         // Asigna nuevo padre manteniendo posición en mundo
-        child.SetParent(newParent, true);
+        child.SetParent(newParent, true);   
 
         // Calcula la escala local necesaria para mantener la misma escala visual
         Vector3 parentScale = newParent.lossyScale;
@@ -692,12 +692,33 @@ public class GameplayManager : MonoBehaviour
             }
             else
             {
-                if (LevelData.instance != null)
+                Animator bossAnimaton = null;
+                for (int i = 0; i < bossList.Count; i++)
                 {
-                    DataLevels.Instance.CompleteLevel(LevelData.instance.levelId);
-                    LevelData.instance.levelComplete = true;
+                    if (bossList[i].activeInHierarchy)
+                    {
+                        bossAnimaton = bossList[i].GetComponent<Animator>();
+                    }
                 }
-                SceneManager.LoadScene("MapScene");
+                
+                if (bossAnimaton != null)
+                {
+                    // Inicia la animación del boss
+                    bossAnimaton.SetTrigger("Lose");
+
+                    // Inicia una corrutina que esperará hasta que acabe la animación
+                    StartCoroutine(WaitForAnimationAndGoToMap(bossAnimaton));
+                }
+                else
+                {
+                    if (LevelData.instance != null)
+                    {
+                        DataLevels.Instance.CompleteLevel(LevelData.instance.levelId);
+                        LevelData.instance.levelComplete = true;
+                    }
+                    SceneManager.LoadScene("MapScene");
+                }
+                
                 return;
             }
             
@@ -825,7 +846,34 @@ public class GameplayManager : MonoBehaviour
         group.alpha = 1f;
     }
 
+    private IEnumerator WaitForAnimationAndGoToMap(Animator bossAnimator)
+    {
+        // Espera un frame para asegurarse de que el trigger se procese
+        yield return null;
 
+        // Espera hasta que empiece realmente la animación "Lose"
+        yield return new WaitUntil(() => bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("loseAnimation"));
+
+        // Obtiene la información de la animación actual
+        AnimatorStateInfo stateInfo = bossAnimator.GetCurrentAnimatorStateInfo(0);
+        float duration = stateInfo.length;
+
+        // Define el momento para cambiar de escena (por ejemplo, 0.9 = 90% de la animación)
+        float triggerMoment = duration * 0.9f;
+
+        // Espera hasta justo antes del final
+        yield return new WaitForSeconds(triggerMoment);
+
+        // Marca el nivel como completado antes del cambio
+        if (LevelData.instance != null)
+        {
+            DataLevels.Instance.CompleteLevel(LevelData.instance.levelId);
+            LevelData.instance.levelComplete = true;
+        }
+
+        // Cambia de escena justo antes de que acabe la animación
+        SceneManager.LoadScene("MapScene");
+    }
 
 
 
