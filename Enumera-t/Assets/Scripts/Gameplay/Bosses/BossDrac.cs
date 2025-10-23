@@ -16,6 +16,7 @@ public class BossDrac : IBossBehavior
         this.manager = manager;
         manager.FindChildRecursive(manager.FindChildRecursive(manager.level2.transform, "1rstOperation"), "BossExtra").gameObject.SetActive(true);
         manager.damage = damageTaken;
+        manager.number4.SetActive(true);
     }
 
     public void GenerateOperation()
@@ -88,7 +89,7 @@ public class BossDrac : IBossBehavior
 
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, true, parentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.secondOperationNumberTransf, true, parentTransf2);
-        manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf, true, parentTransf);
+        //manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf, true, parentTransf);
 
         manager.PlayOperationEntryAnimation(parentTransf.gameObject);
 

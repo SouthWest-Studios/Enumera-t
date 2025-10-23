@@ -97,6 +97,8 @@ public class GameplayManager : MonoBehaviour
 
     public List<GameObject> bossList;
 
+    public GameObject number4;
+
 
     public interface IBossBehavior
     {
@@ -399,14 +401,49 @@ public class GameplayManager : MonoBehaviour
         
     }
 
+    private void ReparentKeepVisuals(Transform child, Transform newParent)
+    {
+        Vector3 worldScale = child.lossyScale;
+        Vector3 worldPos = child.position;
+
+        child.SetParent(newParent, true);
+
+        Vector3 parentScale = newParent.lossyScale;
+        Vector3 newLocalScale = new Vector3(
+            worldScale.x / parentScale.x,
+            worldScale.y / parentScale.y,
+            worldScale.z / parentScale.z
+        );
+
+        float avg = (newLocalScale.x + newLocalScale.y) / 2f;
+        child.localScale = new Vector3(avg, avg, newLocalScale.z);
+        child.position = worldPos;
+    }
+
 
 
 
     // Función auxiliar para devolver número al slot
+    private void ReparentKeepWorldScale(Transform child, Transform newParent)
+    {
+        // Guarda la escala visual actual del hijo
+        Vector3 worldScale = child.lossyScale;
+
+        // Asigna nuevo padre manteniendo posición en mundo
+        child.SetParent(newParent, true);
+
+        // Calcula la escala local necesaria para mantener la misma escala visual
+        Vector3 parentScale = newParent.lossyScale;
+        child.localScale = new Vector3(
+            worldScale.x / parentScale.x,
+            worldScale.y / parentScale.y,
+            worldScale.z / parentScale.z
+        );
+    }
+
     public void WrongNumberToSlot(int operationIndex, bool toLock)
     {
         GameObject targetSlot = (operationIndex == 2) ? solutionSlot2 : solutionSlot;
-
         if (targetSlot == null) return;
 
         for (int i = 0; i < unlockedNumbersInList; i++)
@@ -414,20 +451,21 @@ public class GameplayManager : MonoBehaviour
             if (slots[i] != null && slots[i].transform.childCount == 0 && targetSlot.transform.childCount > 0)
             {
                 var ui = targetSlot.transform.GetChild(0).GetComponent<NumberUi>();
-                if(toLock)
+                if (toLock)
                 {
                     ui.locked = true;
                     Transform prohibit = ui.GetComponentsInChildren<Transform>(true)
-                      .FirstOrDefault(t => t.name == "prohibit");
+                        .FirstOrDefault(t => t.name == "prohibit");
 
                     if (prohibit != null)
                         prohibit.gameObject.SetActive(true);
                     else
                         Debug.LogWarning("No se encontró 'prohibit'");
                 }
-                    
-                //ui.image.color = Color.red;
-                targetSlot.transform.GetChild(0).SetParent(slots[i].transform);
+
+                Transform child = targetSlot.transform.GetChild(0);
+                ReparentKeepVisuals(child, slots[i].transform);
+
                 break;
             }
         }
@@ -435,7 +473,6 @@ public class GameplayManager : MonoBehaviour
 
     public void RestoreNumberToSlot(GameObject targetSlot, bool toLock = false)
     {
-
         if (targetSlot == null || !targetSlot.activeInHierarchy) return;
 
         for (int i = 0; i < unlockedNumbersInList; i++)
@@ -444,12 +481,13 @@ public class GameplayManager : MonoBehaviour
             {
                 var ui = slots[i].transform.GetChild(0).GetComponent<NumberUi>();
                 Transform prohibit = ui.GetComponentsInChildren<Transform>(true)
-                      .FirstOrDefault(t => t.name == "prohibit");
+                    .FirstOrDefault(t => t.name == "prohibit");
 
-                if(targetSlot.transform.childCount > 0)
+                if (targetSlot.transform.childCount > 0)
                 {
                     var ui2 = targetSlot.transform.GetChild(0).GetComponent<NumberUi>();
-                    Transform prohibit2 = ui2.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.name == "prohibit");
+                    Transform prohibit2 = ui2.GetComponentsInChildren<Transform>(true)
+                        .FirstOrDefault(t => t.name == "prohibit");
 
                     if (toLock)
                     {
@@ -460,9 +498,8 @@ public class GameplayManager : MonoBehaviour
                             Debug.LogWarning("No se encontró 'prohibit'");
                     }
                 }
-                
-                
-                if(!toLock)
+
+                if (!toLock)
                 {
                     ui.locked = false;
                     if (prohibit != null)
@@ -470,20 +507,16 @@ public class GameplayManager : MonoBehaviour
                     else
                         Debug.LogWarning("No se encontró 'prohibit'");
                 }
-                
-                
             }
 
             if (slots[i] != null && slots[i].transform.childCount == 0 && targetSlot.transform.childCount > 0)
             {
-
-                targetSlot.transform.GetChild(0).SetParent(slots[i].transform);
-
+                Transform child = targetSlot.transform.GetChild(0);
+                ReparentKeepVisuals(child, slots[i].transform);
             }
         }
-
-        
     }
+
 
 
 

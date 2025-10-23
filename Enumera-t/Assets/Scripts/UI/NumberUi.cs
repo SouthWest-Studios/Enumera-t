@@ -15,6 +15,7 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private bool canDrag = false;
 
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         canDrag = false; // por defecto no se puede
@@ -62,10 +63,10 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         image.raycastTarget = true;
-        transform.SetParent(parentAfterDrag);
+
+        ReparentKeepVisuals(transform, parentAfterDrag);
         transform.localPosition = new Vector3(0f, -2f, 0f);
 
-        // Si el padre tiene un NumbersSlot con isIncognite, avisamos al manager
         if (parentAfterDrag != null)
         {
             NumbersSlot slot = parentAfterDrag.GetComponent<NumbersSlot>();
@@ -75,4 +76,25 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
         }
     }
+
+    private void ReparentKeepVisuals(Transform child, Transform newParent)
+    {
+        Vector3 worldScale = child.lossyScale;
+        Vector3 worldPos = child.position;
+
+        child.SetParent(newParent, true);
+
+        Vector3 parentScale = newParent.lossyScale;
+        Vector3 newLocalScale = new Vector3(
+            worldScale.x / parentScale.x,
+            worldScale.y / parentScale.y,
+            worldScale.z / parentScale.z
+        );
+
+        float avg = (newLocalScale.x + newLocalScale.y) / 2f;
+        child.localScale = new Vector3(avg, avg, newLocalScale.z);
+        child.position = worldPos;
+    }
+
+
 }

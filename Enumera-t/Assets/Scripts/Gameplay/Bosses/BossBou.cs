@@ -34,6 +34,7 @@ public class BossBou : IBossBehavior
         manager.damage = damageTaken;
         bouPosition = manager.bossList[2].GetComponent<Transform>();
         
+        
     }
 
     public void GenerateOperation()
