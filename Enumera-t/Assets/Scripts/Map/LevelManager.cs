@@ -55,6 +55,11 @@ public class LevelManager : MonoBehaviour
                 lvl.image.color = Color.blue;
                 break;
         }
+
+ 
+        int savedStars = DataLevels.Instance.dataLevels[lvl.id].starsEarned;
+        lvl.StopAllCoroutines();
+        lvl.StartCoroutine(lvl.FadeStars(savedStars));
     }
 
     public void LoadLevelScene(int levelId)

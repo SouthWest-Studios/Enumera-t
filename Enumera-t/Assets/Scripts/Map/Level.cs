@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -25,11 +26,37 @@ public class Level : MonoBehaviour
 
     public UnityEvent onFinishDialogueBeforeEnter;
 
+    [Header("UI de puntuación")]
+    public List<Image> stars;
+    public float fadeDuration = 0.4f;
+    TextMeshProUGUI errorsText;
+
+
     private void Awake()
     {
         image = GetComponent<Image>();
     }
 
+    private void Start()
+    {
+        if(state == LevelState.Completed)
+        {
+            int savedStars = DataLevels.Instance.dataLevels[id].starsEarned;
+            StartCoroutine(FadeStars(savedStars));
+            for (int i = 0; i < stars.Count; i++)
+            {
+                stars[i].gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < stars.Count; i++)
+            {
+                stars[i].gameObject.SetActive(false);
+            }
+        }
+        
+    }
     public void PlayDialogueLevel()
     {
         //DialogueManager.instance.StartDialogue(dialogueBeforeEnter, onFinishDialogueBeforeEnter);
@@ -42,6 +69,43 @@ public class Level : MonoBehaviour
         LevelData.instance.levelComplete = false;
     }
 
+    public void SetStarsByErrors(int errors)
+    {
+        int starsEarned = 1;
+
+        if (errors < 2)
+            starsEarned = 3;
+        else if (errors < 5)
+            starsEarned = 2;
+
+        // Guardar datos de nivel
+        DataLevels.Instance.CompleteLevel(id, starsEarned, errors);
+
+        StopAllCoroutines();
+        StartCoroutine(FadeStars(starsEarned));
+        errorsText.text = "Errores:" + errors;
+    }
+
+    public IEnumerator FadeStars(int starsToLight)
+    {
+        for (int i = 0; i < stars.Count; i++)
+        {
+            Color targetColor = (i < starsToLight) ? Color.white : Color.black;
+            Color startColor = stars[i].color;
+
+            float elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / fadeDuration);
+                stars[i].color = Color.Lerp(startColor, targetColor, t);
+                yield return null;
+            }
+
+            stars[i].color = targetColor;
+        }
+    }
+
     //public Level(int id, LevelState state, Color color)
     //{
     //    this.id = id;
@@ -49,3 +113,5 @@ public class Level : MonoBehaviour
     //    this.image.color = color;
     //}
 }
+
+

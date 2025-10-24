@@ -99,6 +99,8 @@ public class GameplayManager : MonoBehaviour
 
     public GameObject number4;
 
+    [HideInInspector] public int numberOfErrors;
+
 
     public interface IBossBehavior
     {
@@ -119,8 +121,9 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
+        numberOfErrors = 0;
         //level data
-        if(LevelData.instance != null)
+        if (LevelData.instance != null)
         {
             unlockedNumbersInList = LevelData.instance.numbersUnlocked;
             level = LevelData.instance.levelId + 1;
@@ -366,6 +369,7 @@ public class GameplayManager : MonoBehaviour
         }
         else
         {
+            numberOfErrors++;
             WrongNumberToSlot(operationIndex, true);
         }
     }
@@ -713,9 +717,20 @@ public class GameplayManager : MonoBehaviour
                 {
                     if (LevelData.instance != null)
                     {
-                        DataLevels.Instance.CompleteLevel(LevelData.instance.levelId);
+                        int errors = numberOfErrors;
+                        int starsEarned = 1;
+
+                        if (errors < 2)
+                            starsEarned = 3;
+                        else if (errors < 5)
+                            starsEarned = 2;
+
+                        // Guardamos progreso completo
+                        DataLevels.Instance.CompleteLevel(LevelData.instance.levelId, starsEarned, errors);
                         LevelData.instance.levelComplete = true;
                     }
+
+                    SceneManager.LoadScene("MapScene");
                     SceneManager.LoadScene("MapScene");
                 }
                 
@@ -848,32 +863,32 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator WaitForAnimationAndGoToMap(Animator bossAnimator)
     {
-        // Espera un frame para asegurarse de que el trigger se procese
         yield return null;
-
-        // Espera hasta que empiece realmente la animación "Lose"
         yield return new WaitUntil(() => bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("loseAnimation"));
 
-        // Obtiene la información de la animación actual
         AnimatorStateInfo stateInfo = bossAnimator.GetCurrentAnimatorStateInfo(0);
         float duration = stateInfo.length;
-
-        // Define el momento para cambiar de escena (por ejemplo, 0.9 = 90% de la animación)
         float triggerMoment = duration * 0.9f;
-
-        // Espera hasta justo antes del final
         yield return new WaitForSeconds(triggerMoment);
 
-        // Marca el nivel como completado antes del cambio
         if (LevelData.instance != null)
         {
-            DataLevels.Instance.CompleteLevel(LevelData.instance.levelId);
+            int errors = numberOfErrors;
+            int starsEarned = 1;
+
+            if (errors < 2)
+                starsEarned = 3;
+            else if (errors < 5)
+                starsEarned = 2;
+
+            // Guardamos progreso completo
+            DataLevels.Instance.CompleteLevel(LevelData.instance.levelId, starsEarned, errors);
             LevelData.instance.levelComplete = true;
         }
 
-        // Cambia de escena justo antes de que acabe la animación
         SceneManager.LoadScene("MapScene");
     }
+
 
 
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using static LevelManager;
 
@@ -12,11 +13,15 @@ public class DataLevels : MonoBehaviour
         public int id;
         public int numbersUnlocked;
         public LevelManager.LevelState state;
+        public int starsEarned;
+        public int numberOfErrors;
 
         public DataLevel(int id, LevelManager.LevelState state)
         {
             this.id = id;
             this.state = state;
+            this.starsEarned = 0;
+            this.numberOfErrors = 0;
         }
     }
 
@@ -60,7 +65,16 @@ public class DataLevels : MonoBehaviour
                     "Level_" + i,
                     (i == 0 ? (int)LevelManager.LevelState.Unlocked : (int)LevelManager.LevelState.Locked)
                 );
-                dataLevels.Add(new DataLevel(i, state));
+
+                int stars = PlayerPrefs.GetInt($"Level_{i}_Stars", 0);
+                int errors = PlayerPrefs.GetInt($"Level_{i}_Errors", 0);
+                dataLevels.Add(new DataLevel(i, state)
+                {
+                    starsEarned = stars,
+                    numberOfErrors = errors
+                });
+
+
             }
         }
         else
@@ -77,13 +91,14 @@ public class DataLevels : MonoBehaviour
     }
 
 
-    public void CompleteLevel(int id)
+    public void CompleteLevel(int id, int stars, int errors)
     {
         var level = dataLevels.Find(l => l.id == id);
         if (level != null)
         {
             level.state = LevelManager.LevelState.Completed;
-
+            level.starsEarned = Mathf.Max(level.starsEarned, stars); // guarda la mejor puntuación
+            level.numberOfErrors = errors;
             // Desbloquear siguiente nivel
             int nextIndex = dataLevels.IndexOf(level) + 1;
             if (nextIndex < dataLevels.Count)
@@ -106,7 +121,11 @@ public class DataLevels : MonoBehaviour
     public void SaveLevelsState()
     {
         for (int i = 0; i < dataLevels.Count; i++)
+        { 
             PlayerPrefs.SetInt("Level_" + i, (int)dataLevels[i].state);
+            PlayerPrefs.SetInt($"Level_{i}_Stars", dataLevels[i].starsEarned);
+            PlayerPrefs.SetInt($"Level_{i}_Errors", dataLevels[i].numberOfErrors);
+        }
 
         PlayerPrefs.Save();
     }
@@ -115,8 +134,11 @@ public class DataLevels : MonoBehaviour
     {
         for (int i = 0; i < dataLevels.Count; i++)
         {
-            if (PlayerPrefs.HasKey("Level_" + i))
-                dataLevels[i].state = (LevelManager.LevelState)PlayerPrefs.GetInt("Level_" + i);
+            if (PlayerPrefs.HasKey($"Level_{i}_State"))
+                dataLevels[i].state = (LevelManager.LevelState)PlayerPrefs.GetInt($"Level_{i}_State");
+
+            dataLevels[i].starsEarned = PlayerPrefs.GetInt($"Level_{i}_Stars", 0);
+            dataLevels[i].numberOfErrors = PlayerPrefs.GetInt($"Level_{i}_Errors", 0);
         }
     }
 }
