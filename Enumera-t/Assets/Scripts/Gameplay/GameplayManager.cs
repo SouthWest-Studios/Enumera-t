@@ -100,12 +100,13 @@ public class GameplayManager : MonoBehaviour
 
     public GameObject number4;
 
-    [HideInInspector] public int numberOfErrors;
+    
 
     [Header("Ventana de Puntuacion ")]
-    GameObject puntuationWindow;
+    [HideInInspector] public int numberOfErrors;
+    public GameObject puntuationWindow;
     public List<Image> stars;
-    TextMeshProUGUI textErrors;
+    public TextMeshProUGUI textErrors;
 
 
     public interface IBossBehavior
@@ -924,9 +925,57 @@ public class GameplayManager : MonoBehaviour
             DataLevels.Instance.CompleteLevel(LevelData.instance.levelId, starsEarned, errors);
             LevelData.instance.levelComplete = true;
         }
+        SetStarsByErrors(numberOfErrors);
 
+
+    }
+
+    public void SetStarsByErrors(int errors)
+    {
+        puntuationWindow.SetActive(true);
+        PlayOperationEntryAnimation(puntuationWindow);
+        int starsEarned = 1;
+
+        if (errors < 2)
+            starsEarned = 3;
+        else if (errors < 5)
+            starsEarned = 2;
+
+        
+
+        //StopAllCoroutines();
+        StartCoroutine(FadeStars(starsEarned));
+        textErrors.text = "Errores:" + errors;
+    }
+
+    public IEnumerator FadeStars(int starsToLight)
+    {
+        float fadeDuration = 0.5f;
+        for (int i = 0; i < stars.Count; i++)
+        {
+            stars[i].gameObject.SetActive(true);
+            Color targetColor = (i < starsToLight) ? Color.white : Color.black;
+            Color startColor = stars[i].color;
+
+            float elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / fadeDuration);
+                stars[i].color = Color.Lerp(startColor, targetColor, t);
+                yield return null;
+            }
+
+            stars[i].color = targetColor;
+        }
+    }
+
+    public void LoadScene()
+    {
         SceneManager.LoadScene("MapScene");
     }
+
+
 
 
 
