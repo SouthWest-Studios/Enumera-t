@@ -18,6 +18,7 @@ public class Level : MonoBehaviour
     [TextArea(3, 10)]
     public string levelDescription;
     public Sprite levelImage;
+    public GameObject characterAnimatedSlot;
 
     public Dialogo dialogueBeforeEnter;
     public Dialogo dialogueInGameOne;

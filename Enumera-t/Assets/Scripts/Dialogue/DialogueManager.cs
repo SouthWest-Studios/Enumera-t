@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
     public Image characterImage;
+    public GameObject characterAnimatedSlot;
     private Queue<DialogueSentence> sentences;
     public DialogueCanvasAnimations dialogueAnimations;
 
@@ -35,6 +36,14 @@ public class DialogueManager : MonoBehaviour
     {
         //anim.SetBool("IsOpen", true);
         characterImage.sprite = dialogo.sentences[0].character;
+
+        
+        foreach (Transform child in characterAnimatedSlot.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
+
         dialogueAnimations.PlayEnter();
         this.onDialogueFinish = onDialogueFinish;
 
@@ -61,6 +70,11 @@ public class DialogueManager : MonoBehaviour
         if(characterImage.sprite != sentence.character)
         {
             dialogueAnimations.ChangeCharacter(sentence.character);
+            foreach (Transform child in characterAnimatedSlot.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Instantiate(sentence.characterAnimated, characterAnimatedSlot.transform);
         }
         StartCoroutine(TypeSentence(sentence.sentence));
     }

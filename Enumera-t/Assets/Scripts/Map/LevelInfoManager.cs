@@ -11,6 +11,7 @@ public class LevelInfoManager : MonoBehaviour
 
     public TextMeshProUGUI dialogueText;
     public Image characterImage;
+    public GameObject characterAnimatedSlot;
     private Queue<DialogueSentence> sentences;
     public LevelInfoCanvasAnimations levelInfoAnimations;
     public Button goLevelButton;
@@ -58,8 +59,26 @@ public class LevelInfoManager : MonoBehaviour
             characterImage.color = new Color(1, 1, 1, 1);
         }
 
-            
-        levelTitleText.text = levelTitle;
+        if (dialogo.sentences[0].characterAnimated == null)
+        {
+            foreach (Transform child in characterAnimatedSlot.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
+        else
+        {
+            foreach (Transform child in characterAnimatedSlot.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            var go = Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
+            go.GetComponent<RectTransform>().localScale = new Vector2(8, 8);
+        }
+
+
+
+            levelTitleText.text = levelTitle;
         levelDescriptionText.text = levelDescription;
         levelImage.sprite = levelImageSprite;
         goLevelButton.onClick.RemoveAllListeners();
@@ -88,6 +107,7 @@ public class LevelInfoManager : MonoBehaviour
         if (characterImage.sprite != sentence.character)
         {
             levelInfoAnimations.ChangeCharacter(sentence.character);
+            levelInfoAnimations.ChangeCharacter(sentence.characterAnimated);
         }
         StartCoroutine(TypeSentence(sentence.sentence));
     }
