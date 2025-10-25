@@ -127,6 +127,7 @@ public class BossDrac : IBossBehavior
             }
             else
             {
+                manager.numberOfErrors++;
                 manager.RestoreNumberToSlot(solutionSlot, true);
             }
             
@@ -140,6 +141,7 @@ public class BossDrac : IBossBehavior
             }
             else
             {
+                manager.numberOfErrors++;
                 manager.RestoreNumberToSlot(solutionSlot, true);
             }
         }

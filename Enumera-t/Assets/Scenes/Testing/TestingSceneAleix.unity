@@ -820,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -944,6 +944,10 @@ PrefabInstance:
     - target: {fileID: 3534899802846625116, guid: bbb78e261c6ab2a49a2bc47af797eba5, type: 3}
       propertyPath: m_Name
       value: PuntuationCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3534899802846625116, guid: bbb78e261c6ab2a49a2bc47af797eba5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5886627940100660538, guid: bbb78e261c6ab2a49a2bc47af797eba5, type: 3}
       propertyPath: m_Pivot.x
@@ -1117,10 +1121,6 @@ PrefabInstance:
     - target: {fileID: 4448153607522134813, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4875105259796257726, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 7.8125124
       objectReference: {fileID: 0}
     - target: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
       propertyPath: m_Name

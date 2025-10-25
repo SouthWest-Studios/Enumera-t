@@ -186,9 +186,7 @@ public class GameplayManager : MonoBehaviour
 
                 GameObject prefab2 = Resources.Load<GameObject>(path);
 
-                Vector3 temporalPosition2 = bossTransf.position;
-                bossPrefab = Instantiate(prefab2, gameplayCanvas.transform, true);
-                bossPrefab.transform.position = temporalPosition2;
+
 
                 Transform firstOperationLevel2 = FindChildRecursive(level2.transform, "1rstOperation");
 
@@ -752,6 +750,7 @@ public class GameplayManager : MonoBehaviour
                     }
 
                     // Inicia una corrutina que esperará hasta que acabe la animación
+                    Debug.Log("Antes de StartCoroutine, activo: " + this.gameObject.activeInHierarchy);
                     StartCoroutine(WaitForAnimationAndGoToMap(bossAnimaton));
                 }
                 else
@@ -771,7 +770,6 @@ public class GameplayManager : MonoBehaviour
                         LevelData.instance.levelComplete = true;
                     }
 
-                    SceneManager.LoadScene("MapScene");
                     SceneManager.LoadScene("MapScene");
                 }
                 
@@ -867,7 +865,7 @@ public class GameplayManager : MonoBehaviour
 
     public void PlayOperationEntryAnimation(GameObject operationContainer)
     {
-        StartCoroutine(OperationEntryCoroutine(operationContainer));
+        //StartCoroutine(OperationEntryCoroutine(operationContainer));
     }
 
 
@@ -904,14 +902,37 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator WaitForAnimationAndGoToMap(Animator bossAnimator)
     {
+        Debug.Log("Coroutine entró, gameObject activo: " + gameObject.activeInHierarchy + ", enabled: " + enabled);
+        Debug.Log("Boss animator actual state: " + bossAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash);
+
         yield return null;
-        yield return new WaitUntil(() => bossAnimator.GetCurrentAnimatorStateInfo(0).IsName("loseAnimation"));
+        for (int i = 0; i < bossAnimator.layerCount; i++)
+        {
+            var clips = bossAnimator.GetCurrentAnimatorClipInfo(i);
+            if (clips.Length > 0)
+            {
+                string clipName = clips[0].clip.name;
+                Debug.Log($"Layer {i}: clip activo = {clipName}");
+            }
+            else
+            {
+                Debug.Log($"Layer {i}: no hay clip activo");
+            }
+        }
+
+        Debug.Log("Esto NUNCA aparece si se congela aquí");
+        yield return new WaitUntil(() =>
+        {
+            var clips = bossAnimator.GetCurrentAnimatorClipInfo(0);
+            return clips.Length > 0 && clips[0].clip.name == "loseAnimation";
+        });
+        Debug.Log("Esto NUNCA aparece si se congela aquí2");
 
         AnimatorStateInfo stateInfo = bossAnimator.GetCurrentAnimatorStateInfo(0);
         float duration = stateInfo.length;
         float triggerMoment = duration * 0.9f;
         yield return new WaitForSeconds(triggerMoment);
-
+        Debug.Log("Esto NUNCA aparece si se congela aquí 3");
         if (LevelData.instance != null)
         {
             int errors = numberOfErrors;
@@ -930,6 +951,8 @@ public class GameplayManager : MonoBehaviour
 
 
     }
+
+
 
     public void SetStarsByErrors(int errors)
     {

@@ -297,6 +297,7 @@ public class BossBou : IBossBehavior
         }
         else
         {
+            manager.numberOfErrors++;
             manager.RestoreNumberToSlot(solutionSlot, true);
             Debug.Log($"[BossBou] Respuesta INCORRECTA. Intentaste: {number}. Esperado: {requiredZ} (pero depende de la posición)");
         }
