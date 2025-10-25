@@ -17,8 +17,6 @@ public class LevelManager : MonoBehaviour
     [Header("Lista de Niveles en la escena")]
     public List<Level> levels = new List<Level>();
 
-
-
     public static LevelManager instance;
 
     private void Awake()
@@ -66,6 +64,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevelScene(int levelId)
     {
+        AudioManager.Instance.PlayLevelStart();
         if (levels[levelId].state != LevelState.Locked)
         {
             DataLevels.Instance.dataLevels[levelId].numbersUnlocked = levels[levelId].unlockedNumbersToBe;

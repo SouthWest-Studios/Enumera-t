@@ -48,6 +48,7 @@ public class LevelInfoManager : MonoBehaviour
 
     public void StartInfo(Dialogo dialogo, string levelTitle, string levelDescription, Sprite levelImageSprite, Level level, int savedStars, UnityEvent onPlayButton = null)
     {
+        AudioManager.Instance.PlayOpenPanel();
         //anim.SetBool("IsOpen", true);
         if(dialogo.sentences[0].character == null)
         {

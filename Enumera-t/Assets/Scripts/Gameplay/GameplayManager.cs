@@ -383,7 +383,7 @@ public class GameplayManager : MonoBehaviour
 
     private void CorrectAnswerNormal()
     {
-        //print("BONA RESPOSTA!");
+        AudioManager.Instance.PlayCorrect();
 
         roundsBeforeBoss++;
         for (int i = 0; i < temporalPrefab.Count; i++)
@@ -454,6 +454,7 @@ public class GameplayManager : MonoBehaviour
 
     public void WrongNumberToSlot(int operationIndex, bool toLock)
     {
+        AudioManager.Instance.PlayWrong();
         GameObject targetSlot = (operationIndex == 2) ? solutionSlot2 : solutionSlot;
         if (targetSlot == null) return;
 
@@ -934,6 +935,8 @@ public class GameplayManager : MonoBehaviour
     {
         puntuationWindow.SetActive(true);
         PlayOperationEntryAnimation(puntuationWindow);
+        AudioManager.Instance.PlayOpenPanel();
+
         int starsEarned = 1;
 
         if (errors < 2)
@@ -945,8 +948,11 @@ public class GameplayManager : MonoBehaviour
 
         //StopAllCoroutines();
         StartCoroutine(FadeStars(starsEarned));
-        textErrors.text = "Errores:" + errors;
+        textErrors.text = "Errors:" + errors;
+        FadeStars(starsEarned);
+
     }
+
 
     public IEnumerator FadeStars(int starsToLight)
     {
@@ -968,10 +974,12 @@ public class GameplayManager : MonoBehaviour
 
             stars[i].color = targetColor;
         }
+
     }
 
     public void LoadScene()
     {
+        AudioManager.Instance.PlayClosePanel();
         SceneManager.LoadScene("MapScene");
     }
 

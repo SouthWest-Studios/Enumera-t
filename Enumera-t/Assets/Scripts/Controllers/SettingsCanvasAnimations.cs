@@ -76,6 +76,7 @@ public class SettingsCanvasAnimations : MonoBehaviour
     // ---------- API ----------
     public void PlayOpen()
     {
+        AudioManager.Instance.PlayOpenPanel();
         KillAllTweens();
         PrepareForOpen();
 
@@ -126,6 +127,7 @@ public class SettingsCanvasAnimations : MonoBehaviour
 
     public void PlayClose()
     {
+        AudioManager.Instance.PlayClosePanel();
         KillAllTweens();
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;

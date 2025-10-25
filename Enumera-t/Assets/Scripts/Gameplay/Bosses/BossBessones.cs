@@ -53,6 +53,7 @@ public class BossBessones : IBossBehavior
 
     public void OnCorrectAnswer(int operationIndex)
     {
+        AudioManager.Instance.PlayCorrect();
         if (operationIndex == 1 && !firstSolved)
         {
             firstSolved = true;

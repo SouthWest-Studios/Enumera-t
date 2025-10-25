@@ -29,6 +29,7 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             return;
         }
 
+        AudioManager.Instance.PlayGrab();
 
         // Si llega aquí, sí se puede arrastrar
         canDrag = true;
@@ -69,12 +70,20 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         if (parentAfterDrag != null)
         {
+            
             NumbersSlot slot = parentAfterDrag.GetComponent<NumbersSlot>();
             if (slot != null && slot.isIncognite)
             {
+                AudioManager.Instance.PlayDrop();
                 FindAnyObjectByType<GameplayManager>().AnswerGuess(number, slot.rowIndex);
             }
+            else
+            {
+                AudioManager.Instance.PlayBadDrop();
+
+            }
         }
+
     }
 
     private void ReparentKeepVisuals(Transform child, Transform newParent)
