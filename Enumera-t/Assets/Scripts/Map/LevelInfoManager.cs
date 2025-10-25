@@ -46,7 +46,7 @@ public class LevelInfoManager : MonoBehaviour
         }
     }
 
-    public void StartInfo(Dialogo dialogo, string levelTitle, string levelDescription, Sprite levelImageSprite, UnityEvent onPlayButton = null)
+    public void StartInfo(Dialogo dialogo, string levelTitle, string levelDescription, Sprite levelImageSprite, Level level, int savedStars, UnityEvent onPlayButton = null)
     {
         //anim.SetBool("IsOpen", true);
         if(dialogo.sentences[0].character == null)
@@ -86,6 +86,8 @@ public class LevelInfoManager : MonoBehaviour
         levelInfoAnimations.PlayEnter();
         dialogueText.text = "";
         sentences.Clear();
+
+        level.StartCoroutine(level.FadeStars(savedStars));
 
         foreach (DialogueSentence sentence in dialogo.sentences)
         {

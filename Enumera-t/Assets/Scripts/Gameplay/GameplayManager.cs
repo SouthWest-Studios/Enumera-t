@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using static GameplayManager;
 using Unity.VisualScripting;
 using System.Linq;
+using TMPro;
 
 public enum BossType { None, Bessones, Drac, Barrufet }
 
@@ -100,6 +101,11 @@ public class GameplayManager : MonoBehaviour
     public GameObject number4;
 
     [HideInInspector] public int numberOfErrors;
+
+    [Header("Ventana de Puntuacion ")]
+    GameObject puntuationWindow;
+    public List<Image> stars;
+    TextMeshProUGUI textErrors;
 
 
     public interface IBossBehavior
@@ -708,7 +714,40 @@ public class GameplayManager : MonoBehaviour
                 if (bossAnimaton != null)
                 {
                     // Inicia la animación del boss
-                    bossAnimaton.SetTrigger("Lose");
+                    bool hasLoseTrigger = false;
+
+                    foreach (var param in bossAnimaton.parameters)
+                    {
+                        if (param.name == "Lose" && param.type == AnimatorControllerParameterType.Trigger)
+                        {
+                            hasLoseTrigger = true;
+                            break;
+                        }
+                    }
+
+                    if (hasLoseTrigger)
+                    {
+                        bossAnimaton.SetTrigger("Lose");
+                    }
+                    else
+                    {
+                        if (LevelData.instance != null)
+                        {
+                            int errors = numberOfErrors;
+                            int starsEarned = 1;
+
+                            if (errors < 2)
+                                starsEarned = 3;
+                            else if (errors < 5)
+                                starsEarned = 2;
+
+                            // Guardamos progreso completo
+                            DataLevels.Instance.CompleteLevel(LevelData.instance.levelId, starsEarned, errors);
+                            LevelData.instance.levelComplete = true;
+                        }
+
+                        SceneManager.LoadScene("MapScene");
+                    }
 
                     // Inicia una corrutina que esperará hasta que acabe la animación
                     StartCoroutine(WaitForAnimationAndGoToMap(bossAnimaton));

@@ -29,6 +29,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         DataLevels.Instance.InitializeLevels(levels.Count);
+
         RefreshUI();
     }
 

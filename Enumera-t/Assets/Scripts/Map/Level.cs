@@ -40,28 +40,24 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
-        if(state == LevelState.Completed)
-        {
-            int savedStars = DataLevels.Instance.dataLevels[id].starsEarned;
-            StartCoroutine(FadeStars(savedStars));
-            for (int i = 0; i < stars.Count; i++)
-            {
-                stars[i].gameObject.SetActive(true);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < stars.Count; i++)
-            {
-                stars[i].gameObject.SetActive(false);
-            }
-        }
-        
+        //int savedStars = DataLevels.Instance.dataLevels[id].starsEarned;
+
+        //if (savedStars > 0)
+        //{
+        //    StartCoroutine(FadeStars(savedStars));
+        //    for (int i = 0; i < stars.Count; i++)
+        //        stars[i].gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    for (int i = 0; i < stars.Count; i++)
+        //        stars[i].gameObject.SetActive(false);
+        //}
     }
     public void PlayDialogueLevel()
     {
         //DialogueManager.instance.StartDialogue(dialogueBeforeEnter, onFinishDialogueBeforeEnter);
-        LevelInfoManager.instance.StartInfo(dialogueBeforeEnter, levelTitle, levelDescription, levelImage, onFinishDialogueBeforeEnter);
+        LevelInfoManager.instance.StartInfo(dialogueBeforeEnter, levelTitle, levelDescription, levelImage, this, DataLevels.Instance.dataLevels[id].starsEarned, onFinishDialogueBeforeEnter);
         LevelData.dialogueInGameOne = dialogueInGameOne;
         LevelData.dialogueInGameTwo = dialogueInGameTwo;
         LevelData.dialogueInGameThree = dialogueInGameThree;
@@ -91,6 +87,7 @@ public class Level : MonoBehaviour
     {
         for (int i = 0; i < stars.Count; i++)
         {
+            stars[i].gameObject.SetActive(true); // Asegura que estén visibles
             Color targetColor = (i < starsToLight) ? Color.white : Color.black;
             Color startColor = stars[i].color;
 
@@ -106,6 +103,7 @@ public class Level : MonoBehaviour
             stars[i].color = targetColor;
         }
     }
+
 
     //public Level(int id, LevelState state, Color color)
     //{

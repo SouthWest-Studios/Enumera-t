@@ -55,6 +55,9 @@ public class DataLevels : MonoBehaviour
             }
         }
 
+        Debug.Log($"InitializeLevels called. hasSavedData = {hasSavedData}");
+
+
         if (hasSavedData)
         {
             // Hay datos guardados, cargarlos
