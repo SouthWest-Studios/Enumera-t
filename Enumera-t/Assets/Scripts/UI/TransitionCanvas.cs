@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TransitionCanvas : MonoBehaviour
 {
     private Animator anim;
-    public TransitionCanvas instance;
+    public static TransitionCanvas instance;
 
     private void Awake()
     {

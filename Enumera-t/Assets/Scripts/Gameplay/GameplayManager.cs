@@ -776,7 +776,8 @@ public class GameplayManager : MonoBehaviour
                             LevelData.instance.levelComplete = true;
                         }
 
-                        SceneManager.LoadScene("MapScene");
+                        //SceneManager.LoadScene("MapScene");
+                        TransitionCanvas.instance.DoTransition("MapScene");
                     }
 
                     // Inicia una corrutina que esperará hasta que acabe la animación
@@ -800,7 +801,8 @@ public class GameplayManager : MonoBehaviour
                         LevelData.instance.levelComplete = true;
                     }
 
-                    SceneManager.LoadScene("MapScene");
+                    //SceneManager.LoadScene("MapScene");
+                    TransitionCanvas.instance.DoTransition("MapScene");
                 }
                 
                 return;
@@ -1072,7 +1074,8 @@ public class GameplayManager : MonoBehaviour
     public void LoadScene()
     {
         AudioManager.Instance.PlayClosePanel();
-        SceneManager.LoadScene("MapScene");
+        //SceneManager.LoadScene("MapScene");
+        TransitionCanvas.instance.DoTransition("MapScene");
     }
 
 
