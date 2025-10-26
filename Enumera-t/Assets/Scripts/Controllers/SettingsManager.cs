@@ -8,6 +8,7 @@ public class SettingsManager : MonoBehaviour
     public AudioMixer mainAudioMixer;
     public Slider sfxSlider;
     public Slider musicSlider;
+    public GameObject muteMusic;
 
     [Header("Params")]
     public string sfxParam = "sfxVolume";
@@ -47,6 +48,23 @@ public class SettingsManager : MonoBehaviour
         ApplyVolume(musicParam, music);
     }
 
+    public void OnMute()
+    {
+        if (muteMusic.activeSelf)
+        {
+            ApplyVolume(sfxParam, 0.7f);
+            ApplyVolume(musicParam, 0.7f);
+            muteMusic.SetActive(false);
+        }
+        else
+        {
+            ApplyVolume(sfxParam, 0);
+            ApplyVolume(musicParam, 0);
+            muteMusic.SetActive(true);
+        }
+       
+    }
+
     void OnSfxChanged(float v)
     {
         ApplyVolume(sfxParam, v);
@@ -63,6 +81,7 @@ public class SettingsManager : MonoBehaviour
     {
         float dB = linear01 <= 0.0001f ? MinDb : Mathf.Log10(linear01) * 20f;
         mainAudioMixer.SetFloat(param, dB);
+        muteMusic.SetActive(false);
     }
 
     static float DbToLinear(float dB)
