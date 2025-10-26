@@ -50,7 +50,7 @@ public class NumberUi : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrag(PointerEventData data)
     {
         if (!canDrag) return;
-        transform.position = Input.mousePosition;
+        transform.position = data.position;
     }
 
     public void OnEndDrag(PointerEventData data)

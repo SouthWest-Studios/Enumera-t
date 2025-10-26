@@ -12,18 +12,4 @@ public class DialogueTrigger : MonoBehaviour
     }
 
 
-
-    //borrar
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            FindObjectOfType<DialogueManager>().StartDialogue(dialogo);
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            FindObjectOfType<DialogueManager>().DisplayNextSentences();
-        }
-    }
-
 }
