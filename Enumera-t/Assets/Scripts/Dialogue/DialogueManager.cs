@@ -2,17 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using System.Linq;
 
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
     public GameObject characterAnimatedSlot;
-    private Queue<DialogueSentence> sentences;
     public DialogueCanvasAnimations dialogueAnimations;
 
+    private Queue<DialogueSentence> sentences;
     private UnityAction onDialogueFinish;
     private string currentCharacter = "";
 
@@ -21,52 +21,71 @@ public class DialogueManager : MonoBehaviour
     private int letterCount = 0;
     public float letterDelay = 0.02f;
 
+    private bool _active;       // evita reentradas
+    private const int MaxSentences = 100000; // límite duro
+
     private void Awake()
     {
         instance = this;
+        sentences = new Queue<DialogueSentence>(64);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        sentences = new Queue<DialogueSentence>();
-    }
+    void Start() { /* vacío a propósito */ }
 
     public void StartDialogue(Dialogo dialogo, UnityAction onDialogueFinish = null)
     {
-        //anim.SetBool("IsOpen", true);
-        
-        foreach (Transform child in characterAnimatedSlot.transform)
+        if (_active) { Debug.LogWarning("[Dialogue] Reentrante ignorado"); return; }
+        if (dialogo == null || dialogo.sentences == null || dialogo.sentences.Count() == 0)
         {
-            GameObject.Destroy(child.gameObject);
+            Debug.LogError("[Dialogue] Dialogo vacío o nulo"); return;
+        }
+
+        // clamp para evitar reservar colas absurdas por datos corruptos
+        int count = dialogo.sentences.Count();
+        if (count > MaxSentences)
+        {
+            Debug.LogError($"[Dialogue] Count desmesurado: {count} > {MaxSentences}. Se trunca.");
+            count = MaxSentences;
+        }
+
+        // limpiar/instanciar personaje
+        foreach (Transform child in characterAnimatedSlot.transform) Destroy(child.gameObject);
+        if (dialogo.sentences[0].characterAnimated == null)
+        {
+            Debug.LogError("[Dialogue] characterAnimated nulo en la primera frase"); return;
         }
         Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
 
         dialogueAnimations.PlayEnter();
         this.onDialogueFinish = onDialogueFinish;
 
-        sentences.Clear();
-        foreach(DialogueSentence sentence in dialogo.sentences)
+        // pre-dimensionar para evitar SetCapacity durante Enqueue
+        sentences = new Queue<DialogueSentence>(Mathf.Max(64, count));
+        for (int i = 0; i < count; i++)
         {
-            sentences.Enqueue(sentence);
+            var s = dialogo.sentences[i];
+            if (s.sentence == null) continue;
+            sentences.Enqueue(s);
         }
 
-
+        _active = true;
         DisplayNextSentences();
     }
 
     public void DisplayNextSentences()
     {
-        if(sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
-        DialogueSentence sentence = sentences.Dequeue();
+        if (!_active) return;
+
+        if (sentences.Count == 0) { EndDialogue(); return; }
+
+        var sentence = sentences.Dequeue();
         StopAllCoroutines();
 
-
-        if(currentCharacter != sentence.characterAnimated.name)
+        if (sentence.characterAnimated == null)
+        {
+            Debug.LogWarning("[Dialogue] characterAnimated nulo en frase. Se mantiene el actual.");
+        }
+        else if (currentCharacter != sentence.characterAnimated.name)
         {
             currentCharacter = sentence.characterAnimated.name;
             dialogueAnimations.ChangeCharacter(sentence.characterAnimated);
@@ -74,16 +93,17 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeSentence(sentence.sentence));
     }
 
-    IEnumerator TypeSentence (String sentence)
+    IEnumerator TypeSentence(string sentence)
     {
         dialogueText.text = "";
         yield return new WaitForSeconds(0.4f);
-        foreach (char letter in sentence.ToCharArray())
+        letterCount = 0;
+
+        foreach (char letter in sentence ?? string.Empty)
         {
-            if(letter == ' ')
+            if (letter == ' ')
             {
-                letterCount++;
-                if (letterCount >= 2)
+                if (++letterCount >= 2)
                 {
                     dialogueAnimations.NudgeCharacter();
                     letterCount = 0;
@@ -98,22 +118,18 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialogueAnimations.PlayExit();
+        currentCharacter = "";
+        _active = false;
 
-        if (onDialogueFinish != null)
-        {
-            currentCharacter = "";
-            onDialogueFinish.Invoke();
-            onDialogueFinish = null;
-        }
+        var cb = onDialogueFinish;
+        onDialogueFinish = null;
+        cb?.Invoke();
     }
 
     private void Update()
     {
-
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (Input.GetMouseButtonDown(0)) {
             DisplayNextSentences();
         }
     }
-
 }
