@@ -13,23 +13,21 @@ public class StartDialogueTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DialogueManager.instance.StartDialogue(startDialogue);
+        if(PlayerPrefs.GetInt("DIALOGUE_START_PLAYED", 0) == 0)
+        {
+            DialogueManager.instance.StartDialogue(startDialogue);
+            PlayerPrefs.SetInt("DIALOGUE_START_PLAYED", 1);
+        }
+        if (PlayerPrefs.GetInt($"Level_{3}_Stars", 0) > 0)
+        {
+            DialogueManager.instance.StartDialogue(endDialogue);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (contador > 0.1) {
-            if (!hasStarted)
-            {
-                hasStarted = true;
-                
-            }
-        }
-        else
-        {
-            contador += Time.deltaTime;
-        }
+
     }
 }

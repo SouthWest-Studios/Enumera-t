@@ -3066,7 +3066,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -75, y: -20}
+  m_AnchoredPosition: {x: -75, y: -19.99997}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202464440
@@ -5895,6 +5895,10 @@ PrefabInstance:
     - target: {fileID: 2967562564312113409, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_Name
       value: LevelInfoCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099449876668289192, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -98.44678
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
