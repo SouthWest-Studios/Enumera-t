@@ -2504,7 +2504,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045884880}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -3051,7 +3051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -75, y: -19.99997}
+  m_AnchoredPosition: {x: -75, y: -19.999908}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202464440
@@ -4229,7 +4229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 219, y: -15.9999695}
+  m_AnchoredPosition: {x: 219, y: -15.999878}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1597873604
@@ -5957,9 +5957,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelInfoCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3099449876668289192, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -98.44678
+    - target: {fileID: 9118675246911289889, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_text
+      value: "Comen\xE7ar nivell"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118675246911289889, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontSize
+      value: 38.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118675246911289889, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118675246911289889, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 38.82
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
