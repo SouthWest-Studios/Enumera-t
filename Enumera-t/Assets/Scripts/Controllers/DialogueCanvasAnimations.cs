@@ -9,6 +9,7 @@ public class DialogueCanvasAnimations : MonoBehaviour
     [SerializeField] CanvasGroup canvasGroup;          // En DialogueCanvas
     [SerializeField] RectTransform background;         // Background
     [SerializeField] RectTransform character;          // Character (Image)
+    [SerializeField] RectTransform characterAnimatedSlot;
     [SerializeField] RectTransform dialogueBox;        // DialogueBox
     [SerializeField] List<RectTransform> options;      // DialogueOption1, DialogueOption2, ...
 
@@ -264,6 +265,39 @@ public class DialogueCanvasAnimations : MonoBehaviour
             if (useCg) seq.Join(cg.DOFade(1f, time * 0.5f).SetEase(Ease.OutCubic));
             else seq.Join(img.DOFade(1f, time * 0.5f).SetEase(Ease.OutCubic));
         }
+    }
+
+    public void ChangeCharacter(GameObject prefab, float time = 0.3f, float offsetX = 340f, bool fade = true)
+    {
+        if (!characterAnimatedSlot) return;
+
+        var rt = characterAnimatedSlot;
+        var startPos = rt.anchoredPosition;
+
+        var cg = rt.GetComponent<CanvasGroup>();
+        bool canFade = fade && cg != null;
+
+        rt.DOKill(true);
+        if (canFade) DOTween.Kill(cg);
+
+        var seq = DOTween.Sequence();
+
+        seq.Append(rt.DOAnchorPos(startPos + new Vector2(-offsetX, 0f), time * 0.5f).SetEase(Ease.InCubic));
+        if (canFade) seq.Join(cg.DOFade(0f, time * 0.5f).SetEase(Ease.InCubic));
+
+        seq.AppendCallback(() =>
+        {
+            // destruir hijos actuales
+            for (int i = rt.childCount - 1; i >= 0; i--)
+                Object.Destroy(rt.GetChild(i).gameObject);
+
+            // instanciar nuevo hijo
+            var go = Object.Instantiate(prefab, rt);
+            go.GetComponent<RectTransform>().localScale = new Vector2(7, 7);
+        });
+
+        seq.Append(rt.DOAnchorPos(startPos, time * 0.5f).SetEase(Ease.OutCubic));
+        if (canFade) seq.Join(cg.DOFade(1f, time * 0.5f).SetEase(Ease.OutCubic));
     }
 
     // ---------- Helpers ----------

@@ -9,12 +9,12 @@ using UnityEngine.Events;
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
-    public Image characterImage;
     public GameObject characterAnimatedSlot;
     private Queue<DialogueSentence> sentences;
     public DialogueCanvasAnimations dialogueAnimations;
 
     private UnityEvent onDialogueFinish;
+    private string currentCharacter = "";
 
     public static DialogueManager instance;
 
@@ -35,8 +35,6 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogo dialogo, UnityEvent onDialogueFinish = null)
     {
         //anim.SetBool("IsOpen", true);
-        characterImage.sprite = dialogo.sentences[0].character;
-
         
         foreach (Transform child in characterAnimatedSlot.transform)
         {
@@ -67,14 +65,11 @@ public class DialogueManager : MonoBehaviour
         DialogueSentence sentence = sentences.Dequeue();
         StopAllCoroutines();
 
-        if(characterImage.sprite != sentence.character)
+
+        if(currentCharacter != sentence.characterAnimated.name)
         {
-            dialogueAnimations.ChangeCharacter(sentence.character);
-            foreach (Transform child in characterAnimatedSlot.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-            Instantiate(sentence.characterAnimated, characterAnimatedSlot.transform);
+            currentCharacter = sentence.characterAnimated.name;
+            dialogueAnimations.ChangeCharacter(sentence.characterAnimated);
         }
         StartCoroutine(TypeSentence(sentence.sentence));
     }
@@ -106,6 +101,7 @@ public class DialogueManager : MonoBehaviour
 
         if (onDialogueFinish != null)
         {
+            currentCharacter = "";
             onDialogueFinish.Invoke();
             onDialogueFinish = null;
         }

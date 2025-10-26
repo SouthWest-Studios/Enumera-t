@@ -341,6 +341,16 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &109882439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6609651069092335886, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+  m_PrefabInstance: {fileID: 1277199440967837809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &109882440 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4245553483457658302, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+  m_PrefabInstance: {fileID: 1277199440967837809}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &126570463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,6 +2803,7 @@ Transform:
   - {fileID: 35042485}
   - {fileID: 738229748}
   - {fileID: 1397586796}
+  - {fileID: 1859335587}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1200644015
@@ -4613,6 +4624,92 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758800219}
   m_CullTransparentMesh: 1
+--- !u!1 &1859335586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1859335587}
+  - component: {fileID: 1859335588}
+  m_Layer: 0
+  m_Name: StartDialogueTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1859335587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859335586}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1191810018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1859335588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859335586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95918fee56c3b1a41aed31ee2fd573ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDialogue:
+    sentences:
+    - sentence: "Hola... Em dic Osset, i visc aqu\xED, a Num\xE8ria, el regne dels
+        nombres. Era un lloc ple d\u2019alegria i ordre... fins que va apar\xE8ixer
+        el zero."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+    - sentence: "El zero ha raptat alguns dels nostres amics i est\xE0 intentant
+        esborrar tot el que coneixem. No s\xE9 per qu\xE8 ho fa... per\xF2 hem de
+        detenir-lo."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+    - sentence: "He demanat ajuda, i tu has respost. Gr\xE0cies per venir. Digue\u2019m,
+        quin \xE9s el teu nom?"
+      character: {fileID: 0}
+      characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+    - sentence: "Ets l'heroi X? Ets l'\xFAltima esperan\xE7a de Num\xE8ria. Encara
+        queden alguns que s\u2019han salvat. Vine, t\u2019estan esperant."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+    - sentence: "Ei! Ja era hora que arribessis! El zero est\xE0 fent de les seves
+        i cada cop som menys."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+    - sentence: "No tenim gaire temps... Hem de moure\u2019ns abans que ens trobi."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+    - sentence: "S\xF3c el tres. El zero ha raptat dues de les meves germanes, el
+        sis i el nou. Som tres bessones."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+    - sentence: "Crec que el zero s\u2019amaga a prop d\u2019aqu\xED. Si em segueixes,
+        et puc portar fins a elles."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+    - sentence: "I aix\xED comen\xE7a el vostre viatge... Amb el dos, el tres i el
+        cinc al teu costat, marxem a buscar les germanes perdudes..."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+    - sentence: "Jo us esperar\xE9 aqu\xED, heroi, que tingueu un bon viatge."
+      character: {fileID: 0}
+      characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
 --- !u!1 &1894804567
 GameObject:
   m_ObjectHideFlags: 0
@@ -5540,6 +5637,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3978098591664299340, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: characterAnimatedSlot
+      value: 
+      objectReference: {fileID: 109882440}
+    - target: {fileID: 4245553483457658302, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 242
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245553483457658302, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 404
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992494455738178979, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735415811725168063, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: characterAnimatedSlot
+      value: 
+      objectReference: {fileID: 109882439}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
