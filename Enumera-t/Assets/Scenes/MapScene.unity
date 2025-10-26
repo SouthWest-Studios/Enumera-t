@@ -3051,7 +3051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -75, y: -19.999908}
+  m_AnchoredPosition: {x: -75, y: -19.999878}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202464440
@@ -5143,15 +5143,6 @@ MonoBehaviour:
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
   dialogueInGameVICTORY:
     sentences:
-    - sentence: "No... no pot ser! M\u2019heu guanyat... per\xF2 nom\xE9s aquesta
-        batalla."
-      characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-    - sentence: Encara em queden molts nombres sota el meu poder... i no els recuperareu
-        tots.
-      characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-    - sentence: "Aix\xF2 ja ho veurem, zero. Les meves germanes tornen amb nosaltres,
-        i tu caur\xE0s com la resta!"
-      characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
     - sentence: "Gr\xE0cies, tres... sab\xEDem que vindries."
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
     - sentence: "Anem tots junts. No podem deixar que el zero faci m\xE9s mal."

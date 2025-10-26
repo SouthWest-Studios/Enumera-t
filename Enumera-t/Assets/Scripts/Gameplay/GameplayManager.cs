@@ -103,11 +103,15 @@ public class GameplayManager : MonoBehaviour
     
 
     [Header("Ventana de Puntuacion ")]
-    [HideInInspector] public int numberOfErrors;
+    [HideInInspector] public int numberOfErrors = 0;
     public GameObject puntuationWindow;
     public List<Image> stars;
     public TextMeshProUGUI textErrors;
 
+    public int maxRoundsBeforeDialogue;
+    private int roundsBeforeDialogue;
+    private bool hasPlayedDialogue = false;
+    public Transform numberPuntuationTransf;
 
     public interface IBossBehavior
     {
@@ -331,6 +335,8 @@ public class GameplayManager : MonoBehaviour
         GameObject numberPrefab = Instantiate(prefab, transf.position, transf.rotation);
 
         numberPrefab.transform.SetParent(parentTransform);
+        numberPrefab.transform.localScale = transf.localScale;
+
 
         if (level == 3 && isBoss && !isSolution)
         {
@@ -384,6 +390,7 @@ public class GameplayManager : MonoBehaviour
         AudioManager.Instance.PlayCorrect();
 
         roundsBeforeBoss++;
+        roundsBeforeDialogue++;
         for (int i = 0; i < temporalPrefab.Count; i++)
         {
             if (temporalPrefab[i] != null)
@@ -391,10 +398,24 @@ public class GameplayManager : MonoBehaviour
         }
         temporalPrefab.Clear();
 
+        if (roundsBeforeDialogue >= maxRoundsBeforeDialogue && !hasPlayedDialogue)
+        {
+            if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+            {
+                DialogueManager.instance.StartDialogue(LevelData.dialogueInGameTwo);
+            }
+            hasPlayedDialogue = true;
+        }
+
 
         if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
         {
             ActivateBoss();
+            if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+            {
+                DialogueManager.instance.StartDialogue(LevelData.dialogueInGameThree);
+            }
+            
         }
             
 
@@ -684,6 +705,13 @@ public class GameplayManager : MonoBehaviour
                 if(firstHealth)
                 {
                     StartCoroutine(AnimarBarra(health / maxHealth));
+                    if(health == 6)
+                    {
+                        if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+                        {
+                            DialogueManager.instance.StartDialogue(LevelData.dialogueInGameMID);
+                        }
+                    }
                 }
                 else
                 {
@@ -702,6 +730,8 @@ public class GameplayManager : MonoBehaviour
             }
             else
             {
+                StartCoroutine(AnimarBarra(health / maxHealth));
+                
                 Animator bossAnimaton = null;
                 for (int i = 0; i < bossList.Count; i++)
                 {
@@ -947,14 +977,39 @@ public class GameplayManager : MonoBehaviour
             DataLevels.Instance.CompleteLevel(LevelData.instance.levelId, starsEarned, errors);
             LevelData.instance.levelComplete = true;
         }
-        SetStarsByErrors(numberOfErrors);
-
-
+        if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+        {
+            DialogueManager.instance.StartDialogue(LevelData.dialogueInGameVICTORY, SetStarsByErrors);
+        }
+        else
+        {
+            puntuationWindow.SetActive(true);
+            if (numberOfErrors <= 0)
+            {
+                textErrors.text = "PERFECTE!";
+                textErrors.alignment = TextAlignmentOptions.Center;
+            }
+            else if (numberOfErrors > 9)
+            {
+                textErrors.text = "Continua Aprentent!";
+                textErrors.alignment = TextAlignmentOptions.Center;
+            }
+            else if(numberOfErrors == 1)
+            {
+                textErrors.text = "     Error";
+                AssignNumberPrefab(numberOfErrors, numberPuntuationTransf, true, puntuationWindow.transform);
+            }
+            else
+            {
+                textErrors.text = "     Errors";
+                AssignNumberPrefab(numberOfErrors, numberPuntuationTransf, true, puntuationWindow.transform);
+            }
+        }
     }
 
 
 
-    public void SetStarsByErrors(int errors)
+    public void SetStarsByErrors()
     {
         puntuationWindow.SetActive(true);
         PlayOperationEntryAnimation(puntuationWindow);
@@ -962,16 +1017,30 @@ public class GameplayManager : MonoBehaviour
 
         int starsEarned = 1;
 
-        if (errors < 2)
+        if (numberOfErrors < 2)
             starsEarned = 3;
-        else if (errors < 5)
+        else if (numberOfErrors < 5)
             starsEarned = 2;
-
-        
 
         //StopAllCoroutines();
         StartCoroutine(FadeStars(starsEarned));
-        textErrors.text = "Errors:" + errors;
+        if(numberOfErrors <= 0)
+        {
+            textErrors.text = "PERFECTE!";
+        }
+        else if(numberOfErrors > 9)
+        {
+            textErrors.text = "més de";
+            AssignNumberPrefab(9, numberPuntuationTransf, true, puntuationWindow.transform);
+        }
+        else
+        {
+            textErrors.text = "Errors";
+            AssignNumberPrefab(numberOfErrors, numberPuntuationTransf, true, puntuationWindow.transform);
+        }
+        
+        //Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
+        
         FadeStars(starsEarned);
 
     }

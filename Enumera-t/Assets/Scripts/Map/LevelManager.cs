@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-
+        //PlayerPrefs.DeleteAll();
         DataLevels.Instance.InitializeLevels(levels.Count);
 
         RefreshUI();

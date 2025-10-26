@@ -267,7 +267,7 @@ public class DialogueCanvasAnimations : MonoBehaviour
         }
     }
 
-    public void ChangeCharacter(GameObject prefab, float time = 0.3f, float offsetX = 340f, bool fade = true)
+    public void ChangeCharacter(GameObject prefab, float time = 0.1f, float offsetX = 340f, bool fade = true)
     {
         if (!characterAnimatedSlot) return;
 
