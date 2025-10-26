@@ -15,6 +15,7 @@ public class LevelInfoManager : MonoBehaviour
     private Queue<DialogueSentence> sentences;
     public LevelInfoCanvasAnimations levelInfoAnimations;
     public Button goLevelButton;
+    private string currentCharacter = "";
 
     public TextMeshProUGUI levelDescriptionText;
     public TextMeshProUGUI levelTitleText;
@@ -50,36 +51,19 @@ public class LevelInfoManager : MonoBehaviour
     {
         AudioManager.Instance.PlayOpenPanel();
         //anim.SetBool("IsOpen", true);
-        if(dialogo.sentences[0].character == null)
-        {
-            characterImage.color = new Color(1, 1, 1, 0);
-        }
-        else
-        {
-            characterImage.sprite = dialogo.sentences[0].character;
-            characterImage.color = new Color(1, 1, 1, 1);
-        }
 
-        if (dialogo.sentences[0].characterAnimated == null)
+        
+        foreach (Transform child in characterAnimatedSlot.transform)
         {
-            foreach (Transform child in characterAnimatedSlot.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
+            GameObject.Destroy(child.gameObject);
         }
-        else
-        {
-            foreach (Transform child in characterAnimatedSlot.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-            var go = Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
-            go.GetComponent<RectTransform>().localScale = new Vector2(8, 8);
-        }
+        var go = Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
+        go.GetComponent<RectTransform>().localScale = new Vector2(8, 8);
+        
 
 
 
-            levelTitleText.text = levelTitle;
+        levelTitleText.text = levelTitle;
         levelDescriptionText.text = levelDescription;
         levelImage.sprite = levelImageSprite;
         goLevelButton.onClick.RemoveAllListeners();
@@ -107,9 +91,9 @@ public class LevelInfoManager : MonoBehaviour
         DialogueSentence sentence = sentences.Dequeue();
         StopAllCoroutines();
 
-        if (characterImage.sprite != sentence.character)
+        if (currentCharacter != sentence.characterAnimated.name)
         {
-            levelInfoAnimations.ChangeCharacter(sentence.character);
+            currentCharacter = sentence.characterAnimated.name;
             levelInfoAnimations.ChangeCharacter(sentence.characterAnimated);
         }
         StartCoroutine(TypeSentence(sentence.sentence));
@@ -138,6 +122,6 @@ public class LevelInfoManager : MonoBehaviour
 
     void EndDialogue()
     {
-        
+        currentCharacter = "";
     }
 }

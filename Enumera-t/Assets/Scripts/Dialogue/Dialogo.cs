@@ -10,7 +10,6 @@ public struct DialogueSentence
 {
     [TextArea(3, 10)]
     public string sentence;
-    public Sprite character;
     public GameObject characterAnimated;
 }
 [System.Serializable]

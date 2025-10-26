@@ -18,12 +18,14 @@ public class Level : MonoBehaviour
     [TextArea(3, 10)]
     public string levelDescription;
     public Sprite levelImage;
-    public GameObject characterAnimatedSlot;
 
+    public Dialogo dialogueBeforeLevelInfo;
     public Dialogo dialogueBeforeEnter;
     public Dialogo dialogueInGameOne;
     public Dialogo dialogueInGameTwo;
     public Dialogo dialogueInGameThree;
+    public Dialogo dialogueInGameMID;
+    public Dialogo dialogueInGameVICTORY;
 
     public UnityEvent onFinishDialogueBeforeEnter;
 
@@ -57,10 +59,19 @@ public class Level : MonoBehaviour
     public void PlayDialogueLevel()
     {
         //DialogueManager.instance.StartDialogue(dialogueBeforeEnter, onFinishDialogueBeforeEnter);
+        DialogueManager.instance.StartDialogue(dialogueBeforeLevelInfo, PlayLevelInfo);
+
+        
+    }
+
+    public void PlayLevelInfo()
+    {
         LevelInfoManager.instance.StartInfo(dialogueBeforeEnter, levelTitle, levelDescription, levelImage, this, DataLevels.Instance.dataLevels[id].starsEarned, onFinishDialogueBeforeEnter);
         LevelData.dialogueInGameOne = dialogueInGameOne;
         LevelData.dialogueInGameTwo = dialogueInGameTwo;
         LevelData.dialogueInGameThree = dialogueInGameThree;
+        LevelData.dialogueInGameMID = dialogueInGameMID;
+        LevelData.dialogueInGameVICTORY = dialogueInGameVICTORY;
         LevelData.instance.levelId = id;
         LevelData.instance.numbersUnlocked = unlockedNumbersToBe;
         LevelData.instance.levelComplete = false;

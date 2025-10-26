@@ -13,7 +13,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueSentence> sentences;
     public DialogueCanvasAnimations dialogueAnimations;
 
-    private UnityEvent onDialogueFinish;
+    private UnityAction onDialogueFinish;
     private string currentCharacter = "";
 
     public static DialogueManager instance;
@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<DialogueSentence>();
     }
 
-    public void StartDialogue(Dialogo dialogo, UnityEvent onDialogueFinish = null)
+    public void StartDialogue(Dialogo dialogo, UnityAction onDialogueFinish = null)
     {
         //anim.SetBool("IsOpen", true);
         
