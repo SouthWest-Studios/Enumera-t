@@ -16,4 +16,9 @@ public class BossBouAnimationEvents : MonoBehaviour
             Debug.LogWarning("BossBouAnimationEvents: bossBouLogic no asignado");
         }
     }
+
+    public void windBossSound()
+    {
+        AudioManager.Instance.PlaywindBoss();
+    }
 }

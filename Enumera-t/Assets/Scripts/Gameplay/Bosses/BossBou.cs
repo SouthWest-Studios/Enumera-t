@@ -305,76 +305,6 @@ public class BossBou : IBossBehavior
         return correct;
     }
 
-    //public bool CheckAnswer(int number, int operationIndex)
-    //{
-    //    bool correct = false;
-
-    //    if (lastZPosition == 0)
-    //    {
-    //        if (manager.sums)
-    //        {
-    //            if (number + manager.operationNumber + manager.secondOperationNumber == manager.enemyNumber)
-    //            {
-    //                correct = true;
-    //                temporalNumber = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionBossSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
-    //                Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
-    //                temporalNumber.transform.SetParent(parentTransf, false);
-    //                temporalNumber.transform.position = manager.solutionBossSlot.transform.position;
-    //                manager.RestoreNumberToSlot(1);
-    //            }
-
-    //        }
-    //        else
-    //        {
-    //            if (number + manager.operationNumber - manager.secondOperationNumber == manager.enemyNumber)
-    //            {
-    //                correct = true;
-    //                temporalNumber = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionBossSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
-    //                Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
-    //                temporalNumber.transform.SetParent(parentTransf, false);
-    //                temporalNumber.transform.position = manager.solutionBossSlot.transform.position;
-    //                manager.RestoreNumberToSlot(1);
-    //            }
-    //        }
-    //    }
-    //    else if (lastZPosition == 1)
-    //    {
-    //        if (manager.sums)
-    //        {
-    //            if (manager.operationNumber + number + manager.secondOperationNumber == manager.enemyNumber)
-    //                correct = true;
-    //        }
-    //        else
-    //        {
-    //            if (manager.operationNumber + number - manager.secondOperationNumber == manager.enemyNumber)
-    //                correct = true;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if (manager.sums)
-    //        {
-    //            if (manager.operationNumber + manager.secondOperationNumber + number == manager.enemyNumber)
-    //                correct = true;
-    //        }
-    //        else
-    //        {
-    //            if (manager.operationNumber + manager.secondOperationNumber - number == manager.enemyNumber)
-    //                correct = true;
-    //        }
-    //    }
-
-
-
-    //    if (correct)
-    //    {
-    //        lastSolution = number; // Guardamos el número correcto para la siguiente operación
-    //        Debug.Log($"[BossBou] Respuesta correcta. Nueva lastSolution = {lastSolution}");
-    //    }
-
-    //    return correct;
-    //}
-
 
     public void OnCorrectAnswer(int operationIndex) { }
     public void OnWrongAnswer() { Debug.Log("Respuesta incorrecta en BossBou."); }
@@ -472,6 +402,12 @@ public class BossBou : IBossBehavior
         // Ahora sí, genera la nueva operación
         //GenerateOperationInternal();
     }
+
+    public void windBossSound()
+    {
+        AudioManager.Instance.PlaywindBoss();
+    }
+
 
 }
 

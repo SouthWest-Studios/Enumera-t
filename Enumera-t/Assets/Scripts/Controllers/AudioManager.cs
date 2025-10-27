@@ -24,9 +24,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip nextDialogueSound;
     public AudioClip startDialogueSound;
     public AudioClip stopDialgueSound;
-    public AudioClip hidroGraphicPen;
-    public AudioClip hidroGraphicPen2;
-    public AudioClip hidroGraphicPen3;
+    public AudioClip hidroGraphicPenSound;
+    public AudioClip hidroGraphicPenSound2;
+    public AudioClip hidroGraphicPenSound3;
+    public AudioClip windBossSound;
+    public AudioClip victorySound;
     [Header("Music")]
     public AudioClip battleExplorationMusic;
     public AudioClip mapChillMusic;
@@ -79,6 +81,8 @@ public class AudioManager : MonoBehaviour
     public void PlayNextDialogueSound() => PlaySFX(nextDialogueSound);
     public void PlayStartDialogueSound() => PlaySFX(startDialogueSound);
     public void PlayStopDialogueSound() => PlaySFX(stopDialgueSound);
+    public void PlaywindBoss() => PlaySFX(windBossSound);
+    public void PlayVictory() => PlaySFX(victorySound);
     public void PlayHydroGraphicPen()
     {
         int random = Random.Range(1, 4);
@@ -86,13 +90,13 @@ public class AudioManager : MonoBehaviour
         switch (random)
         {
             case 1:
-                PlaySFX(hidroGraphicPen);
+                PlaySFX(hidroGraphicPenSound);
                 break;
             case 2:
-                PlaySFX(hidroGraphicPen2);
+                PlaySFX(hidroGraphicPenSound2);
                 break;
             case 3:
-                PlaySFX(hidroGraphicPen3);
+                PlaySFX(hidroGraphicPenSound3);
                 break;
             default:
                 break;

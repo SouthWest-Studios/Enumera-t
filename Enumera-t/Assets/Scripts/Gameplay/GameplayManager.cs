@@ -995,19 +995,17 @@ public class GameplayManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Esto NUNCA aparece si se congela aquí");
         yield return new WaitUntil(() =>
         {
             var clips = bossAnimator.GetCurrentAnimatorClipInfo(0);
             return clips.Length > 0 && clips[0].clip.name == "loseAnimation";
         });
-        Debug.Log("Esto NUNCA aparece si se congela aquí2");
 
         AnimatorStateInfo stateInfo = bossAnimator.GetCurrentAnimatorStateInfo(0);
         float duration = stateInfo.length;
         float triggerMoment = duration * 0.9f;
         yield return new WaitForSeconds(triggerMoment);
-        Debug.Log("Esto NUNCA aparece si se congela aquí 3");
+        AudioManager.Instance.PlayVictory();
         if (LevelData.instance != null)
         {
             int errors = numberOfErrors;
@@ -1065,10 +1063,6 @@ public class GameplayManager : MonoBehaviour
 
     public void SetStarsByErrors()
     {
-
-        
-        
-        
         puntuationWindow.SetActive(true);
         PlayOperationEntryAnimation(puntuationWindow);
         AudioManager.Instance.PlayOpenPanel();
