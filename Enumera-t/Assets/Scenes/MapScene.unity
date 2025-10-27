@@ -1260,11 +1260,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795737883187166418, guid: 343c68d77568a7f4ab2d226c4e33a175, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -48.9
+      value: -48.898438
       objectReference: {fileID: 0}
     - target: {fileID: 7795737883187166418, guid: 343c68d77568a7f4ab2d226c4e33a175, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38.7
+      value: -38.69922
       objectReference: {fileID: 0}
     - target: {fileID: 7795737883187166418, guid: 343c68d77568a7f4ab2d226c4e33a175, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1923,6 +1923,11 @@ Transform:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3441579387544482590, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
   m_PrefabInstance: {fileID: 1277199440967837809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &885589514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6844350150195940387, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+  m_PrefabInstance: {fileID: 3209391764530558497}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &901295626
 GameObject:
@@ -2772,7 +2777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795737883187166418, guid: 343c68d77568a7f4ab2d226c4e33a175, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38.7
+      value: -38.69922
       objectReference: {fileID: 0}
     - target: {fileID: 7795737883187166418, guid: 343c68d77568a7f4ab2d226c4e33a175, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2992,71 +2997,93 @@ MonoBehaviour:
   state: 0
   image: {fileID: 0}
   unlockedNumbersToBe: 7
-  levelTitle: primer nivel
-  levelDescription: Bliblablabla
-  levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
+  levelTitle: Barrufet
+  levelDescription: 
+  levelImage: {fileID: 1742350382}
   dialogueBeforeLevelInfo:
     sentences:
     - sentence: "Set: Gr\xE0cies a tots per salvar-me... Pensava que no tornaria
         a veure mai m\xE9s la llum."
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
+      mistery: 0
     - sentence: "Sis: Ha estat incre\xEFble! Ni tan sols el drac ens ha pogut aturar!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      mistery: 0
     - sentence: "Quatre: El que importa \xE9s que Num\xE8ria torna a tenir esperan\xE7a."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
     - sentence: "Dos: Espereu... qu\xE8 \xE9s aix\xF2 a terra? S\xF3n petjades?"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 1
     - sentence: "Tres: S\xF3n petites... massa petites. Devien ser del \"U\"!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Sis: El \"U\"? Llavors encara \xE9s viu! Hem de trobar-lo!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      mistery: 0
     - sentence: 'Nou: No podem perdre temps. Anem-hi!'
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      mistery: 0
   dialogueBeforeEnter:
     sentences:
     - sentence: "Dos: Si hi ha unes petjades m\xE9s petites que les meves, han de
         ser del \"U\"! Anem a salvar-lo!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
   dialogueInGameOne:
     sentences:
     - sentence: "Tres: Ho sento... alguna cosa no va b\xE9 aqu\xED. Aquest lloc fa
         una mica de por..."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: 'Nou: Tranquil, no pot ser pitjor que un drac!'
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      mistery: 0
     - sentence: "Sis: Espero que tinguis ra\xF3..."
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      mistery: 0
   dialogueInGameTwo:
     sentences:
     - sentence: "Zero: Sou forts... a veure qu\xE8 us sembla aix\xF2!"
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      mistery: 0
     - sentence: 'Quatre: Mantingueu-vos units! No deixeu que us atrapi!'
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
   dialogueInGameThree:
     sentences:
     - sentence: 
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      mistery: 0
   dialogueInGameMID:
     sentences:
     - sentence: "Zero: Bon intent... per\xF2 ara comen\xE7a la part divertida!"
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      mistery: 0
     - sentence: 'Nou: No et tenim por, "Zero"!'
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      mistery: 0
     - sentence: "Sis: Junts, podem v\xE8ncer qualsevol cosa!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      mistery: 0
   dialogueInGameVICTORY:
     sentences:
     - sentence: "Zero: Heu guanyat... per\xF2 nom\xE9s aquesta batalla. No podreu
         salvar a tothom... encara no enteneu el que est\xE0 passant."
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      mistery: 0
     - sentence: "Tres: Qu\xE8 vols dir amb aix\xF2?!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: 'Zero: Aviat ho sabreu... quan sigui massa tard.'
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      mistery: 0
     - sentence: "Dos: Ha fugit... Per\xF2 qu\xE8 volia dir?"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Quatre: Potser hi ha alguna cosa m\xE9s gran darrere de tot aix\xF2."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
   onFinishDialogueBeforeEnter:
     m_PersistentCalls:
       m_Calls:
@@ -3205,7 +3232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -75, y: -19.999878}
+  m_AnchoredPosition: {x: -75, y: -20}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202464440
@@ -3374,6 +3401,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1894804568}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1302057420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8835265986627322077, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+  m_PrefabInstance: {fileID: 3209391764530558497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1369284840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3559,10 +3591,10 @@ AudioSource:
   m_GameObject: {fileID: 1397586795}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3741648198976101291, guid: 15b00bec32f435c4580ba4027b264b19, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.02
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3655,10 +3687,10 @@ AudioSource:
   m_GameObject: {fileID: 1397586795}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6493274203581376722, guid: 15b00bec32f435c4580ba4027b264b19, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.116
+  m_Volume: 0.228
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3765,9 +3797,15 @@ MonoBehaviour:
   openPanelSound: {fileID: 8300000, guid: 774a7d98ebf41df4ab55f5de368ec38c, type: 3}
   closePanelSound: {fileID: 8300000, guid: 6097d03fea43c5a44b4a73f150eb349c, type: 3}
   startLevelSound: {fileID: 8300000, guid: 6629427ab7fd74b4baf53c12b7d9950a, type: 3}
+  OneStarSound: {fileID: 0}
+  TwoStarSound: {fileID: 0}
+  ThreeStarSound: {fileID: 0}
+  nextDialogueSound: {fileID: 8300000, guid: 290a0cdaa72537746a9a8e1bc0c90364, type: 3}
+  startDialogueSound: {fileID: 8300000, guid: 8c6b2ebdf564ccc40b9868541a724ce7, type: 3}
+  stopDialgueSound: {fileID: 8300000, guid: c612e8cf52d89db4592931888059f93a, type: 3}
   battleExplorationMusic: {fileID: 0}
   mapChillMusic: {fileID: 8300000, guid: 0bdbf61ae6727a84d9fd1c67664df04b, type: 3}
-  mapMisteryMusic: {fileID: 0}
+  mapMisteryMusic: {fileID: 8300000, guid: a993f0b36a6a0034ebcb3f133f2117be, type: 3}
   introBossMusic: {fileID: 0}
   bossFightMusic: {fileID: 0}
 --- !u!1 &1412160193
@@ -4529,7 +4567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 219, y: -15.999878}
+  m_AnchoredPosition: {x: 219, y: -16}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1597873604
@@ -5024,6 +5062,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714801561}
   m_CullTransparentMesh: 1
+--- !u!1 &1742350382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7363764305207703501, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+  m_PrefabInstance: {fileID: 3209391764530558497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1743214158
 GameObject:
   m_ObjectHideFlags: 0
@@ -5256,92 +5299,122 @@ MonoBehaviour:
         dels nombres. Era un lloc ple d\u2019alegria i ordre... fins que va apar\xE8ixer
         el \"Zero\"."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Osset: El \"Zero\" ha raptat alguns dels nostres amics i est\xE0
         intentant esborrar tot el que coneixem. No s\xE9 per qu\xE8 ho fa... per\xF2
         hem de detenir-lo."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Osset: He demanat ajuda, i tu has respost. Gr\xE0cies per venir."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Osset: Ets l'\xFAltima esperan\xE7a de Num\xE8ria. Encara queden
         alguns que s\u2019han salvat. Vine, t\u2019estan esperant."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Dos: Ei! Ja era hora que arribessis! El \"Zero\" est\xE0 fent de
         les seves i cada cop som menys."
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Cinc: No tenim gaire temps... Hem de moure\u2019ns abans que ens
         trobi."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
     - sentence: "Tres: S\xF3c el \"Tres\". El \"Zero\" ha raptat dues de les meves
         germanes, el \"Sis\" i el \"Nou\". Som tres bessones."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Tres: Crec que el \"Zero\" s\u2019amaga a prop d\u2019aqu\xED. Si
         em segueixes, et puc portar fins a elles."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Osset: I aix\xED comen\xE7a el vostre viatge... Amb el \"Dos\",
         el \"Tres\" i el \"Cinc\" al teu costat, marxeu a buscar les germanes perdudes..."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Osset: Jo us esperar\xE9 aqu\xED, heroi, que tingueu un bon viatge."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
   endDialogue:
     sentences:
     - sentence: "Osset: Ho heu aconseguit... Heu tornat tots sans i estalvis. Num\xE8ria
         torna a ser un lloc ple de llum i alegria!"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Tres: Ho hem fet junts, Osset! El \"Zero\" ja no pot fer-nos m\xE9s
         mal."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Quatre: El drac i les seves ombres han desaparegut. La princesa
         \xE9s lliure, i el regne torna a somriure."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
     - sentence: "Set: Gr\xE0cies a tots... Sou els veritables herois de Num\xE8ria."
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
+      mistery: 0
     - sentence: "Dos: B\xE9, herois... I ara qu\xE8 fem? Hem salvat el m\xF3n!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Sis: Podr\xEDem fer una festa! Amb past\xEDs i... nombres de colors!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      mistery: 0
     - sentence: "Nou: Hahaha! O millor encara: podr\xEDem jugar a veure qui resol
         operacions m\xE9s r\xE0pid!"
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      mistery: 0
     - sentence: "Cinc: Sempre pensant en les matem\xE0tiques... per\xF2 potser tens
         ra\xF3."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
     - sentence: "Osset: I tu, has fet molt m\xE9s del que pod\xEDem esperar. Has
         salvat Num\xE8ria... i ens has ensenyat que amb una mica de ra\xF3 i coratge,
         tot \xE9s possible."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Zero: Potser s\xED... per\xF2 algun dia entendreu per qu\xE8 ho
         vaig fer... Ens tornarem a veure."
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
+      mistery: 0
     - sentence: "Tres: No s\xE9 si \xE9s una amena\xE7a o una promesa... per\xF2
         estarem preparats!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Osset: I aix\xED acaba aquesta aventura... O potser \xE9s nom\xE9s
         el comen\xE7ament d\u2019una nova?"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Dos: Ei... espereu! I si expliquem a tothom qui ha fet possible
         aquesta hist\xF2ria?"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Cinc: Bona idea! Que ning\xFA oblidi els noms dels qui van crear
         Num\xE8ria!"
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
     - sentence: "Osset: D\u2019acord, deixeu-m\u2019ho dir jo... S\xED, a tu, jugador!
         Aquest joc tan especial ha estat fet amb molt d\u2019amor i moltes matem\xE0tiques
         per:"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Osset: Aleix Botella, Mart\xED Sabat\xE9, Ra\xFCl S\xE1nchez i Emma
         Youngblood."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Nou: Un aplaudiment per ells! Sense vosaltres, no existir\xEDem!"
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      mistery: 0
     - sentence: "Set: Gr\xE0cies per donar-nos vida... i per recordar-nos que fins
         i tot els n\xFAmeros poden tenir cor."
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
+      mistery: 0
     - sentence: "Osset: I a tu, jugador, gr\xE0cies per jugar, pensar i somiar amb
         nosaltres. Fins la propera aventura... a Num\xE8ria!"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
     - sentence: "Osset: Adeu! I recorda... les matem\xE0tiques tamb\xE9 poden ser
         m\xE0giques!"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
+      mistery: 0
 --- !u!1 &1865333655
 GameObject:
   m_ObjectHideFlags: 0
@@ -5719,96 +5792,126 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   state: 0
-  image: {fileID: 966996359}
+  image: {fileID: 0}
   unlockedNumbersToBe: 3
-  levelTitle: primer nivel
-  levelDescription: Bliblablabla
-  levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
+  levelTitle: Tres Bessones
+  levelDescription: 
+  levelImage: {fileID: 885589514}
   dialogueBeforeLevelInfo:
     sentences:
     - sentence: "Tres: Mira! Aqu\xED al terra... \xE9s un lla\xE7! \xC9s d\u2019una
         de les meves germanes!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 1
     - sentence: "Dos: Vols dir que han passat per aqu\xED?"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Tres: S\xED... \xE9s el lla\xE7 de la \"Sis\", estic segura. Si
         el seguim, potser arribarem fins a elles."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Cinc: Doncs som-hi. Per\xF2 ves amb compte... tinc un mal pressentiment."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
   dialogueBeforeEnter:
     sentences:
     - sentence: 'Tres: Anem! Junts podem trobar les meves germanes i derrotar el
         "Zero". Mantingues els ulls oberts i el cor valent!'
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
   dialogueInGameOne:
     sentences:
     - sentence: "Dos: Aquest lloc fa una mica de por... el \"Zero\" podria estar
         a qualsevol rac\xF3."
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Cinc: A Num\xE8ria, els problemes no es resolen amb espases, sin\xF3
         amb el cap."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
     - sentence: "Tres: Exacte! Aqu\xED, per guanyar combats o sortir d\u2019un embolic...
         cal fer servir les operacions!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Dos: Les matem\xE0tiques s\xF3n la nostra m\xE0gia!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Cinc: Va, demostra\u2019ns com ho fas!"
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
   dialogueInGameTwo:
     sentences:
     - sentence: "Zero: Hehe... aix\xED que heu vingut a buscar les teves germanes,
         \"Tres\"?"
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
+      mistery: 0
     - sentence: "Tres: \"Zero\"! On s\xF3n? Qu\xE8 els has fet!?"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Zero: Ja no les tornar\xE0s a veure. Han apr\xE8s a servir-me...
         i aviat, tots vosaltres tamb\xE9."
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
+      mistery: 0
     - sentence: "Tres: Mai! No et deixarem fer mal a ning\xFA m\xE9s!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: 'Zero: Ja veurem... A veure si pots seguir-me el ritme.'
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
+      mistery: 0
     - sentence: 'Cinc: No el deixis escapar!'
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
     - sentence: "Dos: R\xE0pid, despr\xE9s d\u2019ell!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
   dialogueInGameThree:
     sentences:
     - sentence: 'Sis: Aquests son els intrusos, amo?'
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      mistery: 0
     - sentence: 'Nou: Veiem quant aguanten contra les dues a la vegada.'
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      mistery: 0
     - sentence: "Tres: Germanes! Aguanteu! Us est\xE0 controlant!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: 'Zero: Hehe... si les voleu de tornada, haureu de passar per mi!'
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
+      mistery: 0
     - sentence: "Zero: Us posar\xE9 a prova... amb la m\xE0gia de les tres bessones!"
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
+      mistery: 0
     - sentence: 'Cinc: Som-hi, no li donem treva!'
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "Dos: Podem amb aix\xF2!"
+      mistery: 0
+    - sentence: 'Dos: El guanyarem en 5 segons!'
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
   dialogueInGameMID:
     sentences:
     - sentence: "Zero: Sou forts, heroi... Per\xF2 no us penseu que sortireu d\u2019aqu\xED
         sense patir!"
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
+      mistery: 0
     - sentence: "Zero: A veure com enfronteu aix\xF2, heroi! No hi haur\xE0 pietat
         per vosaltres!"
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
+      mistery: 0
   dialogueInGameVICTORY:
     sentences:
     - sentence: "Sis: Gr\xE0cies, \"Tres\"... sab\xEDem que vindries."
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      mistery: 0
     - sentence: "Nou: Anem tots junts. No podem deixar que el \"Zero\" faci m\xE9s
         mal."
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      mistery: 0
     - sentence: "Dos: Som un equip, ara m\xE9s que mai!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Cinc: Endavant. La lluita tot just comen\xE7a."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
   onFinishDialogueBeforeEnter:
     m_PersistentCalls:
       m_Calls:
@@ -6209,83 +6312,107 @@ MonoBehaviour:
   state: 0
   image: {fileID: 0}
   unlockedNumbersToBe: 5
-  levelTitle: primer nivel
-  levelDescription: Bliblablabla
-  levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
+  levelTitle: Sant Jordi
+  levelDescription: 
+  levelImage: {fileID: 1302057420}
   dialogueBeforeLevelInfo:
     sentences:
     - sentence: "Sis: Hem tornat! Gr\xE0cies! Pensava que no et veuria mai m\xE9s,
         tres!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      mistery: 0
     - sentence: "Nou: No saps com t\u2019he trobat a faltar! Gr\xE0cies a tots per
         salvar-nos!"
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      mistery: 0
     - sentence: "Tres: Som de nou juntes... No puc creure-ho! Gr\xE0cies, heroi.
         Sense tu no ho haur\xEDem aconseguit."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Dos: Ara som m\xE9s forts. El \"Zero\" no ens podr\xE0 aturar!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
     - sentence: "Cinc: Ep... mireu all\xE0! Alg\xFA s\u2019apropa..."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 1
     - sentence: "Quatre: Salutacions, valents. S\xF3c el \"Quatre\", cavaller de
         Sant Jordi. Necessito la vostra ajuda."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
     - sentence: "Quatre: La princesa \"Set\" ha estat segrestada pel drac del \"Zero\".
         Est\xE0 tancada a la cova m\xE9s fosca de Num\xE8ria."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
     - sentence: "Tres: Una altra v\xEDctima del \"Zero\"... No ho podem permetre."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: 'Quatre: Acompanyeu-me. Junts la salvarem i farem caure el seu poder.'
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
   dialogueBeforeEnter:
     sentences:
     - sentence: 'Quatre: Ajudeu-me a rescatar la princesa!'
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
   dialogueInGameOne:
     sentences:
     - sentence: "Quatre: Aix\xF2 \xE9s... la Cova del Drac. Feu silenci. El \"Zero\"
         podria estar molt a prop."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
     - sentence: 'Cinc: Quin lloc tan sinistre...'
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
+      mistery: 0
     - sentence: "Dos: Estigueu alerta. Si ens ataca, haurem de pensar r\xE0pid."
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
   dialogueInGameTwo:
     sentences:
     - sentence: "Set: Ajudeu-me! S\xF3c aqu\xED!"
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
+      mistery: 0
     - sentence: "Zero: Oh, la princesa tan valenta... per\xF2 aviat ser\xE0 nom\xE9s
         un record."
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
+      mistery: 0
     - sentence: "Quatre: Allibera-la ara mateix, \"Zero\"! Aquesta vegada, m\u2019enfrontar\xE9
         a tu!"
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
     - sentence: "Zero: Hehehe... Molt b\xE9, cavaller. Vegem si ets tan fort com
         dius."
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
+      mistery: 0
   dialogueInGameThree:
     sentences:
     - sentence: 
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
+      mistery: 0
   dialogueInGameMID:
     sentences:
     - sentence: "Zero: Bona jugada... per\xF2 ara ve el veritable foc del drac!"
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
+      mistery: 0
   dialogueInGameVICTORY:
     sentences:
     - sentence: 'Quatre: Ho hem aconseguit! El drac ha caigut!'
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
+      mistery: 0
     - sentence: "Set: Gr\xE0cies... gr\xE0cies a tots! Pensava que no sortiria viva
         d\u2019aqu\xED."
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
+      mistery: 0
     - sentence: "Tres: Una m\xE9s entre nosaltres! Cada cop som m\xE9s a prop de
         recuperar Num\xE8ria."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
+      mistery: 0
     - sentence: "Zero: Heu guanyat aquesta batalla... per\xF2 no la guerra. Mai recuperareu
         tots els nombres!"
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
+      mistery: 0
     - sentence: "Dos: Marxa, \"Zero\"! El teu regnat de por s\u2019acaba aqu\xED!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
+      mistery: 0
   onFinishDialogueBeforeEnter:
     m_PersistentCalls:
       m_Calls:
@@ -6486,6 +6613,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047830239}
   m_CullTransparentMesh: 1
+--- !u!1 &2075527945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6074403119711106099, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+  m_PrefabInstance: {fileID: 3209391764530558497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2121892059
 GameObject:
   m_ObjectHideFlags: 0
@@ -6542,6 +6674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1369284841}
     m_Modifications:
+    - target: {fileID: 1176419256088167098, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3441579387544482590, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6639,6 +6775,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1369284841}
     m_Modifications:
+    - target: {fileID: 115241459898404788, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_text
+      value: Tres Bessones
+      objectReference: {fileID: 0}
+    - target: {fileID: 115241459898404788, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 115241459898404788, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 115241459898404788, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 115241459898404788, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
+    - target: {fileID: 690424048424029542, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: levelImages
+      value: 
+      objectReference: {fileID: 2075527945}
     - target: {fileID: 1333817972616956270, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6719,14 +6879,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2779043932416721546, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -154
+      objectReference: {fileID: 0}
     - target: {fileID: 2967562564312113409, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_Name
       value: LevelInfoCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3099449876668289192, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099449876668289192, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -142
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619188810896294160, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 98.47427
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994569296109015350, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994569296109015350, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -933
+      objectReference: {fileID: 0}
     - target: {fileID: 5034905954294741410, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253358936307594544, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -154.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5273866205906947880, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -374.9375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765062876912850047, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -154.00008
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844350150195940387, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7315319492450034902, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180985346704830387, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b6fcd7c32cbea6429fecbeaa774171a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

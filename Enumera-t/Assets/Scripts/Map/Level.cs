@@ -17,7 +17,7 @@ public class Level : MonoBehaviour
     public string levelTitle;
     [TextArea(3, 10)]
     public string levelDescription;
-    public Sprite levelImage;
+    public GameObject levelImage;
 
     public Dialogo dialogueBeforeLevelInfo;
     public Dialogo dialogueBeforeEnter;

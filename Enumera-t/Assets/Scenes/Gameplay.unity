@@ -1497,6 +1497,12 @@ MonoBehaviour:
   openPanelSound: {fileID: 8300000, guid: 774a7d98ebf41df4ab55f5de368ec38c, type: 3}
   closePanelSound: {fileID: 8300000, guid: 6097d03fea43c5a44b4a73f150eb349c, type: 3}
   startLevelSound: {fileID: 0}
+  OneStarSound: {fileID: 8300000, guid: 2d63aecc78d178f4eb80b599165c35f0, type: 3}
+  TwoStarSound: {fileID: 8300000, guid: fcb9ce95477c0704296f7ad693d060c1, type: 3}
+  ThreeStarSound: {fileID: 8300000, guid: 130776416b2bc8b48bd97c7f558075ba, type: 3}
+  nextDialogueSound: {fileID: 0}
+  startDialogueSound: {fileID: 0}
+  stopDialgueSound: {fileID: 0}
   battleExplorationMusic: {fileID: 8300000, guid: 37705174f45bad840914c23e5321eafa, type: 3}
   mapChillMusic: {fileID: 0}
   mapMisteryMusic: {fileID: 0}
@@ -1511,7 +1517,7 @@ AudioSource:
   m_GameObject: {fileID: 483086010}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3741648198976101291, guid: 15b00bec32f435c4580ba4027b264b19, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.015
@@ -1607,7 +1613,7 @@ AudioSource:
   m_GameObject: {fileID: 483086010}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6493274203581376722, guid: 15b00bec32f435c4580ba4027b264b19, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.302
@@ -2765,7 +2771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 26.7}
+  m_AnchoredPosition: {x: 0, y: 41.5}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &672843860
@@ -5144,7 +5150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -57.3, y: 81.28695}
+  m_AnchoredPosition: {x: -145.7, y: 81.28695}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1235539217
@@ -5230,7 +5236,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -75.37276, w: 0}
+  m_margin: {x: 0, y: 0, z: -190.14395, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -26,6 +26,9 @@ public class DialogueManager : MonoBehaviour
 
     private bool hasTouched = false;
 
+    private float dialogueCoolDown = 0;
+    private float dialogueMaxCoolDown = 0.2f;
+
     private void Awake()
     {
         instance = this;
@@ -80,6 +83,12 @@ public class DialogueManager : MonoBehaviour
 
         if (sentences.Count == 0) { EndDialogue(); return; }
 
+        if (sentences.Peek().mistery)
+        {
+            AudioManager.Instance.PlayMapMystery();
+        }
+
+
         var sentence = sentences.Dequeue();
         StopAllCoroutines();
 
@@ -130,13 +139,27 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && !hasTouched)) {
-            hasTouched = true;
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
+        // Para PC/WebGL con mouse
+        if (Input.GetMouseButtonDown(0))
+        {
+            AudioManager.Instance.PlayNextDialogueSound();
             DisplayNextSentences();
         }
-        if(Input.touchCount == 0)
+#endif
+
+        // Para móvil (iOS/Android)
+#if UNITY_IOS || UNITY_ANDROID
+    if (Input.touchCount > 0)
+    {
+        Touch touch = Input.GetTouch(0);
+        if (touch.phase == TouchPhase.Began)
         {
-            hasTouched = false;
+            AudioManager.Instance.PlayNextDialogueSound();
+            DisplayNextSentences();
         }
     }
+#endif
+    }
+
 }

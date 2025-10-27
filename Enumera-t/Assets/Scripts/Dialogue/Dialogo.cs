@@ -11,6 +11,7 @@ public struct DialogueSentence
     [TextArea(3, 10)]
     public string sentence;
     public GameObject characterAnimated;
+    public bool mistery;
 }
 [System.Serializable]
 public class Dialogo{

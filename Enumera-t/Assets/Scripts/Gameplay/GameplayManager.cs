@@ -134,6 +134,8 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         numberOfErrors = 0;
+
+        
         //level data
         if (LevelData.instance != null)
         {
@@ -1045,7 +1047,6 @@ public class GameplayManager : MonoBehaviour
             else if (numberOfErrors > 9)
             {
                 textErrors.text = "Continua Aprentent!";
-                textErrors.alignment = TextAlignmentOptions.Center;
             }
             else if(numberOfErrors == 1)
             {
@@ -1089,7 +1090,6 @@ public class GameplayManager : MonoBehaviour
         else if (numberOfErrors > 9)
         {
             textErrors.text = "Continua Aprentent!";
-            textErrors.alignment = TextAlignmentOptions.Center;
         }
         else if (numberOfErrors == 1)
         {
@@ -1111,7 +1111,22 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator FadeStars(int starsToLight)
     {
-        float fadeDuration = 0.5f;
+        if (starsToLight == 1)
+        {
+            AudioManager.Instance.PlayOneStar();
+        }
+        else if (starsToLight == 2)
+        {
+            AudioManager.Instance.PlayTwoStar();
+        }
+        else
+        {
+            AudioManager.Instance.PlayThreeStar();
+        }
+        float fadeDuration = 0.3f;
+        float waitBetweenStars = 0.5f;
+        float waitBetweenStars2 = 0.5f;
+
         for (int i = 0; i < stars.Count; i++)
         {
             stars[i].gameObject.SetActive(true);
@@ -1128,6 +1143,16 @@ public class GameplayManager : MonoBehaviour
             }
 
             stars[i].color = targetColor;
+            if (i == 0)
+            {
+                yield return new WaitForSeconds(waitBetweenStars);
+            }
+            else
+            {
+                yield return new WaitForSeconds(waitBetweenStars2);
+            }
+
+            
         }
 
     }

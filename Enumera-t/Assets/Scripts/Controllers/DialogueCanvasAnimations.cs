@@ -86,6 +86,7 @@ public class DialogueCanvasAnimations : MonoBehaviour
 
     public void PlayEnter()
     {
+        AudioManager.Instance.PlayStartDialogueSound();
         KillAllTweens();
         PrepareForEnter();
 
@@ -144,6 +145,7 @@ public class DialogueCanvasAnimations : MonoBehaviour
 
     public void PlayExit()
     {
+        AudioManager.Instance.PlayStopDialogueSound();
         KillAllTweens();
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;

@@ -41,20 +41,33 @@ public class LevelInfoManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && !hasTouched))
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
+        // Para PC/WebGL con mouse
+        if (Input.GetMouseButtonDown(0))
         {
-            hasTouched = true;
+            AudioManager.Instance.PlayNextDialogueSound();
             DisplayNextSentences();
         }
-        if (Input.touchCount == 0)
+#endif
+
+        // Para móvil (iOS/Android)
+#if UNITY_IOS || UNITY_ANDROID
+    if (Input.touchCount > 0)
+    {
+        Touch touch = Input.GetTouch(0);
+        if (touch.phase == TouchPhase.Began)
         {
-            hasTouched = false;
+            AudioManager.Instance.PlayNextDialogueSound();
+            DisplayNextSentences();
         }
     }
+#endif
+    }
 
-    public void StartInfo(Dialogo dialogo, string levelTitle, string levelDescription, Sprite levelImageSprite, Level level, int savedStars, UnityEvent onPlayButton = null)
+
+    public void StartInfo(Dialogo dialogo, string levelTitle, string levelDescription, GameObject levelImage, Level level, int savedStars, UnityEvent onPlayButton = null)
     {
         AudioManager.Instance.PlayOpenPanel();
         //anim.SetBool("IsOpen", true);
@@ -72,7 +85,7 @@ public class LevelInfoManager : MonoBehaviour
 
         levelTitleText.text = levelTitle;
         levelDescriptionText.text = levelDescription;
-        levelImage.sprite = levelImageSprite;
+        levelImage.SetActive(true);
         goLevelButton.onClick.RemoveAllListeners();
         goLevelButton.onClick.AddListener(onPlayButton.Invoke);
         levelInfoAnimations.PlayEnter();

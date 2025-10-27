@@ -21,6 +21,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip OneStarSound;
     public AudioClip TwoStarSound;
     public AudioClip ThreeStarSound;
+    public AudioClip nextDialogueSound;
+    public AudioClip startDialogueSound;
+    public AudioClip stopDialgueSound;
     [Header("Music")]
     public AudioClip battleExplorationMusic;
     public AudioClip mapChillMusic;
@@ -70,6 +73,9 @@ public class AudioManager : MonoBehaviour
     public void PlayOneStar() => PlaySFX(OneStarSound);
     public void PlayTwoStar() => PlaySFX(TwoStarSound);
     public void PlayThreeStar() => PlaySFX(ThreeStarSound);
+    public void PlayNextDialogueSound() => PlaySFX(nextDialogueSound);
+    public void PlayStartDialogueSound() => PlaySFX(startDialogueSound);
+    public void PlayStopDialogueSound() => PlaySFX(stopDialgueSound);
 
     public void PlayBattleExploration() => PlayMusic(battleExplorationMusic);
     public void PlayMapChill() => PlayMusic(mapChillMusic);
