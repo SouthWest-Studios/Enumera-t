@@ -6533,22 +6533,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1369284841}
     m_Modifications:
-    - target: {fileID: 911458643624427517, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
-      propertyPath: m_text
-      value: New Text
-      objectReference: {fileID: 0}
-    - target: {fileID: 911458643624427517, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 4dc7b82003cff9249a7d0678fa504675, type: 2}
-    - target: {fileID: 911458643624427517, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -1059591287805770001, guid: 4dc7b82003cff9249a7d0678fa504675, type: 2}
-    - target: {fileID: 911458643624427517, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3441579387544482590, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6632,10 +6616,6 @@ PrefabInstance:
     - target: {fileID: 3615043536532409092, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6893690509830222999, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
-      propertyPath: m_Alpha
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6728,22 +6708,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1333817972616956270, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037847974283558552, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
-      propertyPath: m_text
-      value: New Text
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037847974283558552, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 4dc7b82003cff9249a7d0678fa504675, type: 2}
-    - target: {fileID: 2037847974283558552, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -1059591287805770001, guid: 4dc7b82003cff9249a7d0678fa504675, type: 2}
-    - target: {fileID: 2037847974283558552, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
-      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2967562564312113409, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
