@@ -110,6 +110,9 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         letterCount = 0;
 
+        AudioManager.Instance.PlayHydroGraphicPen();
+        AudioManager.Instance.StartSfxSource();
+
         foreach (char letter in sentence ?? string.Empty)
         {
             if (letter == ' ')
@@ -123,6 +126,7 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(letterDelay);
         }
+        //AudioManager.Instance.StopSfxSource();
         dialogueAnimations.NudgeDialogueBox();
     }
 

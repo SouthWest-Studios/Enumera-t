@@ -24,6 +24,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip nextDialogueSound;
     public AudioClip startDialogueSound;
     public AudioClip stopDialgueSound;
+    public AudioClip hidroGraphicPen;
+    public AudioClip hidroGraphicPen2;
+    public AudioClip hidroGraphicPen3;
     [Header("Music")]
     public AudioClip battleExplorationMusic;
     public AudioClip mapChillMusic;
@@ -76,11 +79,62 @@ public class AudioManager : MonoBehaviour
     public void PlayNextDialogueSound() => PlaySFX(nextDialogueSound);
     public void PlayStartDialogueSound() => PlaySFX(startDialogueSound);
     public void PlayStopDialogueSound() => PlaySFX(stopDialgueSound);
+    public void PlayHydroGraphicPen()
+    {
+        int random = Random.Range(1, 4);
+
+        switch (random)
+        {
+            case 1:
+                PlaySFX(hidroGraphicPen);
+                break;
+            case 2:
+                PlaySFX(hidroGraphicPen2);
+                break;
+            case 3:
+                PlaySFX(hidroGraphicPen3);
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
+
+
+
 
     public void PlayBattleExploration() => PlayMusic(battleExplorationMusic);
     public void PlayMapChill() => PlayMusic(mapChillMusic);
     public void PlayMapMystery() => PlayMusic(mapMisteryMusic);
     public void PlayIntroBoss() => PlayMusic(introBossMusic);
     public void PlayBossFight() => PlayMusic(bossFightMusic);
-    
+
+
+    public void StartSfxSource()
+    {
+        sfxSource.loop = true;
+        if (!sfxSource.isPlaying)
+            sfxSource.Play();
+    }
+
+    public void StopSfxSource()
+    {
+        sfxSource.loop = false;
+        sfxSource.Stop();
+    }
+
+    public void StartMusicSource()
+    {
+        musicSource.loop = true;
+        if (!musicSource.isPlaying)
+            musicSource.Play();
+    }
+
+    public void StopMusicSource()
+    {
+        musicSource.loop = false;
+        musicSource.Stop();
+    }
+
 }
