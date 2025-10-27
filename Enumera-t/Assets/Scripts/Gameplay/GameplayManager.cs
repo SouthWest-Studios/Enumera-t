@@ -112,6 +112,7 @@ public class GameplayManager : MonoBehaviour
     private int roundsBeforeDialogue;
     private bool hasPlayedDialogue = false;
     public Transform numberPuntuationTransf;
+    public HorizontalLayoutGroup numbersLayout;
 
     public interface IBossBehavior
     {
@@ -149,6 +150,7 @@ public class GameplayManager : MonoBehaviour
         {
             case 1:
                 level1.SetActive(true);
+                numbersLayout.spacing = -450;
                 backGroundPath = "Prefabs/BackGrounds/Jail-Background";
                 
                 path = "Prefabs/Enemies/Bruixa";
@@ -184,7 +186,7 @@ public class GameplayManager : MonoBehaviour
 
             case 2:
                 level2.SetActive(true);
-
+                numbersLayout.spacing = -250;
                 backGroundPath = "Prefabs/BackGrounds/Cave-Background";
                 path = "Prefabs/Enemies/Drac";
 
@@ -226,7 +228,7 @@ public class GameplayManager : MonoBehaviour
             //───────────────────────────────
             case 3:
                 level3.SetActive(true);
-
+                numbersLayout.spacing = -150;
                 backGroundPath = "Prefabs/BackGrounds/BullIntestine-Background";
                 path = "Prefabs/Enemies/Bou";
 
@@ -309,7 +311,6 @@ public class GameplayManager : MonoBehaviour
         {
             DialogueManager.instance.StartDialogue(LevelData.dialogueInGameOne);
         }
-
     }
 
     void Update()
@@ -411,9 +412,11 @@ public class GameplayManager : MonoBehaviour
         if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
         {
             ActivateBoss();
+            
             if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
             {
-                DialogueManager.instance.StartDialogue(LevelData.dialogueInGameThree);
+                AudioManager.Instance.PlayIntroBoss();
+                DialogueManager.instance.StartDialogue(LevelData.dialogueInGameThree, AudioManager.Instance.PlayBossFight);
             }
             
         }
@@ -897,7 +900,7 @@ public class GameplayManager : MonoBehaviour
 
     public void PlayOperationEntryAnimation(GameObject operationContainer)
     {
-        //StartCoroutine(OperationEntryCoroutine(operationContainer));
+        StartCoroutine(OperationEntryCoroutine(operationContainer));
     }
 
 
@@ -1026,23 +1029,29 @@ public class GameplayManager : MonoBehaviour
 
         //StopAllCoroutines();
         StartCoroutine(FadeStars(starsEarned));
-        if(numberOfErrors <= 0)
+        if (numberOfErrors <= 0)
         {
             textErrors.text = "PERFECTE!";
+            textErrors.alignment = TextAlignmentOptions.Center;
         }
-        else if(numberOfErrors > 9)
+        else if (numberOfErrors > 9)
         {
-            textErrors.text = "més de";
-            AssignNumberPrefab(9, numberPuntuationTransf, true, puntuationWindow.transform);
+            textErrors.text = "Continua Aprentent!";
+            textErrors.alignment = TextAlignmentOptions.Center;
+        }
+        else if (numberOfErrors == 1)
+        {
+            textErrors.text = "     Error";
+            AssignNumberPrefab(numberOfErrors, numberPuntuationTransf, true, puntuationWindow.transform);
         }
         else
         {
-            textErrors.text = "Errors";
+            textErrors.text = "     Errors";
             AssignNumberPrefab(numberOfErrors, numberPuntuationTransf, true, puntuationWindow.transform);
         }
-        
+
         //Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
-        
+
         FadeStars(starsEarned);
 
     }
@@ -1073,6 +1082,7 @@ public class GameplayManager : MonoBehaviour
 
     public void LoadScene()
     {
+
         AudioManager.Instance.PlayClosePanel();
         //SceneManager.LoadScene("MapScene");
         TransitionCanvas.instance.DoTransition("MapScene");

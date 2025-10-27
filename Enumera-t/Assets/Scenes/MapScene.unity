@@ -2837,7 +2837,7 @@ MonoBehaviour:
   id: 2
   state: 0
   image: {fileID: 0}
-  unlockedNumbersToBe: 5
+  unlockedNumbersToBe: 7
   levelTitle: primer nivel
   levelDescription: Bliblablabla
   levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
@@ -3408,9 +3408,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.02
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3504,7 +3504,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.481
+  m_Volume: 0.116
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3611,7 +3611,11 @@ MonoBehaviour:
   openPanelSound: {fileID: 8300000, guid: 774a7d98ebf41df4ab55f5de368ec38c, type: 3}
   closePanelSound: {fileID: 8300000, guid: 6097d03fea43c5a44b4a73f150eb349c, type: 3}
   startLevelSound: {fileID: 8300000, guid: 6629427ab7fd74b4baf53c12b7d9950a, type: 3}
-  gameplayMusic: {fileID: 0}
+  battleExplorationMusic: {fileID: 0}
+  mapChillMusic: {fileID: 8300000, guid: 0bdbf61ae6727a84d9fd1c67664df04b, type: 3}
+  mapMisteryMusic: {fileID: 0}
+  introBossMusic: {fileID: 0}
+  bossFightMusic: {fileID: 0}
 --- !u!1 &1412160193
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,7 +5175,7 @@ MonoBehaviour:
   id: 0
   state: 0
   image: {fileID: 966996359}
-  unlockedNumbersToBe: 5
+  unlockedNumbersToBe: 3
   levelTitle: primer nivel
   levelDescription: Bliblablabla
   levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}

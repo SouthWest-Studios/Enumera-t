@@ -19,7 +19,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip closePanelSound;
     public AudioClip startLevelSound;
     [Header("Music")]
-    public AudioClip gameplayMusic;
+    public AudioClip battleExplorationMusic;
+    public AudioClip mapChillMusic;
+    public AudioClip mapMisteryMusic;
+    public AudioClip introBossMusic;
+    public AudioClip bossFightMusic;
 
 
     void Awake()
@@ -30,10 +34,14 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Gameplay" && gameplayMusic != null)
+        if (SceneManager.GetActiveScene().name == "Gameplay" && battleExplorationMusic != null)
         {
-            PlayGameplayMusic();
+            PlayBattleExploration();
 
+        }
+        else if (SceneManager.GetActiveScene().name == "MapScene" && mapChillMusic != null)
+        {
+            PlayMapChill();
         }
     }
 
@@ -55,6 +63,12 @@ public class AudioManager : MonoBehaviour
     public void PlayBadDrop() => PlaySFX(badDropSound);
     public void PlayOpenPanel() => PlaySFX(openPanelSound);
     public void PlayClosePanel() => PlaySFX(closePanelSound);
-    public void PlayGameplayMusic() => PlayMusic(gameplayMusic);
-    public void PlayLevelStart() => PlayMusic(startLevelSound);
+    public void PlayLevelStart() => PlaySFX(startLevelSound);
+
+    public void PlayBattleExploration() => PlayMusic(battleExplorationMusic);
+    public void PlayMapChill() => PlayMusic(mapChillMusic);
+    public void PlayMapMystery() => PlayMusic(mapMisteryMusic);
+    public void PlayIntroBoss() => PlayMusic(introBossMusic);
+    public void PlayBossFight() => PlayMusic(bossFightMusic);
+    
 }

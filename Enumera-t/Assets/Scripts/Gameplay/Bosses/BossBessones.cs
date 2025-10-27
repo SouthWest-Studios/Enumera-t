@@ -18,6 +18,10 @@ public class BossBessones : IBossBehavior
     {
         this.manager = manager;
         manager.secondOperationCanvas.SetActive(true);
+        manager.secondOperationCanvas.transform.localScale = new Vector3(0.516268909f, 0.451735258f, 0.516268909f);
+        RectTransform rt = manager.firstOperationCanvas.GetComponent<RectTransform>();
+        rt.anchoredPosition += new Vector2(-200, 0); // ejemplo de movimiento
+        manager.firstOperationCanvas.transform.localScale = new Vector3(0.516268909f, 0.451735258f, 0.516268909f);
 
         //manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
         manager.operationSymbolImage2.sprite = manager.sums

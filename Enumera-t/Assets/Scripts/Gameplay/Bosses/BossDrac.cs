@@ -15,6 +15,10 @@ public class BossDrac : IBossBehavior
     {
         this.manager = manager;
         manager.FindChildRecursive(manager.FindChildRecursive(manager.level2.transform, "1rstOperation"), "BossExtra").gameObject.SetActive(true);
+        manager.FindChildRecursive(manager.FindChildRecursive(manager.level2.transform, "1rstOperation"), "BackGroundOperation").gameObject.SetActive(false);
+        manager.FindChildRecursive(manager.FindChildRecursive(manager.level2.transform, "1rstOperation"), "BackGroundOperation2").gameObject.SetActive(true);
+        RectTransform rt = manager.FindChildRecursive(manager.level2.transform, "1rstOperation").GetComponent<RectTransform>();
+        rt.anchoredPosition += new Vector2(60, 0);
         manager.damage = damageTaken;
         manager.number4.SetActive(true);
     }
