@@ -2997,65 +2997,65 @@ MonoBehaviour:
   levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
   dialogueBeforeLevelInfo:
     sentences:
-    - sentence: "Gr\xE0cies a tots per salvar-me... Pensava que no tornaria a veure
-        mai m\xE9s la llum."
+    - sentence: "Set: Gr\xE0cies a tots per salvar-me... Pensava que no tornaria
+        a veure mai m\xE9s la llum."
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
-    - sentence: "Ha estat incre\xEFble! Ni tan sols el drac ens ha pogut aturar!"
+    - sentence: "Sis: Ha estat incre\xEFble! Ni tan sols el drac ens ha pogut aturar!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
-    - sentence: "El que importa \xE9s que Num\xE8ria torna a tenir esperan\xE7a."
+    - sentence: "Quatre: El que importa \xE9s que Num\xE8ria torna a tenir esperan\xE7a."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
-    - sentence: "Espereu... qu\xE8 \xE9s aix\xF2 a terra? S\xF3n petjades?"
+    - sentence: "Dos: Espereu... qu\xE8 \xE9s aix\xF2 a terra? S\xF3n petjades?"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "S\xF3n petites... massa petites. Devien ser del u!"
+    - sentence: "Tres: S\xF3n petites... massa petites. Devien ser del \"U\"!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "El u? Llavors encara \xE9s viu! Hem de trobar-lo!"
+    - sentence: "Sis: El \"U\"? Llavors encara \xE9s viu! Hem de trobar-lo!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
-    - sentence: No podem perdre temps. Anem-hi!
+    - sentence: 'Nou: No podem perdre temps. Anem-hi!'
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
   dialogueBeforeEnter:
     sentences:
-    - sentence: "Si hi ha unes petjades m\xE9s petites que les meves, han de ser
-        del u! Anem a salvar-lo!"
+    - sentence: "Dos: Si hi ha unes petjades m\xE9s petites que les meves, han de
+        ser del \"U\"! Anem a salvar-lo!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
   dialogueInGameOne:
     sentences:
-    - sentence: "Ho sento... alguna cosa no va b\xE9 aqu\xED. Aquest lloc fa una
-        mica de por..."
+    - sentence: "Tres: Ho sento... alguna cosa no va b\xE9 aqu\xED. Aquest lloc fa
+        una mica de por..."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: Tranquil, no pot ser pitjor que un drac!
+    - sentence: 'Nou: Tranquil, no pot ser pitjor que un drac!'
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
-    - sentence: "Espero que tinguis ra\xF3..."
+    - sentence: "Sis: Espero que tinguis ra\xF3..."
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
   dialogueInGameTwo:
     sentences:
-    - sentence: "Sou forts... a veure qu\xE8 us sembla aix\xF2!"
+    - sentence: "Zero: Sou forts... a veure qu\xE8 us sembla aix\xF2!"
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
-    - sentence: Mantingueu-vos units! No deixeu que us atrapi!
+    - sentence: 'Quatre: Mantingueu-vos units! No deixeu que us atrapi!'
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
   dialogueInGameThree:
     sentences:
-    - sentence: awdwadaw
+    - sentence: 
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
   dialogueInGameMID:
     sentences:
-    - sentence: "Bon intent... per\xF2 ara comen\xE7a la part divertida!"
+    - sentence: "Zero: Bon intent... per\xF2 ara comen\xE7a la part divertida!"
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
-    - sentence: No et tenim por, zero!
+    - sentence: 'Nou: No et tenim por, "Zero"!'
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
-    - sentence: "Junts, podem v\xE8ncer qualsevol cosa!"
+    - sentence: "Sis: Junts, podem v\xE8ncer qualsevol cosa!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
   dialogueInGameVICTORY:
     sentences:
-    - sentence: "Heu guanyat... per\xF2 nom\xE9s aquesta batalla. No podreu salvar
-        a tothom... encara no enteneu el que est\xE0 passant."
+    - sentence: "Zero: Heu guanyat... per\xF2 nom\xE9s aquesta batalla. No podreu
+        salvar a tothom... encara no enteneu el que est\xE0 passant."
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
-    - sentence: "Qu\xE8 vols dir amb aix\xF2?!"
+    - sentence: "Tres: Qu\xE8 vols dir amb aix\xF2?!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: Aviat ho sabreu... quan sigui massa tard.
+    - sentence: 'Zero: Aviat ho sabreu... quan sigui massa tard.'
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
-    - sentence: "Ha fugit... Per\xF2 qu\xE8 volia dir?"
+    - sentence: "Dos: Ha fugit... Per\xF2 qu\xE8 volia dir?"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "Potser hi ha alguna cosa m\xE9s gran darrere de tot aix\xF2."
+    - sentence: "Quatre: Potser hi ha alguna cosa m\xE9s gran darrere de tot aix\xF2."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
   onFinishDialogueBeforeEnter:
     m_PersistentCalls:
@@ -5252,35 +5252,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDialogue:
     sentences:
-    - sentence: "Hola... Em dic Osset, i visc aqu\xED, a Num\xE8ria, el regne dels
-        nombres. Era un lloc ple d\u2019alegria i ordre... fins que va apar\xE8ixer
-        el zero."
+    - sentence: "Osset: Hola... Em dic Osset, i visc aqu\xED, a Num\xE8ria, el regne
+        dels nombres. Era un lloc ple d\u2019alegria i ordre... fins que va apar\xE8ixer
+        el \"Zero\"."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "El zero ha raptat alguns dels nostres amics i est\xE0 intentant
-        esborrar tot el que coneixem. No s\xE9 per qu\xE8 ho fa... per\xF2 hem de
-        detenir-lo."
+    - sentence: "Osset: El \"Zero\" ha raptat alguns dels nostres amics i est\xE0
+        intentant esborrar tot el que coneixem. No s\xE9 per qu\xE8 ho fa... per\xF2
+        hem de detenir-lo."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "He demanat ajuda, i tu has respost. Gr\xE0cies per venir. Digue\u2019m,
-        quin \xE9s el teu nom?"
+    - sentence: "Osset: He demanat ajuda, i tu has respost. Gr\xE0cies per venir."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Ets l'heroi X? Ets l'\xFAltima esperan\xE7a de Num\xE8ria. Encara
-        queden alguns que s\u2019han salvat. Vine, t\u2019estan esperant."
+    - sentence: "Osset: Ets l'\xFAltima esperan\xE7a de Num\xE8ria. Encara queden
+        alguns que s\u2019han salvat. Vine, t\u2019estan esperant."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Ei! Ja era hora que arribessis! El zero est\xE0 fent de les seves
-        i cada cop som menys."
+    - sentence: "Dos: Ei! Ja era hora que arribessis! El \"Zero\" est\xE0 fent de
+        les seves i cada cop som menys."
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "No tenim gaire temps... Hem de moure\u2019ns abans que ens trobi."
+    - sentence: "Cinc: No tenim gaire temps... Hem de moure\u2019ns abans que ens
+        trobi."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "S\xF3c el tres. El zero ha raptat dues de les meves germanes, el
-        sis i el nou. Som tres bessones."
+    - sentence: "Tres: S\xF3c el \"Tres\". El \"Zero\" ha raptat dues de les meves
+        germanes, el \"Sis\" i el \"Nou\". Som tres bessones."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "Crec que el zero s\u2019amaga a prop d\u2019aqu\xED. Si em segueixes,
-        et puc portar fins a elles."
+    - sentence: "Tres: Crec que el \"Zero\" s\u2019amaga a prop d\u2019aqu\xED. Si
+        em segueixes, et puc portar fins a elles."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "I aix\xED comen\xE7a el vostre viatge... Amb el dos, el tres i el
-        cinc al teu costat, marxem a buscar les germanes perdudes..."
+    - sentence: "Osset: I aix\xED comen\xE7a el vostre viatge... Amb el \"Dos\",
+        el \"Tres\" i el \"Cinc\" al teu costat, marxeu a buscar les germanes perdudes..."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Jo us esperar\xE9 aqu\xED, heroi, que tingueu un bon viatge."
+    - sentence: "Osset: Jo us esperar\xE9 aqu\xED, heroi, que tingueu un bon viatge."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
   endDialogue:
     sentences:
@@ -5722,86 +5722,88 @@ MonoBehaviour:
   levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
   dialogueBeforeLevelInfo:
     sentences:
-    - sentence: "Mira! Aqu\xED al terra... \xE9s un lla\xE7! \xC9s d\u2019una de
-        les meves germanes!"
+    - sentence: "Tres: Mira! Aqu\xED al terra... \xE9s un lla\xE7! \xC9s d\u2019una
+        de les meves germanes!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "Vols dir que han passat per aqu\xED?"
+    - sentence: "Dos: Vols dir que han passat per aqu\xED?"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "S\xED... \xE9s el lla\xE7 de la sis, estic segura. Si el seguim,
-        potser arribarem fins a elles."
+    - sentence: "Tres: S\xED... \xE9s el lla\xE7 de la \"Sis\", estic segura. Si
+        el seguim, potser arribarem fins a elles."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "Doncs som-hi. Per\xF2 ves amb compte... tinc un mal pressentiment."
+    - sentence: "Cinc: Doncs som-hi. Per\xF2 ves amb compte... tinc un mal pressentiment."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
   dialogueBeforeEnter:
     sentences:
-    - sentence: Anem, heroi! Junts podem trobar les meves germanes i derrotar el
-        zero. Mantingues els ulls oberts i el cor valent!
+    - sentence: 'Tres: Anem! Junts podem trobar les meves germanes i derrotar el
+        "Zero". Mantingues els ulls oberts i el cor valent!'
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
   dialogueInGameOne:
     sentences:
-    - sentence: "Aquest lloc fa una mica de por... el zero podria estar a qualsevol
-        rac\xF3."
+    - sentence: "Dos: Aquest lloc fa una mica de por... el \"Zero\" podria estar
+        a qualsevol rac\xF3."
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "A Num\xE8ria, els problemes no es resolen amb espases, sin\xF3 amb
-        el cap."
+    - sentence: "Cinc: A Num\xE8ria, els problemes no es resolen amb espases, sin\xF3
+        amb el cap."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "Exacte! Aqu\xED, per guanyar combats o sortir d\u2019un embolic...
+    - sentence: "Tres: Exacte! Aqu\xED, per guanyar combats o sortir d\u2019un embolic...
         cal fer servir les operacions!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "Les matem\xE0tiques s\xF3n la nostra m\xE0gia!"
+    - sentence: "Dos: Les matem\xE0tiques s\xF3n la nostra m\xE0gia!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "Va, heroi, demostra\u2019ns com ho fas!"
+    - sentence: "Cinc: Va, demostra\u2019ns com ho fas!"
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
   dialogueInGameTwo:
     sentences:
-    - sentence: "Hehe... aix\xED que heu vingut a buscar les teves germanes, tres?"
+    - sentence: "Zero: Hehe... aix\xED que heu vingut a buscar les teves germanes,
+        \"Tres\"?"
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-    - sentence: "Zero! On s\xF3n? Qu\xE8 els has fet!?"
+    - sentence: "Tres: \"Zero\"! On s\xF3n? Qu\xE8 els has fet!?"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "Ja no les tornar\xE0s a veure. Han apr\xE8s a servir-me... i aviat,
-        tots vosaltres tamb\xE9."
+    - sentence: "Zero: Ja no les tornar\xE0s a veure. Han apr\xE8s a servir-me...
+        i aviat, tots vosaltres tamb\xE9."
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-    - sentence: "Mai! No et deixarem fer mal a ning\xFA m\xE9s!"
+    - sentence: "Tres: Mai! No et deixarem fer mal a ning\xFA m\xE9s!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: Ja veurem... A veure si pots seguir-me el ritme.
+    - sentence: 'Zero: Ja veurem... A veure si pots seguir-me el ritme.'
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-    - sentence: No el deixis escapar!
+    - sentence: 'Cinc: No el deixis escapar!'
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "R\xE0pid, despr\xE9s d\u2019ell!"
+    - sentence: "Dos: R\xE0pid, despr\xE9s d\u2019ell!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
   dialogueInGameThree:
     sentences:
-    - sentence: Ajuda!
+    - sentence: 'Sis: Aquests son els intrusos, amo?'
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
-    - sentence: "Sisplau, ajuda\u2019ns!"
+    - sentence: 'Nou: Veiem quant aguanten contra les dues a la vegada.'
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
-    - sentence: Germanes! Aguanteu!
+    - sentence: "Tres: Germanes! Aguanteu! Us est\xE0 controlant!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: Hehe... si les voleu de tornada, haureu de passar per mi!
+    - sentence: 'Zero: Hehe... si les voleu de tornada, haureu de passar per mi!'
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-    - sentence: "Us posar\xE9 a prova... amb la m\xE0gia de les tres bessones!"
+    - sentence: "Zero: Us posar\xE9 a prova... amb la m\xE0gia de les tres bessones!"
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-    - sentence: Som-hi, no li donem treva!
+    - sentence: 'Cinc: Som-hi, no li donem treva!'
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "Podem amb aix\xF2!"
+    - sentence: "Dos: Podem amb aix\xF2!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
   dialogueInGameMID:
     sentences:
-    - sentence: "Sou forts, heroi... Per\xF2 no us penseu que sortireu d\u2019aqu\xED
+    - sentence: "Zero: Sou forts, heroi... Per\xF2 no us penseu que sortireu d\u2019aqu\xED
         sense patir!"
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
-    - sentence: "A veure com enfronteu aix\xF2, heroi! No hi haur\xE0 pietat per
-        vosaltres!"
+    - sentence: "Zero: A veure com enfronteu aix\xF2, heroi! No hi haur\xE0 pietat
+        per vosaltres!"
       characterAnimated: {fileID: 2393954999800393290, guid: df407b3e3eb3d1b40b9e821d6a5be7e5, type: 3}
   dialogueInGameVICTORY:
     sentences:
-    - sentence: "Gr\xE0cies, tres... sab\xEDem que vindries."
+    - sentence: "Sis: Gr\xE0cies, \"Tres\"... sab\xEDem que vindries."
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
-    - sentence: "Anem tots junts. No podem deixar que el zero faci m\xE9s mal."
+    - sentence: "Nou: Anem tots junts. No podem deixar que el \"Zero\" faci m\xE9s
+        mal."
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
-    - sentence: "Som un equip, ara m\xE9s que mai!"
+    - sentence: "Dos: Som un equip, ara m\xE9s que mai!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "Endavant, heroi. La lluita tot just comen\xE7a."
+    - sentence: "Cinc: Endavant. La lluita tot just comen\xE7a."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
   onFinishDialogueBeforeEnter:
     m_PersistentCalls:
@@ -6208,74 +6210,77 @@ MonoBehaviour:
   levelImage: {fileID: 21300000, guid: 06ca374efd7f45542983a87b53641cd9, type: 3}
   dialogueBeforeLevelInfo:
     sentences:
-    - sentence: "Hem tornat! Gr\xE0cies, heroi! Pensava que no et veuria mai m\xE9s,
+    - sentence: "Sis: Hem tornat! Gr\xE0cies! Pensava que no et veuria mai m\xE9s,
         tres!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
-    - sentence: "No saps com t\u2019he trobat a faltar! Gr\xE0cies a tots per salvar-nos!"
+    - sentence: "Nou: No saps com t\u2019he trobat a faltar! Gr\xE0cies a tots per
+        salvar-nos!"
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
-    - sentence: "Som de nou juntes... No puc creure-ho! Gr\xE0cies, heroi. Sense
-        tu no ho haur\xEDem aconseguit."
+    - sentence: "Tres: Som de nou juntes... No puc creure-ho! Gr\xE0cies, heroi.
+        Sense tu no ho haur\xEDem aconseguit."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "Ara som m\xE9s forts. El zero no ens podr\xE0 aturar!"
+    - sentence: "Dos: Ara som m\xE9s forts. El \"Zero\" no ens podr\xE0 aturar!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "Ep... mireu all\xE0! Alg\xFA s\u2019apropa..."
+    - sentence: "Cinc: Ep... mireu all\xE0! Alg\xFA s\u2019apropa..."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "Salutacions, valents. S\xF3c el quatre, cavaller de Sant Jordi.
-        Necessito la vostra ajuda."
+    - sentence: "Quatre: Salutacions, valents. S\xF3c el \"Quatre\", cavaller de
+        Sant Jordi. Necessito la vostra ajuda."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
-    - sentence: "La princesa set ha estat segrestada pel drac del zero. Est\xE0 tancada
-        a la cova m\xE9s fosca de Num\xE8ria."
+    - sentence: "Quatre: La princesa \"Set\" ha estat segrestada pel drac del \"Zero\".
+        Est\xE0 tancada a la cova m\xE9s fosca de Num\xE8ria."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
-    - sentence: "Una altra v\xEDctima del zero... No ho podem permetre."
+    - sentence: "Tres: Una altra v\xEDctima del \"Zero\"... No ho podem permetre."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: Acompanyeu-me. Junts la salvarem i farem caure el seu poder.
+    - sentence: 'Quatre: Acompanyeu-me. Junts la salvarem i farem caure el seu poder.'
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
   dialogueBeforeEnter:
     sentences:
-    - sentence: Ajudeu-me a rescatar la princesa!
+    - sentence: 'Quatre: Ajudeu-me a rescatar la princesa!'
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
   dialogueInGameOne:
     sentences:
-    - sentence: "Aix\xF2 \xE9s... la Cova del Drac. Feu silenci. El zero podria estar
-        molt a prop."
+    - sentence: "Quatre: Aix\xF2 \xE9s... la Cova del Drac. Feu silenci. El \"Zero\"
+        podria estar molt a prop."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
-    - sentence: Quin lloc tan sinistre...
+    - sentence: 'Cinc: Quin lloc tan sinistre...'
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "Estigueu alerta. Si ens ataca, haurem de pensar r\xE0pid."
+    - sentence: "Dos: Estigueu alerta. Si ens ataca, haurem de pensar r\xE0pid."
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
   dialogueInGameTwo:
     sentences:
-    - sentence: "Ajudeu-me! S\xF3c aqu\xED!"
+    - sentence: "Set: Ajudeu-me! S\xF3c aqu\xED!"
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
-    - sentence: "Oh, la princesa tan valenta... per\xF2 aviat ser\xE0 nom\xE9s un
-        record."
+    - sentence: "Zero: Oh, la princesa tan valenta... per\xF2 aviat ser\xE0 nom\xE9s
+        un record."
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
-    - sentence: "Allibera-la ara mateix, zero! Aquesta vegada, m\u2019enfrontar\xE9
+    - sentence: "Quatre: Allibera-la ara mateix, \"Zero\"! Aquesta vegada, m\u2019enfrontar\xE9
         a tu!"
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
-    - sentence: "Hehehe... Molt b\xE9, cavaller. Vegem si ets tan fort com dius."
+    - sentence: "Zero: Hehehe... Molt b\xE9, cavaller. Vegem si ets tan fort com
+        dius."
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
   dialogueInGameThree:
     sentences:
-    - sentence: awdwadaw
+    - sentence: 
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
   dialogueInGameMID:
     sentences:
-    - sentence: "Bona jugada... per\xF2 ara ve el veritable foc del drac!"
+    - sentence: "Zero: Bona jugada... per\xF2 ara ve el veritable foc del drac!"
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
   dialogueInGameVICTORY:
     sentences:
-    - sentence: Ho hem aconseguit! El drac ha caigut!
+    - sentence: 'Quatre: Ho hem aconseguit! El drac ha caigut!'
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
-    - sentence: "Gr\xE0cies... gr\xE0cies a tots! Pensava que no sortiria viva d\u2019aqu\xED."
+    - sentence: "Set: Gr\xE0cies... gr\xE0cies a tots! Pensava que no sortiria viva
+        d\u2019aqu\xED."
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
-    - sentence: "Una m\xE9s entre nosaltres! Cada cop som m\xE9s a prop de recuperar
-        Num\xE8ria."
+    - sentence: "Tres: Una m\xE9s entre nosaltres! Cada cop som m\xE9s a prop de
+        recuperar Num\xE8ria."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "Heu guanyat aquesta batalla... per\xF2 no la guerra. Mai recuperareu
+    - sentence: "Zero: Heu guanyat aquesta batalla... per\xF2 no la guerra. Mai recuperareu
         tots els nombres!"
       characterAnimated: {fileID: 5147569056423993038, guid: 595c822bd0e195f499f81011bec42ec1, type: 3}
-    - sentence: "Marxa, zero! El teu regnat de por s\u2019acaba aqu\xED!"
+    - sentence: "Dos: Marxa, \"Zero\"! El teu regnat de por s\u2019acaba aqu\xED!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
   onFinishDialogueBeforeEnter:
     m_PersistentCalls:
@@ -6713,6 +6718,10 @@ PrefabInstance:
     - target: {fileID: 2967562564312113409, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_Name
       value: LevelInfoCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034905954294741410, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
