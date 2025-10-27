@@ -269,7 +269,7 @@ public class GameplayManager : MonoBehaviour
         newBackground.transform.position = backGroundTransf.position;
         newBackground.transform.SetSiblingIndex(0);
 
-        bossList[level-1].SetActive(true);
+        
 
         //prefab = Resources.Load<GameObject>(path);
 
@@ -401,10 +401,22 @@ public class GameplayManager : MonoBehaviour
 
         if (roundsBeforeDialogue >= maxRoundsBeforeDialogue && !hasPlayedDialogue)
         {
-            if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+            if (level == 1)
             {
-                DialogueManager.instance.StartDialogue(LevelData.dialogueInGameTwo);
+                if (LevelData.dialogueInGameTwo != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+                {
+                    DialogueManager.instance.StartDialogue(LevelData.dialogueInGameTwo);
+                }
             }
+            else if(level == 2) 
+            {
+                
+            }
+            else
+            {
+
+            }
+            
             hasPlayedDialogue = true;
         }
 
@@ -412,12 +424,33 @@ public class GameplayManager : MonoBehaviour
         if (roundsBeforeBoss >= maxRoundsBeforeBoss && !isBoss)
         {
             ActivateBoss();
-            
-            if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
+            bossList[level - 1].SetActive(true);
+            healthBar.gameObject.SetActive(true);
+            if (level == 1)
             {
-                AudioManager.Instance.PlayIntroBoss();
-                DialogueManager.instance.StartDialogue(LevelData.dialogueInGameThree, AudioManager.Instance.PlayBossFight);
+                if (LevelData.dialogueInGameThree != null && LevelData.dialogueInGameThree.sentences.Length > 0)
+                {
+                    AudioManager.Instance.PlayIntroBoss();
+                    DialogueManager.instance.StartDialogue(LevelData.dialogueInGameThree, AudioManager.Instance.PlayBossFight);
+                }
             }
+            else if(level == 2)
+            {
+                if (LevelData.dialogueInGameTwo != null && LevelData.dialogueInGameTwo.sentences.Length > 0)
+                {
+                    AudioManager.Instance.PlayIntroBoss();
+                    DialogueManager.instance.StartDialogue(LevelData.dialogueInGameTwo, AudioManager.Instance.PlayBossFight);
+                }
+            }
+            else
+            {
+                if (LevelData.dialogueInGameTwo != null && LevelData.dialogueInGameTwo.sentences.Length > 0)
+                {
+                    AudioManager.Instance.PlayIntroBoss();
+                    DialogueManager.instance.StartDialogue(LevelData.dialogueInGameTwo, AudioManager.Instance.PlayBossFight);
+                }
+            }
+            
             
         }
             
@@ -1016,6 +1049,11 @@ public class GameplayManager : MonoBehaviour
 
     public void SetStarsByErrors()
     {
+
+        healthBar.gameObject.SetActive(false);
+        level1.SetActive(false);
+        level2.SetActive(false);
+        level3.SetActive(false);
         puntuationWindow.SetActive(true);
         PlayOperationEntryAnimation(puntuationWindow);
         AudioManager.Instance.PlayOpenPanel();
