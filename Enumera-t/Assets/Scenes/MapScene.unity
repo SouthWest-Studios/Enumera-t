@@ -5284,58 +5284,62 @@ MonoBehaviour:
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
   endDialogue:
     sentences:
-    - sentence: "Ho heu aconseguit... Heu tornat tots sans i estalvis. Num\xE8ria
+    - sentence: "Osset: Ho heu aconseguit... Heu tornat tots sans i estalvis. Num\xE8ria
         torna a ser un lloc ple de llum i alegria!"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Ho hem fet junts, Osset! El zero ja no pot fer-nos m\xE9s mal."
+    - sentence: "Tres: Ho hem fet junts, Osset! El \"Zero\" ja no pot fer-nos m\xE9s
+        mal."
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "El drac i les seves ombres han desaparegut. La princesa \xE9s lliure,
-        i el regne torna a somriure."
+    - sentence: "Quatre: El drac i les seves ombres han desaparegut. La princesa
+        \xE9s lliure, i el regne torna a somriure."
       characterAnimated: {fileID: 5477703949873802704, guid: 16e67560c88297549bb571bf580a8c3c, type: 3}
-    - sentence: "Gr\xE0cies a tots... Sou els veritables herois de Num\xE8ria."
+    - sentence: "Set: Gr\xE0cies a tots... Sou els veritables herois de Num\xE8ria."
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
-    - sentence: "B\xE9, herois... I ara qu\xE8 fem? Hem salvat el m\xF3n!"
+    - sentence: "Dos: B\xE9, herois... I ara qu\xE8 fem? Hem salvat el m\xF3n!"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "Podr\xEDem fer una festa! Amb past\xEDs i... nombres de colors!"
+    - sentence: "Sis: Podr\xEDem fer una festa! Amb past\xEDs i... nombres de colors!"
       characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
-    - sentence: "Hahaha! O millor encara: podr\xEDem jugar a veure qui resol operacions
-        m\xE9s r\xE0pid!"
+    - sentence: "Nou: Hahaha! O millor encara: podr\xEDem jugar a veure qui resol
+        operacions m\xE9s r\xE0pid!"
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
-    - sentence: "Sempre pensant en les matem\xE0tiques... per\xF2 potser tens ra\xF3."
+    - sentence: "Cinc: Sempre pensant en les matem\xE0tiques... per\xF2 potser tens
+        ra\xF3."
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "I tu, heroi, has fet molt m\xE9s del que pod\xEDem esperar. Has
+    - sentence: "Osset: I tu, has fet molt m\xE9s del que pod\xEDem esperar. Has
         salvat Num\xE8ria... i ens has ensenyat que amb una mica de ra\xF3 i coratge,
         tot \xE9s possible."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Potser s\xED... per\xF2 algun dia entendreu per qu\xE8 ho vaig fer...
-        Ens tornarem a veure."
+    - sentence: "Zero: Potser s\xED... per\xF2 algun dia entendreu per qu\xE8 ho
+        vaig fer... Ens tornarem a veure."
       characterAnimated: {fileID: 8735584270378054065, guid: c1655d1e41c6aee4b9054bdadae55b0a, type: 3}
-    - sentence: "No s\xE9 si \xE9s una amena\xE7a o una promesa... per\xF2 estarem
-        preparats!"
+    - sentence: "Tres: No s\xE9 si \xE9s una amena\xE7a o una promesa... per\xF2
+        estarem preparats!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
-    - sentence: "I aix\xED acaba aquesta aventura... O potser \xE9s nom\xE9s el comen\xE7ament
-        d\u2019una nova?"
+    - sentence: "Osset: I aix\xED acaba aquesta aventura... O potser \xE9s nom\xE9s
+        el comen\xE7ament d\u2019una nova?"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Ei... espereu! I si expliquem a tothom qui ha fet possible aquesta
-        hist\xF2ria?"
+    - sentence: "Dos: Ei... espereu! I si expliquem a tothom qui ha fet possible
+        aquesta hist\xF2ria?"
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
-    - sentence: "Bona idea! Que ning\xFA oblidi els noms dels qui van crear Num\xE8ria!"
+    - sentence: "Cinc: Bona idea! Que ning\xFA oblidi els noms dels qui van crear
+        Num\xE8ria!"
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
-    - sentence: "D\u2019acord, deixeu-m\u2019ho dir jo... S\xED, a tu, jugador! Aquest
-        joc tan especial ha estat fet amb molt d\u2019amor i moltes matem\xE0tiques
+    - sentence: "Osset: D\u2019acord, deixeu-m\u2019ho dir jo... S\xED, a tu, jugador!
+        Aquest joc tan especial ha estat fet amb molt d\u2019amor i moltes matem\xE0tiques
         per:"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Aleix Botella, Mart\xED Sabat\xE9, Ra\xFCl S\xE1nchez i Emma Youngblood."
+    - sentence: "Osset: Aleix Botella, Mart\xED Sabat\xE9, Ra\xFCl S\xE1nchez i Emma
+        Youngblood."
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Un aplaudiment per ells! Sense vosaltres, no existir\xEDem!"
+    - sentence: "Nou: Un aplaudiment per ells! Sense vosaltres, no existir\xEDem!"
       characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
-    - sentence: "Gr\xE0cies per donar-nos vida... i per recordar-nos que fins i tot
-        els n\xFAmeros poden tenir cor."
+    - sentence: "Set: Gr\xE0cies per donar-nos vida... i per recordar-nos que fins
+        i tot els n\xFAmeros poden tenir cor."
       characterAnimated: {fileID: 5477703949873802704, guid: 10abf6e220f2e5a46bbc846b7e0f1cd7, type: 3}
-    - sentence: "I a tu, jugador, gr\xE0cies per jugar, pensar i somiar amb nosaltres.
-        Fins la propera aventura... a Num\xE8ria!"
+    - sentence: "Osset: I a tu, jugador, gr\xE0cies per jugar, pensar i somiar amb
+        nosaltres. Fins la propera aventura... a Num\xE8ria!"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
-    - sentence: "Adeu, heroi! I recorda... les matem\xE0tiques tamb\xE9 poden ser
+    - sentence: "Osset: Adeu! I recorda... les matem\xE0tiques tamb\xE9 poden ser
         m\xE0giques!"
       characterAnimated: {fileID: 4873051103546130915, guid: 0383f271d5c43dd4db32adba328bc8c8, type: 3}
 --- !u!1 &1865333655
