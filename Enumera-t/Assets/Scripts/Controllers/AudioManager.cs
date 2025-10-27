@@ -18,6 +18,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip openPanelSound;
     public AudioClip closePanelSound;
     public AudioClip startLevelSound;
+    public AudioClip OneStarSound;
+    public AudioClip TwoStarSound;
+    public AudioClip ThreeStarSound;
     [Header("Music")]
     public AudioClip battleExplorationMusic;
     public AudioClip mapChillMusic;
@@ -64,6 +67,9 @@ public class AudioManager : MonoBehaviour
     public void PlayOpenPanel() => PlaySFX(openPanelSound);
     public void PlayClosePanel() => PlaySFX(closePanelSound);
     public void PlayLevelStart() => PlaySFX(startLevelSound);
+    public void PlayOneStar() => PlaySFX(OneStarSound);
+    public void PlayTwoStar() => PlaySFX(TwoStarSound);
+    public void PlayThreeStar() => PlaySFX(ThreeStarSound);
 
     public void PlayBattleExploration() => PlayMusic(battleExplorationMusic);
     public void PlayMapChill() => PlayMusic(mapChillMusic);

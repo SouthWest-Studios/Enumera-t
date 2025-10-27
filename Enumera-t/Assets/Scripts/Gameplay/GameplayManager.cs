@@ -425,7 +425,8 @@ public class GameplayManager : MonoBehaviour
         {
             ActivateBoss();
             bossList[level - 1].SetActive(true);
-            healthBar.gameObject.SetActive(true);
+            healthBar.transform.parent.gameObject.SetActive(true);
+
             if (level == 1)
             {
                 if (LevelData.dialogueInGameThree != null && LevelData.dialogueInGameThree.sentences.Length > 0)
@@ -818,6 +819,10 @@ public class GameplayManager : MonoBehaviour
 
                     // Inicia una corrutina que esperará hasta que acabe la animación
                     Debug.Log("Antes de StartCoroutine, activo: " + this.gameObject.activeInHierarchy);
+                    healthBar.transform.parent.gameObject.SetActive(false);
+                    level1.SetActive(false);
+                    level2.SetActive(false);
+                    
                     StartCoroutine(WaitForAnimationAndGoToMap(bossAnimaton));
                 }
                 else
@@ -1017,10 +1022,20 @@ public class GameplayManager : MonoBehaviour
         }
         if (LevelData.dialogueInGameOne != null && LevelData.dialogueInGameOne.sentences.Length > 0)
         {
+            level3.SetActive(false);
+            for (int i = 0; i < 3; i++)
+            {
+                bossList[i].gameObject.SetActive(false);
+            }
             DialogueManager.instance.StartDialogue(LevelData.dialogueInGameVICTORY, SetStarsByErrors);
         }
         else
         {
+            level3.SetActive(false);
+            for (int i = 0; i < 3; i++)
+            {
+                bossList[i].gameObject.SetActive(false);
+            }
             puntuationWindow.SetActive(true);
             if (numberOfErrors <= 0)
             {
@@ -1050,10 +1065,9 @@ public class GameplayManager : MonoBehaviour
     public void SetStarsByErrors()
     {
 
-        healthBar.gameObject.SetActive(false);
-        level1.SetActive(false);
-        level2.SetActive(false);
-        level3.SetActive(false);
+        
+        
+        
         puntuationWindow.SetActive(true);
         PlayOperationEntryAnimation(puntuationWindow);
         AudioManager.Instance.PlayOpenPanel();
