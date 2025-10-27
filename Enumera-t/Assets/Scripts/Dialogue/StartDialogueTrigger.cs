@@ -18,7 +18,7 @@ public class StartDialogueTrigger : MonoBehaviour
             DialogueManager.instance.StartDialogue(startDialogue);
             PlayerPrefs.SetInt("DIALOGUE_START_PLAYED", 1);
         }
-        if (PlayerPrefs.GetInt($"Level_{3}_Stars", 0) > 0)
+        if (PlayerPrefs.GetInt($"Level_{2}_Stars", 0) > 0)
         {
             DialogueManager.instance.StartDialogue(endDialogue);
         }
