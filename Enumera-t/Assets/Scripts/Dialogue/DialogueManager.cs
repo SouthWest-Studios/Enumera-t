@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     private bool _active;       // evita reentradas
     private const int MaxSentences = 100000; // límite duro
 
+    private bool hasTouched = false;
+
     private void Awake()
     {
         instance = this;
@@ -128,8 +130,13 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0) {
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && !hasTouched)) {
+            hasTouched = true;
             DisplayNextSentences();
+        }
+        if(Input.touchCount == 0)
+        {
+            hasTouched = false;
         }
     }
 }

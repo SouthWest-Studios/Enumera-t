@@ -26,6 +26,8 @@ public class LevelInfoManager : MonoBehaviour
 
     public static LevelInfoManager instance;
 
+    private bool hasTouched = false;
+
 
     private void Awake()
     {
@@ -41,9 +43,14 @@ public class LevelInfoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && !hasTouched))
         {
+            hasTouched = true;
             DisplayNextSentences();
+        }
+        if (Input.touchCount == 0)
+        {
+            hasTouched = false;
         }
     }
 
