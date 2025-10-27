@@ -13,6 +13,7 @@ public class SettingsCanvasAnimations : MonoBehaviour
     [SerializeField] Slider musicVolume;                   // MusicVolume
     [SerializeField] Button howToPlayButton;               // HowToPlayButton
     [SerializeField] Button closeSettingsButton;           // CloseSettingsButton
+    [SerializeField] CanvasGroup credits;                   // Credits
 
     [Header("Durations")]
     [SerializeField] float openDuration = 0.6f;
@@ -71,6 +72,26 @@ public class SettingsCanvasAnimations : MonoBehaviour
         if (closeSettingsButton) DOTween.Kill(closeSettingsButton.transform);
         if (sfxVolume) DOTween.Kill(sfxVolume.transform);
         if (musicVolume) DOTween.Kill(musicVolume.transform);
+    }
+
+    public void PlayOpenCredits()
+    {
+        Sequence openSeq = DOTween.Sequence();
+        openSeq.Join(credits.DOFade(1f, openDuration).SetEase(openEase));
+        openSeq.OnComplete(() =>
+        {
+            credits.interactable = true;
+            credits.blocksRaycasts = true;
+        });
+    }
+
+    public void PlayCloseCredits()
+    {
+        credits.interactable = false;
+        credits.blocksRaycasts = false;
+        Sequence openSeq = DOTween.Sequence();
+        openSeq.Join(credits.DOFade(0f, openDuration).SetEase(openEase));
+        
     }
 
     // ---------- API ----------
