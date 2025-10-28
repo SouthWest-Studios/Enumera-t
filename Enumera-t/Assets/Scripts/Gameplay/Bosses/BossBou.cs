@@ -383,7 +383,7 @@ public class BossBou : IBossBehavior
 
     public void OnSwallQuarter()
     {
-        Debug.Log("BossBou => OnSwallQuarter triggered!");
+        
         manager.StartCoroutine(AnimateNumbersToBoss(bouPosition, () => GenerateOperationInternal()));
     }
 
@@ -403,10 +403,7 @@ public class BossBou : IBossBehavior
         //GenerateOperationInternal();
     }
 
-    public void windBossSound()
-    {
-        AudioManager.Instance.PlaywindBoss();
-    }
+    
 
 
 }

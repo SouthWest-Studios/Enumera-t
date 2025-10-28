@@ -21,4 +21,9 @@ public class BossBouAnimationEvents : MonoBehaviour
     {
         AudioManager.Instance.PlaywindBoss();
     }
+
+    public void swallBossSound()
+    {
+        AudioManager.Instance.PlaySwall();
+    }
 }

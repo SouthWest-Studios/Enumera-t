@@ -3803,9 +3803,12 @@ MonoBehaviour:
   nextDialogueSound: {fileID: 8300000, guid: 290a0cdaa72537746a9a8e1bc0c90364, type: 3}
   startDialogueSound: {fileID: 8300000, guid: 8c6b2ebdf564ccc40b9868541a724ce7, type: 3}
   stopDialgueSound: {fileID: 8300000, guid: c612e8cf52d89db4592931888059f93a, type: 3}
-  hidroGraphicPen: {fileID: 8300000, guid: 77517664bd8b319429db90a5c4ae1e55, type: 3}
-  hidroGraphicPen2: {fileID: 8300000, guid: bbf268359eb0ea144bd3cf65b9497157, type: 3}
-  hidroGraphicPen3: {fileID: 8300000, guid: 9989dea9b671cb445912e37fa90da447, type: 3}
+  hidroGraphicPenSound: {fileID: 0}
+  hidroGraphicPenSound2: {fileID: 0}
+  hidroGraphicPenSound3: {fileID: 0}
+  windBossSound: {fileID: 0}
+  victorySound: {fileID: 0}
+  swallSound: {fileID: 0}
   battleExplorationMusic: {fileID: 0}
   mapChillMusic: {fileID: 8300000, guid: 0bdbf61ae6727a84d9fd1c67664df04b, type: 3}
   mapMisteryMusic: {fileID: 8300000, guid: a993f0b36a6a0034ebcb3f133f2117be, type: 3}
@@ -6964,7 +6967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034905954294741410, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_Alpha
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5253358936307594544, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         //PlayerPrefs.DeleteAll();
+        
         DataLevels.Instance.InitializeLevels(levels.Count);
 
         RefreshUI();
@@ -55,8 +56,19 @@ public class LevelManager : MonoBehaviour
                 lvl.image.color = Color.blue;
                 break;
         }
+        for (int i = 0; i < levels.Count; i++)
+        {
+            if (levels[i].state == LevelState.Locked)
+            {
+                levels[i].GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                levels[i].GetComponent<Button>().interactable = true;
+            }
+        }
 
- 
+
         int savedStars = DataLevels.Instance.dataLevels[lvl.id].starsEarned;
         lvl.StopAllCoroutines();
         lvl.StartCoroutine(lvl.FadeStars(savedStars));

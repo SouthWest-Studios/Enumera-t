@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip hidroGraphicPenSound3;
     public AudioClip windBossSound;
     public AudioClip victorySound;
+    public AudioClip swallSound;
     [Header("Music")]
     public AudioClip battleExplorationMusic;
     public AudioClip mapChillMusic;
@@ -83,6 +84,7 @@ public class AudioManager : MonoBehaviour
     public void PlayStopDialogueSound() => PlaySFX(stopDialgueSound);
     public void PlaywindBoss() => PlaySFX(windBossSound);
     public void PlayVictory() => PlaySFX(victorySound);
+    public void PlaySwall() => PlaySFX(swallSound);
     public void PlayHydroGraphicPen()
     {
         int random = Random.Range(1, 4);
