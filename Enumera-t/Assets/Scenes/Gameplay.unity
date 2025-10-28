@@ -1503,9 +1503,9 @@ MonoBehaviour:
   OneStarSound: {fileID: 8300000, guid: 2d63aecc78d178f4eb80b599165c35f0, type: 3}
   TwoStarSound: {fileID: 8300000, guid: fcb9ce95477c0704296f7ad693d060c1, type: 3}
   ThreeStarSound: {fileID: 8300000, guid: 130776416b2bc8b48bd97c7f558075ba, type: 3}
-  nextDialogueSound: {fileID: 0}
-  startDialogueSound: {fileID: 0}
-  stopDialgueSound: {fileID: 0}
+  nextDialogueSound: {fileID: 8300000, guid: 290a0cdaa72537746a9a8e1bc0c90364, type: 3}
+  startDialogueSound: {fileID: 8300000, guid: 8c6b2ebdf564ccc40b9868541a724ce7, type: 3}
+  stopDialgueSound: {fileID: 8300000, guid: c612e8cf52d89db4592931888059f93a, type: 3}
   hidroGraphicPenSound: {fileID: 8300000, guid: 77517664bd8b319429db90a5c4ae1e55, type: 3}
   hidroGraphicPenSound2: {fileID: 8300000, guid: bbf268359eb0ea144bd3cf65b9497157, type: 3}
   hidroGraphicPenSound3: {fileID: 8300000, guid: 9989dea9b671cb445912e37fa90da447, type: 3}
