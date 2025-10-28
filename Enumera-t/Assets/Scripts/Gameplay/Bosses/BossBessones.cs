@@ -23,7 +23,6 @@ public class BossBessones : IBossBehavior
         rt.anchoredPosition += new Vector2(-200, 0); // ejemplo de movimiento
         manager.firstOperationCanvas.transform.localScale = new Vector3(0.516268909f, 0.451735258f, 0.516268909f);
 
-        //manager.AssignNumberPrefab(manager.enemyNumber2, manager.enemyTransf2, true, manager.secondOperationCanvas.transform);
         manager.operationSymbolImage2.sprite = manager.sums
             ? Resources.Load<Sprite>("Sprites/Ui/Gameplay/Suma")
             : Resources.Load<Sprite>("Sprites/Ui/Gameplay/Resta");
@@ -47,7 +46,7 @@ public class BossBessones : IBossBehavior
             manager.alreadyUsedNumbers,
             manager.unlockedNumbersInList);
 
-        Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + ? = {manager.enemyNumber}");
+        //Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + ? = {manager.enemyNumber}");
 
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, false, manager.operationNumberParentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, manager.operationNumberParentTransf);
@@ -62,7 +61,7 @@ public class BossBessones : IBossBehavior
         {
             firstSolved = true;
             manager.victory1 = true;
-            Debug.Log("Primera operación correcta!");
+            //Debug.Log("Primera operación correcta!");
             
             
             temporalNumber1 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
@@ -70,20 +69,20 @@ public class BossBessones : IBossBehavior
             temporalNumber1.transform.localScale = manager.solutionSlot.transform.GetChild(0).localScale;
             temporalNumber1.transform.position = manager.solutionSlot.transform.GetChild(0).position;
             manager.RestoreNumberToSlot(manager.solutionSlot);
-            //manager.solutionSlot.SetActive(false);
+
         }
         else if (operationIndex == 2 && !secondSolved)
         {
             secondSolved = true;
             manager.victory2 = true;
-            Debug.Log("Segunda operación correcta!");
+            //Debug.Log("Segunda operación correcta!");
             manager.enemyNumber2 = manager.bossNumber2;
             temporalNumber2 = UnityEngine.Object.Instantiate(manager.numbersListPrefab[manager.solutionSlot2.transform.GetChild(0).GetComponent<NumberUi>().number - 1]);
             temporalNumber2.transform.SetParent(manager.solutionSlot2.transform, false);
             temporalNumber2.transform.localScale = manager.solutionSlot2.transform.GetChild(0).localScale;
             temporalNumber2.transform.position = manager.solutionSlot2.transform.GetChild(0).position;
             manager.RestoreNumberToSlot(manager.solutionSlot2);
-            //manager.solutionSlot2.SetActive(false);
+
         }
 
         // Cuando ambas estén resueltas:
@@ -104,8 +103,6 @@ public class BossBessones : IBossBehavior
             manager.solutionSlot2.SetActive(true);
             UnityEngine.Object.Destroy(temporalNumber1);
             UnityEngine.Object.Destroy(temporalNumber2);
-            //manager.RestoreNumberToSlot(manager.solutionSlot);
-            //manager.RestoreNumberToSlot(manager.solutionSlot2);
             if (manager.temporalPrefab.Count > 0)
             {
                 foreach (GameObject go in manager.temporalPrefab)
@@ -119,18 +116,18 @@ public class BossBessones : IBossBehavior
             manager.RoundCompleted(2);
             GenerateSecondOperation();
 
-            Debug.Log("¡Ambas operaciones resueltas! Daño al boss.");
+            //Debug.Log("¡Ambas operaciones resueltas! Daño al boss.");
         }
         else
         {
-            Debug.Log("Una operación lista, falta la otra.");
+            //Debug.Log("Una operación lista, falta la otra.");
         }
     }
 
 
     public void OnWrongAnswer()
     {
-        Debug.Log("Respuesta incorrecta en Boss Doble Operación.");
+        //Debug.Log("Respuesta incorrecta en Boss Doble Operación.");
     }
 
     public void Update() { }
@@ -144,7 +141,7 @@ public class BossBessones : IBossBehavior
 
         if (manager.unlockedNumbersInList == 0 || manager.numbersList.Count == 0)
         {
-            Debug.LogError("No hay números disponibles.");
+            //Debug.LogError("No hay números disponibles.");
             return;
         }
 
@@ -190,7 +187,7 @@ public class BossBessones : IBossBehavior
 
         if (!numeroValido)
         {
-            Debug.LogError("No se pudo generar segunda operación.");
+            //Debug.LogError("No se pudo generar segunda operación.");
             manager.alreadyUsedNumbers.Clear();
             return;
         }

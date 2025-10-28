@@ -90,7 +90,7 @@ public class BossBou : IBossBehavior
         int enemy = 0;
         int zPosition = 0; // 0 = primera posición (Z + A + B), 1 = segunda, 2 = tercera
 
-        // Elegimos nueva posición de Z distinta de la anterior
+
         do
         {
             zPosition = Random.Range(0, 3);
@@ -114,7 +114,7 @@ public class BossBou : IBossBehavior
             }
             int startIndex = Random.Range(0, manager.unlockedNumbersInList);
 
-            // Probar con cada candidato de la lista (este candidato será la incógnita)
+
             for (int offset = 0; offset < manager.unlockedNumbersInList; offset++)
             {
                 int i = (startIndex + offset) % manager.unlockedNumbersInList;
@@ -123,33 +123,33 @@ public class BossBou : IBossBehavior
                 // Construir (x,y,z) según la posición de la incógnita
                 if (zPosition == 0)
                 {
-                    x = zCandidate; // incógnita primera
+                    x = zCandidate; 
                     y = b;
                     z = c;
                 }
                 else if (zPosition == 1)
                 {
                     x = a;
-                    y = zCandidate; // incógnita segunda
+                    y = zCandidate; 
                     z = c;
                 }
-                else // zPosition == 2
+                else 
                 {
                     x = a;
                     y = b;
-                    z = zCandidate; // incógnita tercera
+                    z = zCandidate; 
                 }
 
-                // Calcular enemy
+
                 enemy = isSumOperation ? (x + y + z) : (x + y - z);
 
-                // Comprueba rango (ajusta límites según juego)
+
                 if (enemy >= 1 && enemy <= 9)
                 {
                     // guardamos la solución encontrada
                     found = true;
 
-                    // Guardar el z correcto para validación / debug
+
                     requiredZ = zCandidate;
 
                     break;
@@ -165,13 +165,10 @@ public class BossBou : IBossBehavior
             return;
         }
 
-        // Ahora asignar los números VISIBLES (los dos que NO son la incógnita)
-        // y también guardar la posición de la incógnita para la comprobación posterior.
+
         lastZPosition = zPosition;
         manager.enemyNumber = enemy;
 
-        // Dependiendo de la posición de Z, asignamos operationNumber y secondOperationNumber
-        // a los números visibles en el orden que usa la UI.
         if (zPosition == 0)
         {
             // Visual: [ Z ] [ operationNumber ] [ secondOperationNumber ] = enemy
@@ -191,7 +188,6 @@ public class BossBou : IBossBehavior
             manager.secondOperationNumber = y; // b
         }
 
-        // Mostrar visualmente en la UI (tu código original adaptado por posiciones)
         Transform parentTransf = manager.FindChildRecursive(manager.level3.transform, "1rstOperation").transform;
         string opSymbol = isSumOperation ? "+" : "-";
 
@@ -306,11 +302,8 @@ public class BossBou : IBossBehavior
             manager.RestoreNumberToSlot(solutionSlot);
             solutionSlot.SetActive(false);
 
-            lastSolution = number; // guardar la solución para la siguiente ronda
+            lastSolution = number; 
             
-
-
-            // opcional: desactivar slot, instanciar temporalNumber, etc.
         }
         else
         {
@@ -324,13 +317,13 @@ public class BossBou : IBossBehavior
 
 
     public void OnCorrectAnswer(int operationIndex) { }
-    public void OnWrongAnswer() { Debug.Log("Respuesta incorrecta en BossBou."); }
+    public void OnWrongAnswer() { /*Debug.Log("Respuesta incorrecta en BossBou.");*/ }
     public void OnAnswer(int number, int operationIndex) { }
     public void Update() { }
 
     public IEnumerator AnimateNumbersToBoss(Transform bossTarget, System.Action onComplete = null)
     {
-        Debug.Log("AnimateNumbersToBoss started");
+        //Debug.Log("AnimateNumbersToBoss started");
 
         // Clonamos la lista de números actuales
         List<GameObject> numbersToAnimate = new List<GameObject>(manager.bouOperationNumbers);
@@ -356,7 +349,7 @@ public class BossBou : IBossBehavior
         Transform graphicsTransform = bossTarget.Find("Graphics");
         if (graphicsTransform == null)
         {
-            Debug.LogWarning("No se encontró 'Graphics' como hijo del bossTarget. Usando bossTarget directamente.");
+            //Debug.LogWarning("No se encontró 'Graphics' como hijo del bossTarget. Usando bossTarget directamente.");
             graphicsTransform = bossTarget;
         }
 
@@ -386,14 +379,14 @@ public class BossBou : IBossBehavior
             yield return null;
         }
 
-        Debug.Log("Animation finished. Destroying numbers...");
+        //Debug.Log("Animation finished. Destroying numbers...");
 
         foreach (var num in numbersToAnimate)
         {
             if (num != null) GameObject.Destroy(num);
         }
 
-        Debug.Log("All numbers destroyed. Calling onComplete callback.");
+        //Debug.Log("All numbers destroyed. Calling onComplete callback.");
         onComplete?.Invoke();
     }
 

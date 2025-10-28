@@ -55,16 +55,14 @@ public class BossDrac : IBossBehavior
 
             int startIndex = Random.Range(0, manager.unlockedNumbersInList);
 
-            // Probar con cada candidato de la lista (este candidato será la incógnita)
             for (int offset = 0; offset < manager.unlockedNumbersInList; offset++)
             {
                 int i = (startIndex + offset) % manager.unlockedNumbersInList;
                 int z = manager.numbersList[i];
 
-                // Calcular el resultado (enemyNumber) según el tipo de operación
                 int enemy = isSumOperation ? (x + y + z) : (x + y - z);
 
-                // Validar que el resultado esté dentro de los límites del juego
+
                 if (enemy >= 1 && enemy <= 9)
                 {
                     found = true;
@@ -79,11 +77,11 @@ public class BossDrac : IBossBehavior
 
         if (!found)
         {
-            Debug.LogError("No se pudo generar una operación válida con los números disponibles.");
+            //Debug.LogError("No se pudo generar una operación válida con los números disponibles.");
             return;
         }
 
-        // Asignar los valores al manager
+
         manager.operationNumber = foundX;          // X
         manager.secondOperationNumber = foundY;    // Y
         manager.enemyNumber = foundEnemy;          // C (resultado)
@@ -93,7 +91,7 @@ public class BossDrac : IBossBehavior
 
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, true, parentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.secondOperationNumberTransf, true, parentTransf2);
-        //manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf, true, parentTransf);
+
 
         manager.PlayOperationEntryAnimation(parentTransf.gameObject);
 
@@ -109,7 +107,7 @@ public class BossDrac : IBossBehavior
 
     public void OnWrongAnswer()
     {
-        Debug.Log("Respuesta incorrecta en Boss Doble Operación.");
+        //Debug.Log("Respuesta incorrecta en Boss Doble Operación.");
     }
 
     public void Update() { }

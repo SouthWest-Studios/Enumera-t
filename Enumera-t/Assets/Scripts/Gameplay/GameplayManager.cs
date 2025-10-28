@@ -272,27 +272,13 @@ public class GameplayManager : MonoBehaviour
         newBackground.transform.position = backGroundTransf.position;
         newBackground.transform.SetSiblingIndex(0);
 
-        
 
-        //prefab = Resources.Load<GameObject>(path);
-
-        //temporalPosition = bossTransf.position;
-        //bossPrefab = Instantiate(prefab, gameplayCanvas.transform, true);
-        //bossPrefab.transform.position = temporalPosition;
 
         health = maxHealth;
         healthBar.fillAmount = health / 10f;
 
         RoundCompleted(1);
 
-        //if(sums)
-        //{
-        //    OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/Ui/Gameplay/Suma");
-        //}
-        //else
-        //{
-        //    OperationSymbolImage.sprite = Resources.Load<Sprite>("Sprites/Ui/Gameplay/Resta");
-        //}
 
         for (int i = 0; i < slots.Count; i++)
         {
@@ -511,13 +497,13 @@ public class GameplayManager : MonoBehaviour
     // Función auxiliar para devolver número al slot
     private void ReparentKeepWorldScale(Transform child, Transform newParent)
     {
-        // Guarda la escala visual actual del hijo
+
         Vector3 worldScale = child.lossyScale;
 
-        // Asigna nuevo padre manteniendo posición en mundo
+
         child.SetParent(newParent, true);   
 
-        // Calcula la escala local necesaria para mantener la misma escala visual
+
         Vector3 parentScale = newParent.lossyScale;
         child.localScale = new Vector3(
             worldScale.x / parentScale.x,
@@ -602,146 +588,6 @@ public class GameplayManager : MonoBehaviour
             }
         }
     }
-
-
-
-
-    //public void RoundCompleted(int operationIndex)
-    //{
-    //    if(operationIndex == 2)
-    //    {
-    //        RestoreNumberToSlot(operationIndex);
-    //        return;
-    //    }
-    //    if( isBoss && health == 0)
-    //    {
-
-    //        SceneManager.LoadScene("MapScene");
-    //    }
-    //    // Límite de intentos global para evitar bucle infinito
-    //    int intentosGlobales = 0;
-    //    int maxIntentosGlobales = 50;
-    //    bool numeroValido = false;
-
-    //    if (unlockedNumbersInList == 0 || numbersList.Count == 0)
-    //    {
-    //        Debug.LogError("No hay números disponibles en numbersList o unlockedNumbersInList es 0.");
-    //        return;
-    //    }
-
-    //    while (!numeroValido && intentosGlobales < maxIntentosGlobales)
-    //    {
-    //        intentosGlobales++;
-
-    //        if (sums)
-    //        {
-    //            if (isBoss)
-    //            {
-    //                enemyNumber = bossNumber;
-    //            }
-    //            else
-    //            {
-    //                enemyNumber = Random.Range(5, 10);
-    //            }
-
-    //            if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 5)
-    //            {
-
-    //                operationNumber = OperationGenerator.PosibleSolution(
-    //                sums,
-    //                operationNumber,
-    //                false,
-    //                1,
-    //                6,
-    //                enemyNumber,
-    //                numbersList,
-    //                alreadyUsedNumbers,
-    //                unlockedNumbersInList);
-    //            }
-    //            else
-    //            {
-
-    //                operationNumber = OperationGenerator.PosibleSolution(
-    //                sums,
-    //                operationNumber,
-    //                true,
-    //                1,
-    //                6,
-    //                enemyNumber,
-    //                numbersList,
-    //                alreadyUsedNumbers,
-    //                unlockedNumbersInList);
-
-
-    //            }
-    //        }
-    //        else
-    //        {
-    //            if (isBoss)
-    //            {
-    //                enemyNumber = bossNumber;
-    //            }
-    //            else
-    //            {
-    //                enemyNumber = Random.Range(1, 6);
-    //            }
-
-    //            if (alreadyUsedNumbers.Count > 0 && alreadyUsedNumbers.Count < 10 - enemyNumber)
-    //            {
-
-    //                operationNumber = OperationGenerator.PosibleSolution(
-    //                sums,
-    //                operationNumber,
-    //                false,
-    //                enemyNumber,
-    //                10,
-    //                enemyNumber,
-    //                numbersList,
-    //                alreadyUsedNumbers,
-    //                unlockedNumbersInList);
-    //            }
-    //            else
-    //            {
-    //                operationNumber = OperationGenerator.PosibleSolution(
-    //                 sums,
-    //                 operationNumber,
-    //                 true,
-    //                 enemyNumber,
-    //                 10,
-    //                 enemyNumber,
-    //                 numbersList,
-    //                 alreadyUsedNumbers,
-    //                 unlockedNumbersInList);
-    //            }
-    //        }
-
-    //        if (operationNumber != 0)
-    //        {
-    //            numeroValido = true;
-    //        }
-    //        else
-    //        {
-    //            alreadyUsedNumbers.Clear(); // reset si no hay solución
-    //        }
-    //    }
-
-    //    if (!numeroValido)
-    //    {
-    //        Debug.LogError("No se pudo encontrar un número válido para esta ronda.");
-    //        return;
-    //    }
-
-    //    alreadyUsedNumbers.Add(operationNumber);
-
-    //    // Asignar sprite de operación
-    //    if(operationIndex == 1)
-    //    {
-    //        AssignNumberPrefab(enemyNumber, enemyTransf, false, operationNumberParentTransf);
-    //        AssignNumberPrefab(operationNumber, operationNumberTransf, true, operationNumberParentTransf);
-    //    }
-    //    RestoreNumberToSlot(operationIndex);
-    //}
-
     public void RoundCompleted(int operationIndex)
     {
         // Caso de operación secundaria del boss
@@ -860,7 +706,6 @@ public class GameplayManager : MonoBehaviour
                         LevelData.instance.levelComplete = true;
                     }
 
-                    //SceneManager.LoadScene("MapScene");
                     TransitionCanvas.instance.DoTransition("MapScene");
                 }
                 
@@ -1113,7 +958,6 @@ public class GameplayManager : MonoBehaviour
             AssignNumberPrefab(numberOfErrors, numberPuntuationTransf, true, puntuationWindow.transform);
         }
 
-        //Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
 
         FadeStars(starsEarned);
 
@@ -1172,7 +1016,6 @@ public class GameplayManager : MonoBehaviour
     {
 
         AudioManager.Instance.PlayClosePanel();
-        //SceneManager.LoadScene("MapScene");
         TransitionCanvas.instance.DoTransition("MapScene");
     }
 
