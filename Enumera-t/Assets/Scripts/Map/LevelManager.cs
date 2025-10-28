@@ -19,6 +19,11 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
+    public Color lockedColor;
+    public Color unlockedColor;
+    public Color completeColor;
+
+
     private void Awake()
     {
         instance = this;
@@ -47,13 +52,13 @@ public class LevelManager : MonoBehaviour
         switch (lvl.state)
         {
             case LevelState.Locked:
-                lvl.image.color = Color.grey;
+                lvl.image.color = lockedColor;
                 break;
             case LevelState.Unlocked:
-                lvl.image.color = Color.green;
+                lvl.image.color = unlockedColor;
                 break;
             case LevelState.Completed:
-                lvl.image.color = Color.blue;
+                lvl.image.color = completeColor;
                 break;
         }
         for (int i = 0; i < levels.Count; i++)
