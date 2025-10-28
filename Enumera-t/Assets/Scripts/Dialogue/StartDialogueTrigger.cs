@@ -20,9 +20,15 @@ public class StartDialogueTrigger : MonoBehaviour
         }
         if (PlayerPrefs.GetInt($"Level_{2}_Stars", 0) > 0 && PlayerPrefs.GetInt("DIALOGUE_END_PLAYED", 0) == 0)
         {
-            DialogueManager.instance.StartDialogue(endDialogue);
+            DialogueManager.instance.StartDialogue(endDialogue, OnEndFinalDialogue);
             PlayerPrefs.SetInt("DIALOGUE_END_PLAYED", 1);
         }
+    }
+
+    private void OnEndFinalDialogue()
+    {
+        SettingsCanvasAnimations.instance.PlayOpen();
+        SettingsCanvasAnimations.instance.PlayOpenEsborrar();
     }
 
     // Update is called once per frame

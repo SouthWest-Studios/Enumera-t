@@ -40,8 +40,11 @@ public class SettingsCanvasAnimations : MonoBehaviour
     Sequence _openSeq, _closeSeq;
     readonly Dictionary<Transform, Tween> _hoverTweens = new();
 
+    public static SettingsCanvasAnimations instance;
+
     void Awake()
     {
+        instance = this;
         if (!canvasGroup) canvasGroup = GetComponent<CanvasGroup>();
         CacheInitials();
         HideInstant();
