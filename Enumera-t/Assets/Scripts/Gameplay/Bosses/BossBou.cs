@@ -285,7 +285,24 @@ public class BossBou : IBossBehavior
             temporalNumber.transform.SetParent(parentTransf, false);
             
             temporalNumber.transform.localScale = solutionSlot.transform.GetChild(0).localScale;
-            temporalNumber.transform.position = new Vector3(solutionSlot.transform.GetChild(0).position.x, solutionSlot.transform.GetChild(0).position.y + 90, solutionSlot.transform.GetChild(0).position.z);
+            RectTransform tempRect = temporalNumber.GetComponent<RectTransform>();
+            RectTransform targetRect = solutionSlot.transform.GetChild(0).GetComponent<RectTransform>();
+            RectTransform parentRect = parentTransf.GetComponent<RectTransform>();
+
+
+            Vector3 worldPos = targetRect.TransformPoint(new Vector3(30, 70, 0));
+
+
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parentRect,
+                RectTransformUtility.WorldToScreenPoint(null, worldPos),
+                null,
+                out localPoint
+            );
+
+            tempRect.anchoredPosition = localPoint;
+
             manager.RestoreNumberToSlot(solutionSlot);
             solutionSlot.SetActive(false);
 
