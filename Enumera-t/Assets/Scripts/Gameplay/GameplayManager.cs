@@ -433,24 +433,30 @@ public class GameplayManager : MonoBehaviour
             {
                 if (LevelData.dialogueInGameThree != null && LevelData.dialogueInGameThree.sentences.Length > 0)
                 {
+                    AudioManager.Instance.musicSource.loop = false;
                     AudioManager.Instance.PlayIntroBoss();
                     DialogueManager.instance.StartDialogue(LevelData.dialogueInGameThree, AudioManager.Instance.PlayBossFight);
+                    StartCoroutine(WaitForIntroToEnd());
                 }
             }
             else if(level == 2)
             {
                 if (LevelData.dialogueInGameTwo != null && LevelData.dialogueInGameTwo.sentences.Length > 0)
                 {
+                    AudioManager.Instance.musicSource.loop = false;
                     AudioManager.Instance.PlayIntroBoss();
                     DialogueManager.instance.StartDialogue(LevelData.dialogueInGameTwo, AudioManager.Instance.PlayBossFight);
+                    StartCoroutine(WaitForIntroToEnd());
                 }
             }
             else
             {
                 if (LevelData.dialogueInGameTwo != null && LevelData.dialogueInGameTwo.sentences.Length > 0)
                 {
+                    AudioManager.Instance.musicSource.loop = false;
                     AudioManager.Instance.PlayIntroBoss();
                     DialogueManager.instance.StartDialogue(LevelData.dialogueInGameTwo, AudioManager.Instance.PlayBossFight);
+                    StartCoroutine(WaitForIntroToEnd());
                 }
             }
             
@@ -468,6 +474,15 @@ public class GameplayManager : MonoBehaviour
         
 
         
+    }
+
+    private IEnumerator WaitForIntroToEnd()
+    {
+
+        yield return new WaitForSeconds(AudioManager.Instance.musicSource.clip.length);
+
+        AudioManager.Instance.PlayBossFight();
+        AudioManager.Instance.musicSource.loop = true;
     }
 
     private void ReparentKeepVisuals(Transform child, Transform newParent)
