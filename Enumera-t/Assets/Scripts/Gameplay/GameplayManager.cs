@@ -113,6 +113,7 @@ public class GameplayManager : MonoBehaviour
     private bool hasPlayedDialogue = false;
     public Transform numberPuntuationTransf;
     public HorizontalLayoutGroup numbersLayout;
+    public bool isInfinite;
 
     public interface IBossBehavior
     {
@@ -137,7 +138,7 @@ public class GameplayManager : MonoBehaviour
 
         
         //level data
-        if (LevelData.instance != null)
+        if (LevelData.instance != null && !isInfinite)
         {
             unlockedNumbersInList = LevelData.instance.numbersUnlocked;
             level = LevelData.instance.levelId + 1;
@@ -815,7 +816,7 @@ public class GameplayManager : MonoBehaviour
                     }
                     else
                     {
-                        if (LevelData.instance != null)
+                        if (LevelData.instance != null && !isInfinite)
                         {
                             int errors = numberOfErrors;
                             int starsEarned = 1;
@@ -844,7 +845,7 @@ public class GameplayManager : MonoBehaviour
                 }
                 else
                 {
-                    if (LevelData.instance != null)
+                    if (LevelData.instance != null && !isInfinite)
                     {
                         int errors = numberOfErrors;
                         int starsEarned = 1;
@@ -1020,8 +1021,9 @@ public class GameplayManager : MonoBehaviour
         float duration = stateInfo.length;
         float triggerMoment = duration * 0.9f;
         yield return new WaitForSeconds(triggerMoment);
+        AudioManager.Instance.StopMusicSource();
         AudioManager.Instance.PlayVictory();
-        if (LevelData.instance != null)
+        if (LevelData.instance != null && !isInfinite)
         {
             int errors = numberOfErrors;
             int starsEarned = 1;

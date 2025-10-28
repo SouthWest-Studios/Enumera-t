@@ -79,11 +79,16 @@ public class LevelManager : MonoBehaviour
         AudioManager.Instance.PlayLevelStart();
         if (levels[levelId].state != LevelState.Locked)
         {
-            DataLevels.Instance.dataLevels[levelId].numbersUnlocked = levels[levelId].unlockedNumbersToBe;
-            //SceneManager.LoadScene("Gameplay");
-            TransitionCanvas.instance.DoTransition("Gameplay");
+            DataLevels.Instance.dataLevels[levelId].numbersUnlocked = levels[levelId].unlockedNumbersToBe;          
             DataLevels.Instance.currentLevel = levelId;
+            TransitionCanvas.instance.DoTransition("Gameplay");
         }
        
+    }
+
+    public void LoadLevelSceneSimple()
+    {
+        TransitionCanvas.instance.DoTransition("GameplayInfinite");
+
     }
 }

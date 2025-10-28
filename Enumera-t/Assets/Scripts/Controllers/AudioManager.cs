@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Gameplay" && battleExplorationMusic != null)
+        if (SceneManager.GetActiveScene().name == "Gameplay" || SceneManager.GetActiveScene().name == "GameplayInfinite" && battleExplorationMusic != null)
         {
             PlayBattleExploration();
 
@@ -114,7 +114,12 @@ public class AudioManager : MonoBehaviour
     public void PlayMapChill() => PlayMusic(mapChillMusic);
     public void PlayMapMystery() => PlayMusic(mapMisteryMusic);
     public void PlayIntroBoss() => PlayMusic(introBossMusic);
-    public void PlayBossFight() => PlayMusic(bossFightMusic);
+    public void PlayBossFight()
+    {
+        musicSource.loop = true;
+        PlayMusic(bossFightMusic);
+    }
+
 
 
     public void StartSfxSource()

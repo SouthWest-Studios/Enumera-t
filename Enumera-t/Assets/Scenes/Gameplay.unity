@@ -1506,9 +1506,9 @@ MonoBehaviour:
   nextDialogueSound: {fileID: 0}
   startDialogueSound: {fileID: 0}
   stopDialgueSound: {fileID: 0}
-  hidroGraphicPenSound: {fileID: 0}
-  hidroGraphicPenSound2: {fileID: 0}
-  hidroGraphicPenSound3: {fileID: 0}
+  hidroGraphicPenSound: {fileID: 8300000, guid: 77517664bd8b319429db90a5c4ae1e55, type: 3}
+  hidroGraphicPenSound2: {fileID: 8300000, guid: bbf268359eb0ea144bd3cf65b9497157, type: 3}
+  hidroGraphicPenSound3: {fileID: 8300000, guid: 9989dea9b671cb445912e37fa90da447, type: 3}
   windBossSound: {fileID: 8300000, guid: 1bef8da2e5e8eb842b6f70edfab40df8, type: 3}
   victorySound: {fileID: 8300000, guid: ed5866852de35854abe7f26eb05e3f6c, type: 3}
   swallSound: {fileID: 8300000, guid: 7b4f5d90f33053c459eeb94567ad4648, type: 3}
@@ -2390,6 +2390,7 @@ MonoBehaviour:
   maxRoundsBeforeDialogue: 3
   numberPuntuationTransf: {fileID: 1051844942}
   numbersLayout: {fileID: 672843860}
+  isInfinite: 0
 --- !u!1 &632851121
 GameObject:
   m_ObjectHideFlags: 0
