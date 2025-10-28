@@ -126,7 +126,7 @@ public class BossDrac : IBossBehavior
         {
             if(manager.operationNumber + manager.secondOperationNumber + number == manager.enemyNumber)
             {
-
+                manager.number4.GetComponent<Animator>().SetTrigger("attack");
                 return true;
             }
             else
@@ -140,7 +140,7 @@ public class BossDrac : IBossBehavior
         {
             if (manager.operationNumber + manager.secondOperationNumber - number == manager.enemyNumber)
             {
-                
+                manager.number4.GetComponent<Animator>().SetTrigger("attack");
                 return true;
             }
             else
