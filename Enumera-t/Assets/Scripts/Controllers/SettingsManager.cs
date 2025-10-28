@@ -48,6 +48,12 @@ public class SettingsManager : MonoBehaviour
         ApplyVolume(musicParam, music);
     }
 
+    public void OnEsborrarProgres()
+    {
+        PlayerPrefs.DeleteAll();PlayerPrefs.Save();
+        TransitionCanvas.instance.DoTransition("MapScene");
+    }
+
     public void OnMute()
     {
         if (muteMusic.activeSelf)

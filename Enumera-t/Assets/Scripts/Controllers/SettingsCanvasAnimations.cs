@@ -14,6 +14,7 @@ public class SettingsCanvasAnimations : MonoBehaviour
     [SerializeField] Button howToPlayButton;               // HowToPlayButton
     [SerializeField] Button closeSettingsButton;           // CloseSettingsButton
     [SerializeField] CanvasGroup credits;                   // Credits
+    [SerializeField] CanvasGroup esborrarProgres;
 
     [Header("Durations")]
     [SerializeField] float openDuration = 0.6f;
@@ -73,6 +74,27 @@ public class SettingsCanvasAnimations : MonoBehaviour
         if (sfxVolume) DOTween.Kill(sfxVolume.transform);
         if (musicVolume) DOTween.Kill(musicVolume.transform);
     }
+
+    public void PlayOpenEsborrar()
+    {
+        Sequence openSeq = DOTween.Sequence();
+        openSeq.Join(esborrarProgres.DOFade(1f, openDuration).SetEase(openEase));
+        openSeq.OnComplete(() =>
+        {
+            esborrarProgres.interactable = true;
+            esborrarProgres.blocksRaycasts = true;
+        });
+    }
+
+    public void PlayCloseEsborrar()
+    {
+        esborrarProgres.interactable = false;
+        esborrarProgres.blocksRaycasts = false;
+        Sequence openSeq = DOTween.Sequence();
+        openSeq.Join(esborrarProgres.DOFade(0f, openDuration).SetEase(openEase));
+
+    }
+
 
     public void PlayOpenCredits()
     {
