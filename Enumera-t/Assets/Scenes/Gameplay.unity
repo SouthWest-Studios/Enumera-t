@@ -2334,7 +2334,7 @@ MonoBehaviour:
   numbersList: 020000000500000003000000060000000900000004000000070000000100000008000000
   unlockedNumbersInList: 7
   alreadyUsedNumbers: 
-  maxRoundsBeforeBoss: 1
+  maxRoundsBeforeBoss: 6
   isBoss: 0
   health: 2
   maxHealth: 10
@@ -5762,7 +5762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1344313798
 RectTransform:
   m_ObjectHideFlags: 0
