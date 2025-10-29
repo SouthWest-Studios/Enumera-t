@@ -536,7 +536,10 @@ public class GameplayManager : MonoBehaviour
                     if (prohibit != null)
                         prohibit.gameObject.SetActive(true);
                     else
-                        Debug.LogWarning("No se encontró 'prohibit'");
+                    {
+                        //Debug.LogWarning("No se encontró 'prohibit'");
+                    }
+                        
                 }
 
                 Transform child = targetSlot.transform.GetChild(0);
@@ -571,7 +574,10 @@ public class GameplayManager : MonoBehaviour
                         if (prohibit2 != null)
                             prohibit2.gameObject.SetActive(true);
                         else
-                            Debug.LogWarning("No se encontró 'prohibit'");
+                        {
+                            ////Debug.LogWarning("No se encontró 'prohibit'");
+                        }
+
                     }
                 }
 
@@ -581,7 +587,10 @@ public class GameplayManager : MonoBehaviour
                     if (prohibit != null)
                         prohibit.gameObject.SetActive(false);
                     else
-                        Debug.LogWarning("No se encontró 'prohibit'");
+                    {
+                        ////Debug.LogWarning("No se encontró 'prohibit'");
+                    }
+
                 }
             }
 
@@ -686,7 +695,7 @@ public class GameplayManager : MonoBehaviour
                     }
 
                     // Inicia una corrutina que esperará hasta que acabe la animación
-                    Debug.Log("Antes de StartCoroutine, activo: " + this.gameObject.activeInHierarchy);
+                    //Debug.Log("Antes de StartCoroutine, activo: " + this.gameObject.activeInHierarchy);
                     healthBar.transform.parent.gameObject.SetActive(false);
                     level1.SetActive(false);
                     level2.SetActive(false);
@@ -764,7 +773,7 @@ public class GameplayManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("No se pudo castear bossBehavior a BossBou");
+                //Debug.LogError("No se pudo castear bossBehavior a BossBou");
             }
         }
     }
@@ -842,8 +851,8 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator WaitForAnimationAndGoToMap(Animator bossAnimator)
     {
-        Debug.Log("Coroutine entró, gameObject activo: " + gameObject.activeInHierarchy + ", enabled: " + enabled);
-        Debug.Log("Boss animator actual state: " + bossAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash);
+        //Debug.Log("Coroutine entró, gameObject activo: " + gameObject.activeInHierarchy + ", enabled: " + enabled);
+        //Debug.Log("Boss animator actual state: " + bossAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash);
 
         yield return null;
         for (int i = 0; i < bossAnimator.layerCount; i++)
@@ -852,11 +861,11 @@ public class GameplayManager : MonoBehaviour
             if (clips.Length > 0)
             {
                 string clipName = clips[0].clip.name;
-                Debug.Log($"Layer {i}: clip activo = {clipName}");
+                //Debug.Log($"Layer {i}: clip activo = {clipName}");
             }
             else
             {
-                Debug.Log($"Layer {i}: no hay clip activo");
+                //Debug.Log($"Layer {i}: no hay clip activo");
             }
         }
 

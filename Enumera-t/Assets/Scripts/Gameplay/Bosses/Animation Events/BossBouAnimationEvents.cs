@@ -13,7 +13,7 @@ public class BossBouAnimationEvents : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("BossBouAnimationEvents: bossBouLogic no asignado");
+            //Debug.LogWarning("BossBouAnimationEvents: bossBouLogic no asignado");
         }
     }
 

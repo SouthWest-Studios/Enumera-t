@@ -225,7 +225,7 @@ public class BossBessones : IBossBehavior
         if ((correctOp1 && firstSolved && operationIndex == 1) ||
             (correctOp2 && secondSolved && operationIndex == 2))
         {
-            Debug.Log("Esta operación ya fue resuelta.");
+            //Debug.Log("Esta operación ya fue resuelta.");
             return;
         }
 

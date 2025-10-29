@@ -39,8 +39,8 @@ public class BossBou : IBossBehavior
 
     public void GenerateOperation()
     {
-        Debug.Log("generate");
-        Debug.Log(firstTime);
+        //Debug.Log("generate");
+        //Debug.Log(firstTime);
 
         if (!firstTime)
         {
@@ -55,7 +55,7 @@ public class BossBou : IBossBehavior
             }
             else
             {
-                Debug.LogWarning("No se encontró el Animator en bouPosition, generando operación inmediatamente.");
+                //Debug.LogWarning("No se encontró el Animator en bouPosition, generando operación inmediatamente.");
                 GenerateOperationInternal();
             }
         }
@@ -110,7 +110,7 @@ public class BossBou : IBossBehavior
                 else if (lastZPosition == 1) b = lastSolution;
                 else c = lastSolution;
 
-                Debug.Log($"Manteniendo lastSolution {lastSolution} en la posición {lastZPosition}");
+                //Debug.Log($"Manteniendo lastSolution {lastSolution} en la posición {lastZPosition}");
             }
             int startIndex = Random.Range(0, manager.unlockedNumbersInList);
 
@@ -158,7 +158,7 @@ public class BossBou : IBossBehavior
 
         if (!found)
         {
-            Debug.LogError("No se pudo generar una operación válida para BossBou.");
+            //Debug.LogError("No se pudo generar una operación válida para BossBou.");
             lastSolution = 0;
             GenerateOperationInternal();
             return;
@@ -201,7 +201,7 @@ public class BossBou : IBossBehavior
             manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf2.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf3.transform, true, parentTransf);
 
-            Debug.Log($"[BossBou] Operación generada: Z + {manager.operationNumber} {opSymbol} {manager.secondOperationNumber} = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
+            //Debug.Log($"[BossBou] Operación generada: Z + {manager.operationNumber} {opSymbol} {manager.secondOperationNumber} = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
         }
         else if (zPosition == 1)
         {
@@ -214,7 +214,7 @@ public class BossBou : IBossBehavior
             manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf3.transform, true, parentTransf);
 
-            Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + Z {opSymbol} {manager.secondOperationNumber} = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
+            //Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + Z {opSymbol} {manager.secondOperationNumber} = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
         }
         else
         {
@@ -227,7 +227,7 @@ public class BossBou : IBossBehavior
             manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf.transform, true, parentTransf);
             manager.AssignNumberPrefab(manager.secondOperationNumber, manager.operationNumberTransf2.transform, true, parentTransf);
 
-            Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + {manager.secondOperationNumber} {opSymbol} Z = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
+            //Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + {manager.secondOperationNumber} {opSymbol} Z = {manager.enemyNumber} | Z posición: {zPosition} | Z correcto: {requiredZ}");
         }
         if(temporalNumber)
         {
@@ -308,7 +308,7 @@ public class BossBou : IBossBehavior
         {
             manager.numberOfErrors++;
             manager.RestoreNumberToSlot(solutionSlot, true);
-            Debug.Log($"[BossBou] Respuesta INCORRECTA. Intentaste: {number}. Esperado: {requiredZ} (pero depende de la posición)");
+            //Debug.Log($"[BossBou] Respuesta INCORRECTA. Intentaste: {number}. Esperado: {requiredZ} (pero depende de la posición)");
         }
 
         return correct;

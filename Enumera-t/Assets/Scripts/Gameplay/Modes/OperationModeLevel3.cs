@@ -74,7 +74,7 @@ public class OperationModeLevel3 : IOperationMode
 
         if (!found)
         {
-            Debug.LogError("No se pudo generar una operación válida con los números disponibles.");
+            //Debug.LogError("No se pudo generar una operación válida con los números disponibles.");
             return;
         }
 

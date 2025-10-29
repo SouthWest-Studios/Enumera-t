@@ -53,7 +53,7 @@ public static class OperationGenerator
 
         if (!existeSolucion)
         {
-            Debug.Log("no encontrado");
+            //Debug.Log("no encontrado");
                 return 0;
         }
             

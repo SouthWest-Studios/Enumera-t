@@ -44,17 +44,17 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogo dialogo, UnityAction onDialogueFinish = null)
     {
-        if (_active) { Debug.LogWarning("[Dialogue] Reentrante ignorado"); return; }
+        if (_active) { /*Debug.LogWarning("[Dialogue] Reentrante ignorado");*/ return; }
         if (dialogo == null || dialogo.sentences == null || dialogo.sentences.Count() == 0)
         {
-            Debug.LogError("[Dialogue] Dialogo vacío o nulo"); return;
+            /*Debug.LogError("[Dialogue] Dialogo vacío o nulo");*/ return;
         }
 
         // clamp para evitar reservar colas absurdas por datos corruptos
         int count = dialogo.sentences.Count();
         if (count > MaxSentences)
         {
-            Debug.LogError($"[Dialogue] Count desmesurado: {count} > {MaxSentences}. Se trunca.");
+            //Debug.LogError($"[Dialogue] Count desmesurado: {count} > {MaxSentences}. Se trunca.");
             count = MaxSentences;
         }
 
@@ -62,7 +62,7 @@ public class DialogueManager : MonoBehaviour
         foreach (Transform child in characterAnimatedSlot.transform) Destroy(child.gameObject);
         if (dialogo.sentences[0].characterAnimated == null)
         {
-            Debug.LogError("[Dialogue] characterAnimated nulo en la primera frase"); return;
+            /*Debug.LogError("[Dialogue] characterAnimated nulo en la primera frase");*/ return;
         }
         Instantiate(dialogo.sentences[0].characterAnimated, characterAnimatedSlot.transform);
 
@@ -104,7 +104,7 @@ public class DialogueManager : MonoBehaviour
 
         if (sentence.characterAnimated == null)
         {
-            Debug.LogWarning("[Dialogue] characterAnimated nulo en frase. Se mantiene el actual.");
+            ////Debug.LogWarning("[Dialogue] characterAnimated nulo en frase. Se mantiene el actual.");
         }
         else if (currentCharacter != sentence.characterAnimated.name)
         {
