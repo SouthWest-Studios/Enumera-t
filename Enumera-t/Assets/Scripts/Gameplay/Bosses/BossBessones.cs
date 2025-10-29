@@ -6,7 +6,7 @@ using static GameplayManager;
 public class BossBessones : IBossBehavior
 {
     private GameplayManager manager;
-    public int damageTaken = 2;
+    public int damageTaken = 1;
     public bool firstSolved = false;
     public bool secondSolved = false;
     private GameObject temporalNumber1;
@@ -44,7 +44,8 @@ public class BossBessones : IBossBehavior
             manager.enemyNumber,
             manager.numbersList,
             manager.alreadyUsedNumbers,
-            manager.unlockedNumbersInList);
+            manager.unlockedNumbersInList,
+            lastOperationNumber);
 
         //Debug.Log($"[BossBou] Operación generada: {manager.operationNumber} + ? = {manager.enemyNumber}");
 
@@ -155,11 +156,12 @@ public class BossBessones : IBossBehavior
                         manager.operationNumber2,
                         false,
                         1,
-                        6,
+                        10,
                         manager.enemyNumber2,
                         manager.numbersList,
                         manager.alreadyUsedNumbers,
-                        manager.unlockedNumbersInList);
+                        manager.unlockedNumbersInList,
+                        lastOperationNumber2);
             }
 
 
@@ -175,7 +177,8 @@ public class BossBessones : IBossBehavior
                         manager.enemyNumber2,
                         manager.numbersList,
                         manager.alreadyUsedNumbers,
-                        manager.unlockedNumbersInList);
+                        manager.unlockedNumbersInList,
+                        lastOperationNumber2);
             }
 
 

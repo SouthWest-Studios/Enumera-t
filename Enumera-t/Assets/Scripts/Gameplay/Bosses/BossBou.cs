@@ -10,7 +10,7 @@ public class BossBou : IBossBehavior
 {
     private GameplayManager manager;
 
-    private int lastSolution = 0; // Guarda el número correcto de la operación anterior
+    private int lastSolution = 0;
     private int lastZPosition = -1; // 0 = X, 1 = Y, 2 = Z (posición anterior de la incógnita)
     private GameObject temporalNumber;
     public int damageTaken = 2;
@@ -146,7 +146,6 @@ public class BossBou : IBossBehavior
 
                 if (enemy >= 1 && enemy <= 9)
                 {
-                    // guardamos la solución encontrada
                     found = true;
 
 

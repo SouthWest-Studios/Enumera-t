@@ -5,6 +5,8 @@ public class OperationModeLevel1 : IOperationMode
 {
     private GameplayManager manager;
 
+    int lastNumber;
+
     public void Init(GameplayManager manager)
     {
         this.manager = manager;
@@ -20,12 +22,15 @@ public class OperationModeLevel1 : IOperationMode
             manager.operationNumber,
             true,
             1,
-            6,
+            10,
             manager.enemyNumber,
             manager.numbersList,
             manager.alreadyUsedNumbers,
-            manager.unlockedNumbersInList
+            manager.unlockedNumbersInList,
+            lastNumber
         );
+
+        lastNumber = manager.operationNumber;
 
         manager.AssignNumberPrefab(manager.enemyNumber, manager.enemyTransf, true, manager.operationNumberParentTransf);
         manager.AssignNumberPrefab(manager.operationNumber, manager.operationNumberTransf, true, manager.operationNumberParentTransf);

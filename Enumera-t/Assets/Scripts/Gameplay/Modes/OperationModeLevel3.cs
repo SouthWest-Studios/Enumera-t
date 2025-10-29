@@ -9,6 +9,7 @@ public class OperationModeLevel3 : IOperationMode
     private int MYx;
     private int MYy;
     private int MYz; // El número que rellenará el jugador
+    int lastEnemy = 0;
 
     public void Init(GameplayManager manager)
     {
@@ -54,17 +55,18 @@ public class OperationModeLevel3 : IOperationMode
                 int i = (startIndex + offset) % manager.unlockedNumbersInList;
                 int z = manager.numbersList[i];
 
-                // Calcular el resultado (enemyNumber) según el tipo de operación
+
                 int enemy = isSumOperation ? (x + y + z) : (x + y - z);
 
-                // Validar que el resultado esté dentro de los límites del juego
-                if (enemy >= 1 && enemy <= 9)
+
+                if (enemy >= 1 && enemy <= 9 && enemy != lastEnemy)
                 {
                     found = true;
                     foundX = x;
                     foundY = y;
                     foundZ = z;
                     foundEnemy = enemy;
+                    lastEnemy = enemy;
                     break;
                 }
             }

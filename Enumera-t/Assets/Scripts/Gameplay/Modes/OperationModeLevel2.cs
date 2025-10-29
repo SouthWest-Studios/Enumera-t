@@ -5,6 +5,8 @@ public class OperationModeLevel2 : IOperationMode
 {
     private GameplayManager manager;
 
+    int lastNumber = 0;
+
     public void Init(GameplayManager manager)
     {
         this.manager = manager;
@@ -27,11 +29,12 @@ public class OperationModeLevel2 : IOperationMode
             manager.operationNumber,
             true,
             1,
-            6,
+            10,
             manager.enemyNumber,
             manager.numbersList,
             manager.alreadyUsedNumbers,
-            manager.unlockedNumbersInList);
+            manager.unlockedNumbersInList,
+            lastNumber);
         }
         else
         {
@@ -40,13 +43,16 @@ public class OperationModeLevel2 : IOperationMode
             manager.sums,
             manager.operationNumber,
             true,
-            manager.enemyNumber,
+            1,
             10,
             manager.enemyNumber,
             manager.numbersList,
             manager.alreadyUsedNumbers,
-            manager.unlockedNumbersInList);
+            manager.unlockedNumbersInList,
+            lastNumber);
         }
+
+        lastNumber = manager.enemyNumber;
 
         Transform parentTransf = manager.FindChildRecursive(manager.level2.transform, "1rstOperation").transform;
 

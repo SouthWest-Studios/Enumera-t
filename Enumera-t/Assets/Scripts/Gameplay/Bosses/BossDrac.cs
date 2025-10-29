@@ -11,6 +11,8 @@ public class BossDrac : IBossBehavior
     private int MYy;
     private int MYz;
 
+    int lastEnemy = 0;
+
     public void Init(GameplayManager manager)
     {
         this.manager = manager;
@@ -63,13 +65,14 @@ public class BossDrac : IBossBehavior
                 int enemy = isSumOperation ? (x + y + z) : (x + y - z);
 
 
-                if (enemy >= 1 && enemy <= 9)
+                if (enemy >= 1 && enemy <= 9 && enemy != lastEnemy)
                 {
                     found = true;
                     foundX = x;
                     foundY = y;
                     foundZ = z;
                     foundEnemy = enemy;
+                    lastEnemy = enemy;
                     break;
                 }
             }

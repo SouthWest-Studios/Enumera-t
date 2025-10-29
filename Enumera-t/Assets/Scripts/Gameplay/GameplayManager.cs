@@ -468,8 +468,12 @@ public class GameplayManager : MonoBehaviour
 
         yield return new WaitForSeconds(AudioManager.Instance.musicSource.clip.length);
 
-        AudioManager.Instance.PlayBossFight();
-        AudioManager.Instance.musicSource.loop = true;
+        if(!AudioManager.Instance.musicSource.isPlaying)
+        {
+            AudioManager.Instance.PlayBossFight();
+            AudioManager.Instance.musicSource.loop = true;
+        }
+        
     }
 
     private void ReparentKeepVisuals(Transform child, Transform newParent)

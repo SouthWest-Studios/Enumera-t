@@ -42,23 +42,11 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
-        //int savedStars = DataLevels.Instance.dataLevels[id].starsEarned;
 
-        //if (savedStars > 0)
-        //{
-        //    StartCoroutine(FadeStars(savedStars));
-        //    for (int i = 0; i < stars.Count; i++)
-        //        stars[i].gameObject.SetActive(true);
-        //}
-        //else
-        //{
-        //    for (int i = 0; i < stars.Count; i++)
-        //        stars[i].gameObject.SetActive(false);
-        //}
     }
     public void PlayDialogueLevel()
     {
-        //DialogueManager.instance.StartDialogue(dialogueBeforeEnter, onFinishDialogueBeforeEnter);
+
         DialogueManager.instance.StartDialogue(dialogueBeforeLevelInfo, PlayLevelInfo);
 
         

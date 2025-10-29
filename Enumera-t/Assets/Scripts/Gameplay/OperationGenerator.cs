@@ -4,23 +4,28 @@ using UnityEngine;
 
 public static class OperationGenerator
 {
-    public static int PosibleSolution(bool sums,
-        int numberToCheck,
-        bool alreadyUsed,
-        int initialRange,
-        int finalRange,
-        int enemyNumberUsed,
-        List<int> numbersList,
-        List<int> alreadyUsedNumbers,
-        int unlockedNumbersInList)
+    public static int PosibleSolution(
+    bool sums,
+    int numberToCheck,
+    bool alreadyUsed,
+    int initialRange,
+    int finalRange,
+    int enemyNumberUsed,
+    List<int> numbersList,
+    List<int> alreadyUsedNumbers,
+    int unlockedNumbersInList,
+    int numberToAvoid = 0
+)
     {
-
         if (unlockedNumbersInList == 0 || numbersList.Count == 0)
             return 0;
+
         // Comprobar si existe alguna solución posible
         bool existeSolucion = false;
         for (int candidate = initialRange; candidate < finalRange; candidate++)
         {
+            if (candidate == numberToAvoid) continue;
+
             for (int i = 0; i < unlockedNumbersInList; i++)
             {
                 if (i >= numbersList.Count) break;
@@ -35,19 +40,23 @@ public static class OperationGenerator
                 }
                 else
                 {
-
                     if (candidate - listNumber == enemyNumberUsed)
                     {
                         existeSolucion = true;
                         break;
                     }
                 }
-
             }
+
             if (existeSolucion) break;
         }
 
-        if (!existeSolucion) return 0;
+        if (!existeSolucion)
+        {
+            Debug.Log("no encontrado");
+                return 0;
+        }
+            
 
         // Buscar número válido
         int intentos = 0;
@@ -66,7 +75,7 @@ public static class OperationGenerator
                 do
                 {
                     numberToCheck = Random.Range(initialRange, finalRange);
-                } while (alreadyUsedNumbers.Contains(numberToCheck));
+                } while (alreadyUsedNumbers.Contains(numberToCheck) || numberToCheck == numberToAvoid); //Evita el número prohibido
             }
 
             // Comprobar si este número genera solución
@@ -93,7 +102,7 @@ public static class OperationGenerator
                 }
             }
 
-            if (posibleSolution)
+            if (posibleSolution && numberToCheck != numberToAvoid) //Verificación extra antes de retornar
                 return numberToCheck;
 
         } while (intentos < maxIntentos);
