@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &25925258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6765,10 +6765,10 @@ MonoBehaviour:
   dialogueInGameThree:
     sentences:
     - sentence: 'Sis: Aquests son els intrusos, amo?'
-      characterAnimated: {fileID: 5477703949873802704, guid: 58ede08cfb33314428e6155ff1f4225f, type: 3}
+      characterAnimated: {fileID: 5477703949873802704, guid: 0ee10e3fba92ab94e8f2336b58fc2716, type: 3}
       mistery: 0
     - sentence: 'Nou: Veiem quant aguanten contra les dues a la vegada.'
-      characterAnimated: {fileID: 5477703949873802704, guid: 3009465aa1ce2c54bb02e268caaf8702, type: 3}
+      characterAnimated: {fileID: 5477703949873802704, guid: d9d6f06fbcc5bd045aabe9c76e95b76c, type: 3}
       mistery: 0
     - sentence: "Tres: Germanes! Aguanteu! Us est\xE0 controlant!"
       characterAnimated: {fileID: 5477703949873802704, guid: ed6b4aa32232c1247867b359bb4ee2ca, type: 3}
@@ -6782,7 +6782,7 @@ MonoBehaviour:
     - sentence: 'Cinc: Som-hi, no li donem treva!'
       characterAnimated: {fileID: 5477703949873802704, guid: bdc82c47e49d0c5418179bdc7b9145c9, type: 3}
       mistery: 0
-    - sentence: 'Dos: El guanyarem en 5 segons!'
+    - sentence: 'Dos: El guanyarem en CINC segons!'
       characterAnimated: {fileID: 5477703949873802704, guid: 9a8af72b31fbe264bb36b4cfb8069bdd, type: 3}
       mistery: 0
   dialogueInGameMID:
@@ -7762,6 +7762,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1369284841}
     m_Modifications:
+    - target: {fileID: 911458643624427517, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 911458643624427517, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 911458643624427517, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 911458643624427517, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4280098077
+      objectReference: {fileID: 0}
     - target: {fileID: 1176419256088167098, guid: 82fd429089e9c8147be02a7ffd35ab0c, type: 3}
       propertyPath: m_PreserveAspect
       value: 0
@@ -7966,6 +7982,22 @@ PrefabInstance:
     - target: {fileID: 1333817972616956270, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037847974283558552, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.11320752
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037847974283558552, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.11320752
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037847974283558552, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.11320752
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037847974283558552, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4280098077
       objectReference: {fileID: 0}
     - target: {fileID: 2779043932416721546, guid: a9a1e49105f3aaf41ba21e60c61a81e2, type: 3}
       propertyPath: m_AnchoredPosition.y
