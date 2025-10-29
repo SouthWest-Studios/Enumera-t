@@ -29,6 +29,11 @@ public class DialogueManager : MonoBehaviour
     private float dialogueCoolDown = 0;
     private float dialogueMaxCoolDown = 0.2f;
 
+
+    private Coroutine typingRoutine;
+    private bool isTyping;
+    private string lastSentence = "";
+
     private void Awake()
     {
         instance = this;
@@ -81,6 +86,13 @@ public class DialogueManager : MonoBehaviour
     {
         if (!_active) return;
 
+        if (isTyping)
+        {
+            // Completa la frase actual instantáneamente
+            CompleteTyping();
+            return;
+        }
+
         if (sentences.Count == 0) { EndDialogue(); return; }
 
         if (sentences.Peek().mistery)
@@ -88,9 +100,7 @@ public class DialogueManager : MonoBehaviour
             AudioManager.Instance.PlayMapMystery();
         }
 
-
         var sentence = sentences.Dequeue();
-        StopAllCoroutines();
 
         if (sentence.characterAnimated == null)
         {
@@ -101,19 +111,22 @@ public class DialogueManager : MonoBehaviour
             currentCharacter = sentence.characterAnimated.name;
             dialogueAnimations.ChangeCharacter(sentence.characterAnimated);
         }
-        StartCoroutine(TypeSentence(sentence.sentence));
+
+        lastSentence = sentence.sentence ?? string.Empty;
+
+        // Inicia el tipeo
+        if (typingRoutine != null) StopCoroutine(typingRoutine);
+        typingRoutine = StartCoroutine(TypeSentence(lastSentence));
     }
 
     IEnumerator TypeSentence(string sentence)
     {
+        isTyping = true;
         dialogueText.text = "";
         yield return new WaitForSeconds(0.4f);
         letterCount = 0;
 
-        //AudioManager.Instance.PlayHydroGraphicPen();
-        //AudioManager.Instance.StartSfxSource();
-
-        foreach (char letter in sentence ?? string.Empty)
+        foreach (char letter in sentence)
         {
             if (letter == ' ')
             {
@@ -126,7 +139,22 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(letterDelay);
         }
-        //AudioManager.Instance.StopSfxSource();
+
+        isTyping = false;
+        typingRoutine = null;
+        dialogueAnimations.NudgeDialogueBox();
+    }
+
+    private void CompleteTyping()
+    {
+        if (!isTyping) return;
+
+        if (typingRoutine != null) StopCoroutine(typingRoutine);
+        typingRoutine = null;
+
+        dialogueText.text = lastSentence;
+        isTyping = false;
+
         dialogueAnimations.NudgeDialogueBox();
     }
 
@@ -141,27 +169,23 @@ public class DialogueManager : MonoBehaviour
         cb?.Invoke();
     }
 
+    private void OnAdvanceInput()
+    {
+        AudioManager.Instance.PlayNextDialogueSound();
+        DisplayNextSentences();
+    }
+
     private void Update()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
-        // Para PC/WebGL con mouse
-        if (Input.GetMouseButtonDown(0))
-        {
-            AudioManager.Instance.PlayNextDialogueSound();
-            DisplayNextSentences();
-        }
+        if (Input.GetMouseButtonDown(0)) OnAdvanceInput();
 #endif
 
-        // Para móvil (iOS/Android)
 #if UNITY_IOS || UNITY_ANDROID
     if (Input.touchCount > 0)
     {
-        Touch touch = Input.GetTouch(0);
-        if (touch.phase == TouchPhase.Began)
-        {
-            AudioManager.Instance.PlayNextDialogueSound();
-            DisplayNextSentences();
-        }
+        Touch t = Input.GetTouch(0);
+        if (t.phase == TouchPhase.Began) OnAdvanceInput();
     }
 #endif
     }
